@@ -18,12 +18,13 @@ A working daily watcher and a dashboard. First full run, 2026-09-02:
 
 | | |
 |---|---|
-| Live listings | 7,986 |
-| Sources answering | 113 of 128 |
-| UK / US / EU | 772 / 5,606 / 334 |
-| Chemical or process | 104 |
-| Employers researched | 270 (108 pollable, 162 link-only) |
-| Run time | 2 min 17 s |
+| Live listings | 10,201 |
+| Sources answering | 121 of 127 |
+| UK / US / EU | 2,968 / 5,509 / 334 |
+| Chemical or process | 141 |
+| With a published deadline | 533 |
+| Employers researched | 374 (114 pollable, 260 link-only) |
+| Run time | 1 min 50 s local, 5 min 19 s in CI |
 
 ### Research done before building
 Seven parallel research passes, every endpoint called live rather than recalled:
@@ -65,17 +66,17 @@ Seven parallel research passes, every endpoint called live rather than recalled:
 - The dashboard rendered and checked in light and dark, desktop and 375 px.
 
 ### Owner actions still open
-1. **Create the GitHub repo and push.** Nothing is on GitHub yet — this is the
-   only thing standing between you and it running by itself.
-2. **Decide public or private.** Public gives unlimited Actions minutes and a
+1. **Decide public or private.** Public gives unlimited Actions minutes and a
    free live dashboard on GitHub Pages. Private keeps it unlisted and costs about
    90 of your 2,000 monthly minutes. There are no secrets and no personal data in
    the repo, so this is purely your call.
-3. **Run the workflow once by hand** to seed the baseline silently. Everything
-   that changes after that is what you hear about.
-4. *(Optional)* Add `GMAIL_USER` + `GMAIL_APP_PASSWORD` secrets for the daily
+2. **Run `npm run local` every couple of weeks** and commit `data/local/`. It is
+   the one thing the automation cannot do for itself, because Gradcracker refuses
+   GitHub's IP range. After 14 days the source reports itself stale.
+3. *(Optional)* Add `GMAIL_USER` + `GMAIL_APP_PASSWORD` secrets for the daily
    email digest. It stays silent on days when nothing changed.
-5. *(Optional)* Enable Pages (source: root) for the live dashboard.
+4. *(Optional)* Enable Pages (source: root) for the live dashboard — needs a
+   public repo on the free plan.
 
 ### Known limits, stated plainly
 - **162 of 270 employers are link-only.** Their boards sit behind bot walls
@@ -85,12 +86,12 @@ Seven parallel research passes, every endpoint called live rather than recalled:
 - **US volume dominates the raw count.** 5,606 of 7,986 rows are American,
   because Simplify's lists are enormous and tech-heavy. The dashboard defaults to
   the chemical/process filter for exactly this reason.
-- **Only 104 rows are chemical or process** on this run, and that number is
-  understated: Gradcracker was rate-limited during the final run, and it is the
-  source that contributes both the discipline tagging and most of the deadlines.
-  A clean run should roughly triple it.
-- **Deadlines are sparse** because most ATS boards never publish one. Gradcracker
-  does, which is another reason it matters.
+- **141 rows are chemical or process.** That is the honest number: it counts rows
+  whose title or Gradcracker discipline line actually names chemical or process
+  work, not everything an employer might accept a chem-eng student for.
+- **Deadlines are sparse outside Gradcracker** — 533 of the 10,201 rows carry one,
+  and almost all of those come from Gradcracker, because most ATS boards never
+  publish a closing date.
 - Several large consultancies (Mott MacDonald, Arup, AECOM, Stantec, RSK) could
   not be pinned to a readable endpoint. They are the highest-value follow-up,
   since they hire process engineers in volume.

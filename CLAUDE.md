@@ -75,7 +75,13 @@ Every change updates **`handoff.md`** (dated round + gotchas) **and this file**
 
 ## Hard-won gotchas
 
-- **Gradcracker answers `curl` and refuses Node.** Same URL, byte-identical browser
+- **Gradcracker BLOCKS GITHUB'S IP RANGE**, which is where the daily Action runs.
+  Search pages *and* `sitemap.xml`, curl *and* Node's fetch, all challenged within
+  half a second of a hosted run; 200 from a home connection. No header, client or
+  pacing fix exists — it is the IP. Hence `npm run local` + the `local-file`
+  adapter, and hence `data/local/gradcracker.json` being a committed artefact that
+  goes stale (14 days) rather than silently ageing.
+- **Gradcracker answers `curl` and refuses Node** *from a reachable network*. Same URL, byte-identical browser
   headers, seconds apart: curl 200 with 978 KB, Node's fetch a 403 "Just a
   moment…" challenge. Header spoofing does not help because the TLS/HTTP client
   itself is fingerprinted. Hence `fetchText(url, {client:"curl"})`; curl is present

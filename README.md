@@ -8,8 +8,8 @@ student job boards, with **chemical and process engineering ranked first**.
 It runs **once a day** in a GitHub Action, diffs against yesterday, and commits
 what changed. The repo is the database; `index.html` is the dashboard.
 
-**7,986 live listings from 113 working sources** on the first full run
-(2026-09-02): 772 in the UK, 5,606 in the US, 334 in Europe.
+**10,201 live listings from 121 working sources**: 2,968 in the UK, 5,509 in the
+US, and 141 that name chemical or process work.
 
 ---
 
@@ -29,7 +29,7 @@ and its endpoint actually called, with the HTTP status and job count recorded.
 | Kind | What | Rows |
 |---|---|---|
 | **Employer boards** | 108 employers on Workday, Greenhouse, Oracle HCM, SmartRecruiters, Lever, Ashby, Eightfold, TeamTailor and Pinpoint | varies daily |
-| **Gradcracker** | all 9 engineering discipline hubs, chemical/process first | ~290 chem-eng alone |
+| **Gradcracker** | all 9 discipline hubs, captured at home (see below) | 825, 533 with deadlines |
 | **Simplify** | the community Summer-2027 and New-Grad lists, bot-updated every 30 min | ~5,700 |
 | **Reed, Totaljobs, Guardian Jobs, Chemistry World** | UK graduate and placement searches | ~300 |
 | **The Muse, Arbeitnow, Getro** | US internships, EU roles, VC-portfolio startups | ~250 |
@@ -57,6 +57,7 @@ pretending to poll them.
 npm install
 npm test          # the classifier and the diff engine
 npm run watch     # one full poll into ./data
+npm run local     # refresh Gradcracker from a home connection, then commit it
 npm run probe reed-uk gradcracker-chemical-process   # try single sources
 npm run serve     # dashboard at http://localhost:8791
 ```
@@ -101,12 +102,16 @@ to ignore the one that matters.
 - **A bare `[]` from Trackr means throttled, not empty.** Reproduced deliberately;
   recovery took over two hours. The adapter throws on a bare array rather than
   reporting every listing closed.
-- **Gradcracker rate-limits by request rate, not by client.** Nine feeds fetched
-  concurrently earned the whole IP a Cloudflare challenge on every later request,
-  curl included. It is now fetched single-file with a pause between pages.
-- **Gradcracker answers curl and refuses Node.** Same URL, same headers, seconds
-  apart: 200 versus a 403 challenge. What is fingerprinted is the TLS client, so
-  those pages go through `curl`.
+- **Gradcracker blocks GitHub's IP range outright.** Search pages *and*
+  `sitemap.xml`, to curl *and* to Node, all challenged within half a second of a
+  hosted run starting; the same URLs answer 200 from a home connection. So
+  `npm run local` captures it at home and commits `data/local/gradcracker.json`,
+  which the daily run reads. That file declares itself **stale after 14 days**
+  rather than passing old rows off as current.
+- **From a home connection it answers curl and refuses Node**, same URL and
+  headers seconds apart, because the TLS client itself is fingerprinted — hence
+  the `curl` path. And it limits by request RATE: nine feeds at once cost the
+  whole IP a challenge for tens of minutes, so they are fetched single-file.
 - **A failing source keeps its previous listings.** A network blip must never read
   as a wave of closures, and a board that collapses from hundreds of rows to zero
   is treated as a failure rather than believed.
