@@ -68,11 +68,7 @@ export const gradcracker = async (s: Source): Promise<RawJob[]> => {
 const fetchDiscipline = async (s: Source): Promise<RawJob[]> => {
   // mode=sitemap skips the search pages entirely. That is the mode the daily
   // Action uses, because the search pages are unreachable from a datacentre IP.
-  if (s.params?.mode === "sitemap") {
-    const rows = await fromSitemap();
-    if (rows.length === 0) throw new Error(`gradcracker: ${s.id} — the sitemap returned no job URLs`);
-    return rows;
-  }
+  if (s.params?.mode === "sitemap") return await fromSitemap();
 
   const urls = (s.params?.urls ?? "").split("|").map((u) => u.trim()).filter(Boolean);
   if (urls.length === 0) throw new Error(`gradcracker: ${s.id} needs params.urls`);
@@ -120,12 +116,26 @@ let sitemapCache: { at: number; rows: RawJob[] } | null = null;
 
 async function fromSitemap(): Promise<RawJob[]> {
   if (sitemapCache && Date.now() - sitemapCache.at < 10 * 60_000) return sitemapCache.rows;
-  let xml: string;
-  try {
-    xml = await fetchText("https://www.gradcracker.com/sitemap.xml", { client: "curl" });
-  } catch {
-    return [];
+
+  // Try both clients and REPORT WHAT HAPPENED. Swallowing the reason here cost a
+  // whole CI round-trip once: the run said only "the sitemap returned no job
+  // URLs", which cannot distinguish "the fetch was blocked" from "the file
+  // parsed but had no jobs in it" — two problems with completely different fixes.
+  const attempts: string[] = [];
+  let xml = "";
+  for (const client of ["curl", "fetch"] as const) {
+    try {
+      const body = await fetchText("https://www.gradcracker.com/sitemap.xml", { client, retries: 1 });
+      attempts.push(`${client}: ${body.length} bytes, starts ${JSON.stringify(body.slice(0, 60))}`);
+      if (body.includes("<loc>")) {
+        xml = body;
+        break;
+      }
+    } catch (e) {
+      attempts.push(`${client}: ${(e as Error).message.slice(0, 140)}`);
+    }
   }
+  if (!xml) throw new Error(`gradcracker sitemap unreadable — ${attempts.join(" | ")}`);
   const rows: RawJob[] = [];
   const seen = new Set<string>();
   for (const m of xml.matchAll(/<loc>(https?:\/\/(?:www\.)?gradcracker\.com\/hub\/\d+\/([a-z0-9-]+)\/([a-z-]+)\/(\d+)\/([a-z0-9-]+))<\/loc>/gi)) {
@@ -141,6 +151,11 @@ async function fromSitemap(): Promise<RawJob[]> {
       employer: prettify(employerSlug),
       levelHint: LEVEL_BY_SEGMENT[typeSegment.toLowerCase()],
     });
+  }
+  if (rows.length === 0) {
+    // The file was readable but held no job URLs — a sitemap-index or a layout
+    // change, not a block. Say which, so the next fix starts in the right place.
+    throw new Error(`gradcracker sitemap parsed (${xml.length} bytes) but matched no /hub/ job URLs — sitemap index or path change?`);
   }
   sitemapCache = { at: Date.now(), rows };
   return rows;
