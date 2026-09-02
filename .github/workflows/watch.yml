@@ -1,0 +1,99 @@
+name: engintrack
+
+# Polls every source ONCE A DAY, diffs against yesterday, and commits the changed
+# data back to this repo (the repo IS the database).
+#
+# ⚠️ COST, because it is the constraint that shaped this file:
+# GitHub bills each job rounded UP to a whole minute, so the bill is
+# fires/month x max(1, run-minutes) and the script's speed is irrelevant below
+# 60s. A full run measured 137 s, so this costs about 3 minutes a day, roughly
+# 90 a month, against the 2,000 free private-repo minutes. An hourly schedule
+# would cost 24x that for data that changes daily.
+#   - `timeout-minutes` is NOT optional: without it a hung run bills GitHub's
+#     360-minute default, a fifth of the monthly quota in one go.
+#   - Do NOT add a second trigger (an external pinger, another schedule).
+#     Double-triggering doubles the bill and neither side's logs make it obvious.
+#   - A PUBLIC repo has free unlimited Actions minutes and free GitHub Pages.
+#     This watcher reads only public listings and holds no secrets, so making the
+#     repo public costs nothing in privacy and makes the whole thing free.
+#
+# ⚠️ GitHub's scheduled cron is BEST-EFFORT: runs are routinely delayed or
+# skipped under load, so the real gap is often longer than 24 h. The dashboard
+# reports the true last-checked time rather than assuming the schedule held.
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # 06:17 UTC daily — off the hour, where the queue is shorter
+  workflow_dispatch: {} # the manual "Run workflow" button
+
+concurrency:
+  group: engintrack
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check the registry is well formed
+        run: npx tsx scripts/build-registry.ts
+
+      - name: Poll every source, diff, write data
+        id: run
+        run: npm run watch
+
+      # The script exits quietly when the secrets are absent, so this step is
+      # always safe to run. Gating it on a `secrets` expression here would be
+      # fragile; letting the script decide keeps one rule in one place. It never
+      # fails the run either — a mail problem must not lose the day's data.
+      - name: Email the digest (no-op unless the secrets are set)
+        continue-on-error: true
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_TO: ${{ vars.DIGEST_TO }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+        run: npm run digest
+
+      - name: Commit whatever changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No data changes this run."
+            exit 0
+          fi
+          git commit -m "data: engintrack daily update"
+          # Push, tolerating a concurrent run that moved the branch. On a data
+          # conflict our fresh poll wins. NEVER leave a half-rebase or fail the
+          # run: a stubborn race is abandoned and the next day catches up.
+          # (Do not reintroduce a bare `|| true` around a rebase — that masks a
+          # conflict and leaves a detached HEAD, which then fails the push.)
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "remote moved — replaying our commit on top of origin (attempt $attempt)"
+            git fetch origin "${GITHUB_REF_NAME}" || true
+            if ! git rebase -X theirs "origin/${GITHUB_REF_NAME}"; then
+              echo "rebase conflict couldn't auto-resolve — abandoning; tomorrow's run catches up"
+              git rebase --abort || true
+              exit 0
+            fi
+          done
+          echo "still behind after retries — tomorrow's run catches up (not a failure)"
+          exit 0

@@ -1,0 +1,25 @@
+{
+  "name": "engintrack",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Daily watcher of early-career roles (internships, placements, graduate schemes, entry-level jobs) across hundreds of employer ATS boards and student aggregators. UK first, then US/EU, any discipline, chemical/process engineering surfaced first. The repo is the database; index.html is the dashboard (GitHub Pages).",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "watch": "tsx src/run.ts",
+    "test": "tsx src/classify.test.ts && tsx src/diff.test.ts",
+    "typecheck": "tsc --noEmit",
+    "probe": "tsx scripts/probe.ts",
+    "digest": "tsx scripts/send-digest.ts",
+    "serve": "node scripts/serve.mjs"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/nodemailer": "^6.4.17",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
+  }
+}

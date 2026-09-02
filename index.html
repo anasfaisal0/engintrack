@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>EnginTrack</title>
+<meta name="description" content="Early-career engineering roles gathered daily from employer applicant-tracking boards and student job boards. Chemical and process engineering first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* ==========================================================================
+   ENGINTRACK — an early-careers datasheet.
+
+   Form: a process-engineering datasheet, not a dashboard of cards. Ruled
+   sections with a margin label column, an engineering title block carrying the
+   run state, figures in mono in a rule-separated band, zero radius, no shadows.
+   That form comes from the owner's own works-sheet design system; the palette
+   is re-roled for this subject: process petrol as the identity, a signal amber
+   that means "deadline", and green/red reserved strictly for state.
+   ========================================================================== */
+
+*,*::before,*::after{box-sizing:border-box}
+/* `hidden` must beat every display rule below it, or a flex/grid component
+   stays visible while the script believes it is hidden. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body,h1,h2,h3,h4,p,ul,ol,dl,dd,table,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+button,input,select{font:inherit;color:inherit}
+svg{display:block}
+
+:root{
+  /* neutrals: cool, biased toward the petrol accent rather than a flat grey */
+  --desk:#e6eaea;
+  --sheet:#ffffff;
+  --sheet-2:#f3f6f6;
+  --sheet-3:#e9eeee;
+  --ink:#0c1719;
+  --ink-2:#3a4a4d;
+  --ink-3:#5e7175;
+  --rule:#d5dedf;
+  --rule-2:#a4b3b5;
+
+  --brand:#0e5c63;          /* process petrol — the identity */
+  --brand-2:#0a4046;
+  --wash:#e2eeef;
+  --mark:#d2601a;           /* signal orange: used twice, never encodes data */
+
+  --good:#2c6b2f;  --good-w:#e6f1e4;   /* open */
+  --warn:#8a5200;  --warn-w:#f8efdc;   /* closing soon */
+  --risk:#a8232b;  --risk-w:#f9e4e5;   /* gone / failed */
+
+  --c1:#0e5c63; --c2:#b4560c; --c3:#6a3fa0; --c4:#8a6a00; --c5:#2f5fa8;
+  --grid:#e6ecec;
+
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --on-brand:#ffffff;   /* foreground on a --brand fill; defined in EVERY block */
+  --on-mark:#ffffff;
+  --focus:#0e7d88;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --desk:#070b0c; --sheet:#111a1c; --sheet-2:#182325; --sheet-3:#1f2c2f;
+    --ink:#e4ecec; --ink-2:#a3b4b6; --ink-3:#82989b;
+    --rule:#263335; --rule-2:#3e5052;
+    --brand:#4fb3bd; --brand-2:#84d3da; --wash:#0f2f33; --mark:#f0824a;
+    --good:#79c07d; --good-w:#12250f;
+    --warn:#d9a441; --warn-w:#2a2210;
+    --risk:#f0777e; --risk-w:#31151a;
+    --c1:#4fb3bd; --c2:#e0873c; --c3:#a98ae0; --c4:#c3a53c; --c5:#7ba3e8;
+    --grid:#1e2b2d;
+    --on-brand:#04171a;
+    --on-mark:#2a1206;
+    --focus:#6fd3dd;
+  }
+}
+:root[data-theme="dark"]{
+  --desk:#070b0c; --sheet:#111a1c; --sheet-2:#182325; --sheet-3:#1f2c2f;
+  --ink:#e4ecec; --ink-2:#a3b4b6; --ink-3:#82989b;
+  --rule:#263335; --rule-2:#3e5052;
+  --brand:#4fb3bd; --brand-2:#84d3da; --wash:#0f2f33; --mark:#f0824a;
+  --good:#79c07d; --good-w:#12250f;
+  --warn:#d9a441; --warn-w:#2a2210;
+  --risk:#f0777e; --risk-w:#31151a;
+  --c1:#4fb3bd; --c2:#e0873c; --c3:#a98ae0; --c4:#c3a53c; --c5:#7ba3e8;
+  --grid:#1e2b2d;
+  --on-brand:#04171a;
+  --on-mark:#2a1206;
+  --focus:#6fd3dd;
+}
+
+body{
+  background:var(--desk);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+a{color:var(--brand-2)}
+
+.lab{font-family:var(--sans);font-stretch:80%;font-weight:700;font-size:12px;
+     letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.n{font-family:var(--mono);font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1}
+
+/* ---------- the sheet ---------- */
+.sheet{max-width:1560px;margin:0 auto;background:var(--sheet);
+       border-left:1px solid var(--rule-2);border-right:1px solid var(--rule-2);min-height:100vh}
+
+/* ---------- masthead + engineering title block ---------- */
+.mast{display:flex;flex-wrap:wrap;align-items:stretch;border-bottom:2px solid var(--ink)}
+.brandcell{padding:16px 20px 14px;display:flex;flex-direction:column;justify-content:center;margin-right:auto;min-width:0}
+.brandcell h1{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1;display:flex;align-items:center;gap:9px}
+.brandcell h1::before{content:"";width:13px;height:23px;background:var(--brand);border-top:5px solid var(--mark);flex:none}
+.brandcell p{font-size:12.5px;color:var(--ink-3);margin-top:5px;line-height:1.35;max-width:56ch}
+.titleblock{display:grid;grid-template-columns:repeat(4,minmax(92px,auto));border-left:1px solid var(--rule)}
+.tbcell{padding:11px 16px 10px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:3px}
+.tbcell:last-child{border-right:0}
+.tbcell .val{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.tbcell.state .val{display:inline-flex;align-items:center;gap:7px;font-weight:600}
+
+/* ---------- control bar ---------- */
+.bar{display:flex;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--rule);background:var(--sheet-2)}
+.tabs{display:flex;overflow-x:auto;margin-right:auto;scrollbar-width:thin}
+.tabs button{background:none;border:0;cursor:pointer;white-space:nowrap;padding:13px 17px 11px;
+             border-bottom:3px solid transparent;font-stretch:80%;font-weight:700;font-size:13.5px;
+             letter-spacing:.075em;text-transform:uppercase;color:var(--ink-3);min-height:44px}
+.tabs button:hover{color:var(--ink);background:var(--sheet-3)}
+.tabs button[aria-current="true"]{color:var(--brand-2);border-bottom-color:var(--mark);background:var(--sheet)}
+.tabs button .cnt{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-left:6px;font-stretch:100%}
+.ctl{display:flex;align-items:center;border-left:1px solid var(--rule)}
+.ctl button{background:none;border:0;border-left:1px solid var(--rule);padding:12px 14px;
+            font-family:var(--mono);font-size:13px;cursor:pointer;min-height:44px;color:var(--ink)}
+.ctl button:hover{background:var(--sheet-3)}
+
+/* ---------- filter rail ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--rule);background:var(--sheet)}
+.fgroup{display:flex;align-items:center;gap:8px;padding:9px 16px;border-right:1px solid var(--rule);flex-wrap:wrap}
+.fgroup:last-child{border-right:0;flex:1;min-width:220px}
+.chip{border:1px solid var(--rule-2);background:transparent;color:var(--ink-2);border-radius:0;
+      padding:4px 9px;font-size:12.5px;font-weight:600;cursor:pointer;line-height:1.3}
+.chip:hover{background:var(--sheet-3);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.search{flex:1;min-width:160px;border:1px solid var(--rule-2);background:var(--sheet);padding:6px 10px;
+        font-size:13.5px;font-family:var(--mono);color:var(--ink)}
+.search::placeholder{color:var(--ink-3)}
+
+/* ---------- ruled blocks ---------- */
+.panel[hidden]{display:none}
+.block{display:grid;grid-template-columns:158px minmax(0,1fr);border-bottom:1px solid var(--rule)}
+.block:last-child{border-bottom:0}
+.blab{padding:20px 14px 22px 20px;border-right:1px solid var(--rule)}
+.blab h2,.blab h3{font-stretch:80%;font-weight:700;font-size:13px;letter-spacing:.1em;
+                  text-transform:uppercase;color:var(--ink);line-height:1.3}
+.blab p{font-size:12.5px;color:var(--ink-3);margin-top:7px;line-height:1.4}
+.bbody{padding:20px;min-width:0}
+.bbody.flush{padding:0}
+
+/* ---------- figures band: no tiles, rules only ---------- */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.fig{padding:16px 18px;border-left:1px solid var(--rule);min-width:0}
+.fig:first-child{border-left:0;padding-left:20px}
+.fig .k{display:block;font-stretch:80%;font-weight:700;font-size:12px;letter-spacing:.09em;
+        text-transform:uppercase;color:var(--ink-3)}
+.fig .v{display:block;font-family:var(--mono);font-weight:500;font-size:27px;letter-spacing:-.035em;
+        line-height:1.1;margin-top:8px;font-variant-numeric:tabular-nums lining-nums}
+.fig .v i{font-style:normal;font-size:14px;color:var(--ink-2);margin-left:2px}
+.fig .d{font-size:12px;color:var(--ink-3);margin-top:6px}
+
+/* ---------- listing rows ---------- */
+.rows{border-top:1px solid var(--rule)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 190px 132px 108px;gap:0;
+     border-bottom:1px solid var(--rule);align-items:start}
+.row:hover{background:var(--sheet-2)}
+.row>*{padding:11px 14px}
+.row .who{min-width:0}
+.row .co{font-weight:700;font-size:13px;letter-spacing:-.005em}
+.row .ti{margin-top:2px;font-size:14.5px;line-height:1.32}
+.row .ti a{color:var(--ink);text-decoration:none}
+.row .ti a:hover{color:var(--brand-2);text-decoration:underline}
+.row .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.row .loc{font-size:12.5px;color:var(--ink-2);border-left:1px solid var(--rule)}
+.row .lvl{font-size:12.5px;border-left:1px solid var(--rule)}
+.row .dl{border-left:1px solid var(--rule);text-align:right;font-family:var(--mono);font-size:12.5px;
+         font-variant-numeric:tabular-nums}
+.tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;
+     border:1px solid var(--rule-2);color:var(--ink-3);white-space:nowrap;font-stretch:85%}
+.tag.chem{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.tag.accepts{border-color:var(--brand);color:var(--brand-2)}
+.tag.new{background:var(--mark);border-color:var(--mark);color:var(--on-mark)}
+.dl .soon{color:var(--warn);font-weight:600}
+.dl .past{color:var(--risk)}
+.dl .none{color:var(--ink-3)}
+
+/* state dot: shape plus a word, never colour alone */
+.dot{width:9px;height:9px;flex:none;display:inline-block;vertical-align:-1px;margin-right:6px}
+.dot.ok{background:var(--good)} .dot.warn{background:var(--warn)} .dot.bad{background:var(--risk)}
+
+/* ---------- tables (sources) ---------- */
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-stretch:80%;font-weight:700;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
+   color:var(--ink-3);white-space:nowrap;background:var(--sheet-2);position:sticky;top:0}
+td.num{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+tr.dead td{color:var(--ink-3)}
+td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block;margin-top:3px;
+        max-width:52ch;overflow-wrap:anywhere}
+
+.empty{padding:34px 20px;color:var(--ink-3);font-size:14px}
+.more{padding:14px 20px;border-top:1px solid var(--rule)}
+.more button{background:var(--sheet-2);border:1px solid var(--rule-2);padding:8px 16px;
+             font-size:13px;font-weight:600;cursor:pointer}
+.more button:hover{background:var(--sheet-3)}
+.notice{display:flex;gap:10px;align-items:baseline;padding:10px 20px;border-bottom:1px solid var(--rule);
+        background:var(--warn-w);color:var(--warn);font-size:12.5px;line-height:1.45}
+.notice b{font-stretch:85%;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.foot{padding:20px;border-top:1px solid var(--rule);color:var(--ink-3);font-size:12.5px;line-height:1.55}
+.foot code{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+
+@media (max-width:900px){
+  .row{grid-template-columns:minmax(0,1fr) 116px}
+  .row .loc{grid-column:1/-1;border-left:0;border-top:1px dotted var(--rule);padding-top:7px}
+  .row .lvl{border-left:1px solid var(--rule)}
+  .row .dl{grid-column:2;border-left:1px solid var(--rule)}
+  .block{grid-template-columns:1fr}
+  .blab{border-right:0;border-bottom:1px solid var(--rule);padding:14px 20px}
+  .titleblock{grid-template-columns:repeat(2,1fr);width:100%;border-left:0;border-top:1px solid var(--rule)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="mast">
+    <div class="brandcell">
+      <h1>EnginTrack</h1>
+      <p>Early-career engineering roles, gathered once a day from employer applicant-tracking boards and student job boards. Chemical and process engineering ranks first.</p>
+    </div>
+    <div class="titleblock">
+      <div class="tbcell"><span class="lab">Last checked</span><span class="val" id="tb-checked">—</span></div>
+      <div class="tbcell"><span class="lab">Live listings</span><span class="val n" id="tb-live">—</span></div>
+      <div class="tbcell"><span class="lab">New today</span><span class="val n" id="tb-new">—</span></div>
+      <div class="tbcell state"><span class="lab">Sources</span><span class="val" id="tb-sources">—</span></div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <nav class="tabs" id="tabs" aria-label="Sections">
+      <button data-p="live" aria-current="true">Live roles <span class="cnt" id="c-live"></span></button>
+      <button data-p="new">New <span class="cnt" id="c-new"></span></button>
+      <button data-p="closing">Closing soon <span class="cnt" id="c-closing"></span></button>
+      <button data-p="employers">Employers <span class="cnt" id="c-emp"></span></button>
+      <button data-p="sources">Sources <span class="cnt" id="c-src"></span></button>
+      <button data-p="gone">Gone <span class="cnt" id="c-gone"></span></button>
+    </nav>
+    <div class="ctl">
+      <button id="theme" title="Switch between light and dark">Theme</button>
+    </div>
+  </div>
+
+  <div id="notice" hidden class="notice"><b>Note</b><span id="notice-text"></span></div>
+
+  <!-- ================= LIVE ================= -->
+  <section class="panel" id="p-live">
+    <div class="block">
+      <div class="blab"><h2>Position</h2><p>Everything currently open, newest first, with chemical and process roles lifted to the top.</p></div>
+      <div class="bbody flush"><div class="figs" id="figs"></div></div>
+    </div>
+    <div class="filters" id="filters">
+      <div class="fgroup" id="f-disc" aria-label="Discipline"></div>
+      <div class="fgroup" id="f-level" aria-label="Stage"></div>
+      <div class="fgroup" id="f-region" aria-label="Region"></div>
+      <div class="fgroup">
+        <label class="lab" for="q">Find</label>
+        <input class="search" id="q" type="search" placeholder="employer, role, place…" autocomplete="off">
+      </div>
+    </div>
+    <div class="rows" id="rows"></div>
+    <div class="more" id="more" hidden><button id="more-btn">Show more</button></div>
+  </section>
+
+  <!-- ================= NEW ================= -->
+  <section class="panel" id="p-new" hidden>
+    <div class="block">
+      <div class="blab"><h2>New</h2><p>Listings that appeared since the previous run, and deadlines that moved.</p></div>
+      <div class="bbody flush"><div class="rows" id="rows-new"></div></div>
+    </div>
+  </section>
+
+  <!-- ================= CLOSING ================= -->
+  <section class="panel" id="p-closing" hidden>
+    <div class="block">
+      <div class="blab"><h2>Closing</h2><p>Open roles with a stated deadline, soonest first. A blank deadline means the employer never published one.</p></div>
+      <div class="bbody flush"><div class="rows" id="rows-closing"></div></div>
+    </div>
+  </section>
+
+  <!-- ================= EMPLOYERS ================= -->
+  <section class="panel" id="p-employers" hidden>
+    <div class="block">
+      <div class="blab"><h2>Employers</h2><p>Every employer researched, whether or not their board can be read automatically. The ones that cannot are kept here for the link.</p></div>
+      <div class="bbody flush"><div class="scroll"><table id="t-emp"><thead><tr>
+        <th>Employer</th><th>Sector</th><th>Board</th><th class="num">Live</th><th class="num">Chem-eng</th><th>Careers</th>
+      </tr></thead><tbody></tbody></table></div></div>
+    </div>
+  </section>
+
+  <!-- ================= SOURCES ================= -->
+  <section class="panel" id="p-sources" hidden>
+    <div class="block">
+      <div class="blab"><h2>Sources</h2><p>What answered on the last run and what did not. A source that fails keeps its previous listings rather than reporting them closed.</p></div>
+      <div class="bbody flush"><div class="scroll"><table id="t-src"><thead><tr>
+        <th>Source</th><th>Kind</th><th>State</th><th class="num">Returned</th><th class="num">Kept</th><th class="num">Chem-eng</th><th>Last OK</th>
+      </tr></thead><tbody></tbody></table></div></div>
+    </div>
+  </section>
+
+  <!-- ================= GONE ================= -->
+  <section class="panel" id="p-gone" hidden>
+    <div class="block">
+      <div class="blab"><h2>Gone</h2><p>Listings that dropped off a board. The application link is kept because a role often stays reachable after it stops being listed.</p></div>
+      <div class="bbody flush"><div class="rows" id="rows-gone"></div></div>
+    </div>
+  </section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  // ---- state ---------------------------------------------------------------
+  const S = { listings: [], events: [], summary: null, removed: [], registry: [],
+              disc: "chem-eng", level: "all", region: "all", q: "", limit: 120 };
+
+  const DISC_LABEL = { "chem-eng":"Chem / process", mech:"Mechanical", elec:"Electrical", civil:"Civil",
+    materials:"Materials", energy:"Energy", manufacturing:"Manufacturing", software:"Software",
+    data:"Data", science:"Science", finance:"Finance", consulting:"Consulting", business:"Business",
+    ops:"Operations", general:"General" };
+  const LEVEL_LABEL = { "spring-week":"Spring week", insight:"Insight", internship:"Internship",
+    placement:"Placement", graduate:"Graduate", entry:"Entry level", apprenticeship:"Apprenticeship",
+    event:"Event", other:"Other" };
+
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  const $ = (id) => document.getElementById(id);
+
+  const fmtDate = (iso) => { if (!iso) return null;
+    const d = new Date(iso); return isNaN(d) ? null : d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"2-digit"}); };
+  const daysTo = (iso) => { if (!iso) return null;
+    const d = new Date(iso); return isNaN(d) ? null : Math.round((d - Date.now())/86400000); };
+  const ago = (iso) => { if (!iso) return "never";
+    const m = Math.round((Date.now() - new Date(iso))/60000);
+    if (!isFinite(m)) return "never";
+    if (m < 60) return m + " min ago";
+    if (m < 1440) return Math.round(m/60) + " h ago";
+    return Math.round(m/1440) + " d ago"; };
+
+  // ---- load ----------------------------------------------------------------
+  const grab = (f) => fetch(f, { cache:"no-store" }).then((r) => r.ok ? r.json() : null).catch(() => null);
+
+  Promise.all([grab("data/listings.json"), grab("data/summary.json"), grab("data/feed.json"),
+               grab("data/removed.json"), grab("data/registry.json")]).then(([l,s,f,r,reg]) => {
+    S.listings = l?.listings ?? [];
+    S.summary = s;
+    S.events = (f?.events ?? []);
+    S.removed = r?.listings ?? [];
+    S.registry = reg?.sources ?? [];
+    if (!S.listings.length && !S.summary) {
+      $("notice").hidden = false;
+      $("notice-text").textContent = "No data files yet. Run the watcher once (npm run watch), or wait for the scheduled run to commit its first results.";
+    }
+    renderAll();
+  });
+
+  // ---- render --------------------------------------------------------------
+  function renderAll(){ titleBlock(); figures(); filterRail(); live(); newer(); closing(); employers(); sources(); gone(); foot(); }
+
+  function titleBlock(){
+    const t = S.summary?.totals;
+    $("tb-checked").textContent = S.summary ? ago(S.summary.lastCheckedAt) : "—";
+    $("tb-live").textContent = t ? t.listings.toLocaleString("en-GB") : "—";
+    $("tb-new").textContent = t ? "+" + t.addedThisRun.toLocaleString("en-GB") : "—";
+    if (t) {
+      const failed = t.sourcesFailed, ok = t.sourcesOk;
+      const cls = failed === 0 ? "ok" : failed > ok/3 ? "bad" : "warn";
+      const word = failed === 0 ? "all reporting" : failed + " not reporting";
+      $("tb-sources").innerHTML = `<span class="dot ${cls}"></span>${ok}/${ok+failed} <i style="font-style:normal;color:var(--ink-3);font-size:12px">${esc(word)}</i>`;
+    }
+    $("c-live").textContent = S.listings.length ? "(" + S.listings.length + ")" : "";
+    $("c-new").textContent = "(" + S.events.filter((e)=>e.kind==="added").length + ")";
+    $("c-closing").textContent = "(" + S.listings.filter((l)=>{const d=daysTo(l.closesAt);return d!==null&&d>=0;}).length + ")";
+    $("c-emp").textContent = "(" + S.registry.filter((s)=>s.kind==="ats").length + ")";
+    $("c-src").textContent = "(" + (S.summary?.sources?.length ?? 0) + ")";
+    $("c-gone").textContent = "(" + S.removed.length + ")";
+  }
+
+  function figures(){
+    const t = S.summary?.totals; if (!t) return;
+    const soon = S.listings.filter((l)=>{const d=daysTo(l.closesAt);return d!==null&&d>=0&&d<=14;}).length;
+    const fig = (k,v,d,unit) => `<div class="fig"><span class="k">${esc(k)}</span><span class="v">${v}${unit?`<i>${esc(unit)}</i>`:""}</span><span class="d">${esc(d)}</span></div>`;
+    $("figs").innerHTML =
+      fig("Chem / process", t.chemEng.toLocaleString("en-GB"), "roles naming chemical or process work") +
+      fig("Accepts chem-eng", t.acceptsChemEng.toLocaleString("en-GB"), "including roles open to the discipline") +
+      fig("United Kingdom", t.uk.toLocaleString("en-GB"), "of " + t.listings.toLocaleString("en-GB") + " live") +
+      fig("United States", t.us.toLocaleString("en-GB"), t.eu.toLocaleString("en-GB") + " in Europe") +
+      fig("Closing", soon.toLocaleString("en-GB"), "within a fortnight") +
+      fig("Employers", S.registry.filter((s)=>s.kind==="ats").length.toLocaleString("en-GB"), "boards researched");
+  }
+
+  function filterRail(){
+    const counts = (key) => { const m = new Map();
+      for (const l of S.listings) { const vs = key==="disciplines" ? l.disciplines : [l[key]];
+        for (const v of vs) m.set(v,(m.get(v)??0)+1); } return m; };
+    const d = counts("disciplines"), lv = counts("level"), rg = counts("region");
+    const chips = (el, cur, map, labels, all) => {
+      const items = [...map.entries()].sort((a,b)=>b[1]-a[1]);
+      el.innerHTML = `<span class="lab">${esc(el.getAttribute("aria-label"))}</span>` +
+        `<button class="chip" data-v="all" aria-pressed="${cur==="all"}">${esc(all)}</button>` +
+        items.map(([k,n])=>`<button class="chip" data-v="${esc(k)}" aria-pressed="${cur===k}">${esc(labels[k]??k)} <span class="n">${n}</span></button>`).join("");
+    };
+    chips($("f-disc"), S.disc, d, DISC_LABEL, "Any discipline");
+    chips($("f-level"), S.level, lv, LEVEL_LABEL, "Any stage");
+    chips($("f-region"), S.region, rg, {UK:"UK",US:"US",EU:"Europe",Remote:"Remote",Other:"Elsewhere"}, "Anywhere");
+    $("f-disc").onclick = (e) => pick(e,"disc");
+    $("f-level").onclick = (e) => pick(e,"level");
+    $("f-region").onclick = (e) => pick(e,"region");
+    $("q").oninput = (e) => { S.q = e.target.value.toLowerCase(); S.limit = 120; live(); };
+  }
+  function pick(e,key){ const b = e.target.closest(".chip"); if(!b) return;
+    S[key] = b.dataset.v; S.limit = 120; filterRail(); live(); $("q").value = S.q; }
+
+  function match(l){
+    if (S.disc !== "all" && !l.disciplines.includes(S.disc)) return false;
+    if (S.level !== "all" && l.level !== S.level) return false;
+    if (S.region !== "all" && l.region !== S.region) return false;
+    if (S.q) { const hay = (l.employer+" "+l.title+" "+(l.location??"")+" "+l.sourceName).toLowerCase();
+      if (!hay.includes(S.q)) return false; }
+    return true;
+  }
+
+  function rowHtml(l, opts = {}){
+    const days = daysTo(l.closesAt);
+    let dl = `<span class="none">—</span>`;
+    if (days !== null) {
+      const label = fmtDate(l.closesAt);
+      dl = days < 0 ? `<span class="past">closed ${esc(label)}</span>`
+         : days <= 14 ? `<span class="soon">${days === 0 ? "today" : days + " d"}</span><br><span class="none">${esc(label)}</span>`
+         : `${esc(label)}`;
+    }
+    const tags = [];
+    if (opts.isNew) tags.push(`<span class="tag new">New</span>`);
+    if (l.chemEng) tags.push(`<span class="tag chem">Chem / process</span>`);
+    else if (l.acceptsChemEng) tags.push(`<span class="tag accepts">Accepts chem-eng</span>`);
+    for (const d of l.disciplines.filter((x)=>x!=="chem-eng").slice(0,2)) tags.push(`<span class="tag">${esc(DISC_LABEL[d]??d)}</span>`);
+    // Boards like Reed and Totaljobs do not publish the hiring employer, so the
+    // row falls back to the board's own name. Printing it again as a source tag
+    // would just say the same thing twice.
+    if (l.employer !== l.sourceName) tags.push(`<span class="tag">${esc(l.sourceName)}</span>`);
+    return `<div class="row">
+      <div class="who">
+        <div class="co">${esc(l.employer)}</div>
+        <div class="ti"><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.title)}</a></div>
+        <div class="tags">${tags.join("")}</div>
+      </div>
+      <div class="loc">${esc(l.location ?? "—")}</div>
+      <div class="lvl">${esc(LEVEL_LABEL[l.level] ?? l.level)}</div>
+      <div class="dl">${dl}</div>
+    </div>`;
+  }
+
+  function live(){
+    const all = S.listings.filter(match);
+    const shown = all.slice(0, S.limit);
+    $("rows").innerHTML = shown.length ? shown.map((l)=>rowHtml(l)).join("")
+      : `<div class="empty">Nothing matches those filters. Widen the discipline or clear the search.</div>`;
+    const more = $("more");
+    more.hidden = all.length <= S.limit;
+    $("more-btn").textContent = `Show more (${(all.length - S.limit).toLocaleString("en-GB")} left)`;
+    $("more-btn").onclick = () => { S.limit += 200; live(); };
+  }
+
+  function newer(){
+    const added = S.events.filter((e)=>e.kind==="added").slice(0,300);
+    $("rows-new").innerHTML = added.length
+      ? added.map((e)=>rowHtml({...e, sourceName:e.sourceName, acceptsChemEng:e.acceptsChemEng??false}, {isNew:true})).join("")
+      : `<div class="empty">Nothing new since the last run. The first run records a baseline silently, so this fills up from the second run onwards.</div>`;
+  }
+
+  function closing(){
+    const rows = S.listings.filter((l)=>{const d=daysTo(l.closesAt);return d!==null&&d>=0;})
+      .sort((a,b)=>new Date(a.closesAt)-new Date(b.closesAt)).slice(0,300);
+    $("rows-closing").innerHTML = rows.length ? rows.map((l)=>rowHtml(l)).join("")
+      : `<div class="empty">No open listing carries a published deadline right now.</div>`;
+  }
+
+  function gone(){
+    const rows = S.removed.slice(0,300);
+    $("rows-gone").innerHTML = rows.length ? rows.map((l)=>rowHtml(l)).join("")
+      : `<div class="empty">Nothing has dropped off a board yet.</div>`;
+  }
+
+  function employers(){
+    const liveBySource = new Map(), chemBySource = new Map();
+    for (const l of S.listings) {
+      liveBySource.set(l.source,(liveBySource.get(l.source)??0)+1);
+      if (l.chemEng) chemBySource.set(l.source,(chemBySource.get(l.source)??0)+1);
+    }
+    const rank = { high:0, medium:1, low:2, undefined:3, null:3 };
+    const rows = S.registry.filter((s)=>s.kind==="ats")
+      .sort((a,b)=> (liveBySource.get(b.id)??0)-(liveBySource.get(a.id)??0)
+        || (rank[a.chemEngRelevance]??3)-(rank[b.chemEngRelevance]??3)
+        || a.name.localeCompare(b.name));
+    $("t-emp").tBodies[0].innerHTML = rows.map((s)=>{
+      const n = liveBySource.get(s.id) ?? 0;
+      const readable = s.ats !== "unsupported" && s.enabled !== false;
+      return `<tr class="${readable?"":"dead"}">
+        <td>${esc(s.name)}</td>
+        <td>${esc(s.sector)}</td>
+        <td>${readable ? esc(s.ats) : `<span class="dot warn"></span>link only`}</td>
+        <td class="num">${n || "—"}</td>
+        <td class="num">${chemBySource.get(s.id) ?? "—"}</td>
+        <td>${s.careersUrl ? `<a href="${esc(s.careersUrl)}" target="_blank" rel="noopener">careers</a>` : "—"}${
+          s.earlyCareersUrl ? ` · <a href="${esc(s.earlyCareersUrl)}" target="_blank" rel="noopener">early careers</a>` : ""}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  function sources(){
+    const rows = S.summary?.sources ?? [];
+    $("t-src").tBodies[0].innerHTML = rows.map((s)=>{
+      const state = !s.enabled ? `<span class="dot warn"></span>not polled`
+        : s.lastError ? `<span class="dot bad"></span>failed` : `<span class="dot ok"></span>reporting`;
+      return `<tr class="${s.enabled?"":"dead"}">
+        <td>${esc(s.name)}${s.lastError && s.enabled ? `<span class="err">${esc(s.lastError)}</span>` : ""}</td>
+        <td>${esc(s.kind)}${s.kind==="ats"?" · "+esc(s.ats):""}</td>
+        <td>${state}</td>
+        <td class="num">${s.lastCount || "—"}</td>
+        <td class="num">${s.live || "—"}</td>
+        <td class="num">${s.chemEngLive || "—"}</td>
+        <td class="n">${esc(ago(s.lastOkAt))}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  function foot(){
+    const s = S.summary;
+    $("foot").innerHTML = s
+      ? `Checked ${esc(ago(s.lastCheckedAt))}, taking ${(s.runMs/1000).toFixed(1)} s. `
+        + `A source that fails keeps its previous listings rather than reporting them closed, so a network blip never looks like a wave of closures. `
+        + `Deadlines are only shown where the employer published one. Data files live beside this page: <code>data/listings.json</code>, <code>data/summary.json</code>, <code>data/feed.json</code>.`
+      : `Waiting for the first run.`;
+  }
+
+  // ---- tabs + theme --------------------------------------------------------
+  $("tabs").onclick = (e) => {
+    const b = e.target.closest("button[data-p]"); if (!b) return;
+    for (const btn of $("tabs").querySelectorAll("button")) btn.setAttribute("aria-current", String(btn === b));
+    for (const p of document.querySelectorAll(".panel")) p.hidden = p.id !== "p-" + b.dataset.p;
+  };
+  $("theme").onclick = () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const dark = cur ? cur === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    try { localStorage.setItem("engintrack-theme", dark ? "light" : "dark"); } catch {}
+  };
+  try { const t = localStorage.getItem("engintrack-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch {}
+})();
+</script>
+</body>
+</html>

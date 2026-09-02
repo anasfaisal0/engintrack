@@ -1,0 +1,437 @@
+{
+  "version": 1,
+  "note": "Hand-maintained aggregator sources. Employer ATS boards live in employers.json (machine-merged). scripts/build-registry.ts combines both into registry.json, which is what the runner reads.",
+  "sources": [
+    {
+      "id": "gradcracker-chemical-process",
+      "name": "Gradcracker · Chemical & Process",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "high",
+      "careersUrl": "https://www.gradcracker.com/search/chemical-process/chemical-process-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/chemical-process/chemical-process-jobs?order=dateAdded",
+        "maxPages": "6"
+      },
+      "verified": "2026-09-02",
+      "notes": "289 live rows on 2026-09-02 (136 graduate jobs + 153 placements/internships). Server-rendered, 80 cards per page, ?page=N. The single best UK source for this discipline.",
+      "disciplineTag": "chem-eng",
+      "acceptsChemEng": true
+    },
+    {
+      "id": "gradcracker-mechanical",
+      "name": "Gradcracker · Mechanical & Manufacturing",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "medium",
+      "careersUrl": "https://www.gradcracker.com/search/mechanical-manufacturing/mechanical-manufacturing-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/mechanical-manufacturing/mechanical-manufacturing-jobs?order=dateAdded",
+        "maxPages": "6"
+      },
+      "verified": "2026-09-02",
+      "disciplineTag": "mech"
+    },
+    {
+      "id": "gradcracker-electronic-electrical",
+      "name": "Gradcracker · Electronic & Electrical",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "medium",
+      "careersUrl": "https://www.gradcracker.com/search/electronic-electrical/electronic-electrical-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/electronic-electrical/electronic-electrical-jobs?order=dateAdded",
+        "maxPages": "6"
+      },
+      "verified": "2026-09-02",
+      "notes": "Includes the control-and-instrumentation sub-discipline, which is process-plant work.",
+      "disciplineTag": "elec"
+    },
+    {
+      "id": "gradcracker-civil-building",
+      "name": "Gradcracker · Civil & Building",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://www.gradcracker.com/search/civil-building/civil-building-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/civil-building/civil-building-jobs?order=dateAdded",
+        "maxPages": "6"
+      },
+      "verified": "2026-09-02",
+      "disciplineTag": "civil"
+    },
+    {
+      "id": "gradcracker-science",
+      "name": "Gradcracker · Science",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "high",
+      "careersUrl": "https://www.gradcracker.com/search/science/science-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/science/science-jobs?order=dateAdded",
+        "maxPages": "6"
+      },
+      "verified": "2026-09-02",
+      "notes": "Carries chemistry and bioengineering/biotechnology, which is where pharma process roles are listed.",
+      "disciplineTag": "science"
+    },
+    {
+      "id": "gradcracker-computing",
+      "name": "Gradcracker · Computing & Technology",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://www.gradcracker.com/search/computing-technology/computing-technology-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/computing-technology/computing-technology-jobs?order=dateAdded",
+        "maxPages": "6"
+      },
+      "verified": "2026-09-02",
+      "disciplineTag": "software"
+    },
+    {
+      "id": "gradcracker-maths-business",
+      "name": "Gradcracker · Maths & Business",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://www.gradcracker.com/search/maths-business/maths-business-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/maths-business/maths-business-jobs?order=dateAdded",
+        "maxPages": "6"
+      },
+      "verified": "2026-09-02",
+      "notes": "Accountancy, analytics, economics and business routes — the non-engineering half of the same employers.",
+      "disciplineTag": "business"
+    },
+    {
+      "id": "gradcracker-aerospace",
+      "name": "Gradcracker · Aerospace",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://www.gradcracker.com/search/aerospace/aerospace-jobs",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/aerospace/aerospace-jobs?order=dateAdded",
+        "maxPages": "4"
+      },
+      "verified": "2026-09-02"
+    },
+    {
+      "id": "gradcracker-apprenticeships",
+      "name": "Gradcracker · Degree Apprenticeships",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "medium",
+      "careersUrl": "https://www.gradcracker.com/search/all-disciplines/degree-apprenticeships",
+      "params": {
+        "urls": "https://www.gradcracker.com/search/all-disciplines/degree-apprenticeships?order=dateAdded",
+        "maxPages": "4",
+        "level": "apprenticeship"
+      },
+      "verified": "2026-09-02"
+    },
+    {
+      "id": "trackr-uk-engineering",
+      "name": "Trackr · UK Engineering",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "trackr",
+      "chemEngRelevance": "high",
+      "careersUrl": "https://app.the-trackr.com/uk-engineering",
+      "params": {
+        "region": "UK",
+        "industry": "Engineering",
+        "season": "2027",
+        "siteSlug": "uk-engineering",
+        "types": "summer-internships,industrial-placements,graduate-programmes,apprenticeships"
+      },
+      "verified": "2026-09-02",
+      "notes": "The tracker exists in Trackr's app bundle (industry enum includes Engineering; categories include Chemicals & Oil, Energy & Utilities, Oil & Gas) but the /programmes endpoint returned an EMPTY envelope for every season and tab tested on 2026-09-02, while a UK Finance control returned 823 KB seconds later from the same IP. So this is armed and harmless: zero rows today, and it starts producing the day Trackr populates the board. Verified empty as a REAL empty envelope, not a throttle: the probe reproduced the throttle deliberately and it answers a bare [] instead."
+    },
+    {
+      "id": "trackr-uk-finance",
+      "name": "Trackr · UK Finance",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "trackr",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://app.the-trackr.com/uk-finance",
+      "params": {
+        "region": "UK",
+        "industry": "Finance",
+        "season": "2027",
+        "siteSlug": "uk-finance",
+        "types": "summer-internships,spring-weeks,off-cycle-internships,industrial-placements,graduate-programmes"
+      },
+      "verified": "2026-09-02",
+      "notes": "Returns a bare ARRAY (older response shape). ~820 KB for the summer-internships tab alone."
+    },
+    {
+      "id": "trackr-uk-tech",
+      "name": "Trackr · UK Tech",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "trackr",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://app.the-trackr.com/uk-tech",
+      "params": {
+        "region": "UK",
+        "industry": "Tech",
+        "season": "2027",
+        "siteSlug": "uk-tech",
+        "types": "summer-internships,industrial-placements,graduate-programmes,spring-weeks"
+      },
+      "verified": "2026-09-02"
+    },
+    {
+      "id": "trackr-us-finance",
+      "name": "Trackr · US Finance",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "US",
+      "ats": "custom",
+      "adapter": "trackr",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://app.the-trackr.com/us-finance-2027",
+      "params": {
+        "region": "US",
+        "industry": "Finance",
+        "season": "2027",
+        "siteSlug": "us-finance-2027",
+        "types": "summer-internships,full-time-programmes,insight-programmes"
+      },
+      "verified": "2026-09-02"
+    },
+    {
+      "id": "trackr-eu-finance",
+      "name": "Trackr · EU Finance",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "EU",
+      "ats": "custom",
+      "adapter": "trackr",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://app.the-trackr.com/eu-finance",
+      "params": {
+        "region": "EU",
+        "industry": "Finance",
+        "season": "2026",
+        "siteSlug": "eu-finance",
+        "types": "summer-internships,off-cycle-internships,graduate-programmes"
+      },
+      "verified": "2026-09-02",
+      "enabled": false,
+      "notes": "Trackr marks this tracker state:'legacy' as of 2026-09-02, so it is off by default. Flip enabled to true if the 2027 EU cycle appears."
+    },
+    {
+      "id": "madgex-guardian-jobs",
+      "name": "Guardian Jobs · engineering & graduate",
+      "kind": "aggregator",
+      "sector": "job-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "rss",
+      "chemEngRelevance": "medium",
+      "careersUrl": "https://jobs.theguardian.com/",
+      "verified": "2026-09-02",
+      "params": {
+        "url": "https://jobs.theguardian.com/jobsrss/?keywords=graduate+engineer&countrycode=GB|https://jobs.theguardian.com/jobsrss/?keywords=process+engineer&countrycode=GB|https://jobs.theguardian.com/jobsrss/?keywords=chemical+engineer&countrycode=GB|https://jobs.theguardian.com/jobsrss/?keywords=graduate+scheme&countrycode=GB",
+        "employerInTitle": "prefix"
+      },
+      "notes": "Madgex RSS. The working path is /jobsrss/ — /jobs/rss/ 301s to an HTML search page. 1,050 results for 'graduate engineer' on 2026-09-02. pubDate is a real per-item value."
+    },
+    {
+      "id": "madgex-chemistry-world",
+      "name": "Chemistry World Jobs",
+      "kind": "aggregator",
+      "sector": "job-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "rss",
+      "chemEngRelevance": "high",
+      "careersUrl": "https://jobs.chemistryworld.com/",
+      "verified": "2026-09-02",
+      "disciplineTag": "science",
+      "params": {
+        "url": "https://jobs.chemistryworld.com/jobsrss/?keywords=graduate&countrycode=GB|https://jobs.chemistryworld.com/jobsrss/?keywords=process&countrycode=GB|https://jobs.chemistryworld.com/jobsrss/?countrycode=GB",
+        "employerInTitle": "prefix"
+      },
+      "notes": "Madgex RSS, same platform as Guardian Jobs. Low volume (chemistry/pharma niche) but exactly the right niche. The IChemE board is NOT usable: jobs.icheme.org does not resolve and jobs.thechemicalengineer.com returns a flat WAF 403 on every path including its RSS."
+    },
+    {
+      "id": "totaljobs-uk",
+      "name": "Totaljobs · graduate & placement",
+      "kind": "aggregator",
+      "sector": "job-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "html-links",
+      "chemEngRelevance": "medium",
+      "careersUrl": "https://www.totaljobs.com/",
+      "verified": "2026-09-02",
+      "params": {
+        "urls": "https://www.totaljobs.com/jobs/graduate-engineer|https://www.totaljobs.com/jobs/graduate-scheme|https://www.totaljobs.com/jobs/process-engineer|https://www.totaljobs.com/jobs/industrial-placement",
+        "linkPattern": "href=\"(?<url>/job/(?<slug>[^/\"]+)/(?<employer>[^\"]*?)-job(?<id>\\d+))\"",
+        "maxPages": "3",
+        "titleFrom": "slug"
+      },
+      "notes": "StepStone platform, server-rendered, 25 results per page. The title is NOT in the anchor text (it is wrapped in emotion-styled spans), so the title and employer are taken from the URL path: /job/{title-slug}/{employer-slug}-job{id}. ⚠️ window.__PRELOADED_STATE__ holds only header/footer chrome, NOT results. ⚠️ Its sibling Milkround shares this markup and renders EMPTY anchors (href=\"#\"), so 'same platform' is never evidence a board is server-rendered."
+    },
+    {
+      "id": "reed-uk",
+      "name": "Reed · graduate & placement",
+      "kind": "aggregator",
+      "sector": "job-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "html-links",
+      "chemEngRelevance": "medium",
+      "careersUrl": "https://www.reed.co.uk/",
+      "verified": "2026-09-02",
+      "params": {
+        "urls": "https://www.reed.co.uk/jobs/graduate-engineer-jobs|https://www.reed.co.uk/jobs/graduate-scheme-jobs|https://www.reed.co.uk/jobs/process-engineer-graduate-jobs|https://www.reed.co.uk/jobs/industrial-placement-jobs",
+        "linkPattern": "<a href=\"(?<url>/jobs/(?<slug>[^\"/]+)/(?<id>\\d+)[^\"]*)\"[^>]*title=\"(?<title>[^\"]{5,200})\"",
+        "maxPages": "3",
+        "titleFrom": "anchor"
+      },
+      "notes": "Next.js SSR, 25 results per page. The anchor carries a clean title=\"…\" attribute, which is what we read. Keep request volume modest."
+    },
+    {
+      "id": "getro-jobsinvc",
+      "name": "Getro · VC portfolio jobs",
+      "kind": "aggregator",
+      "sector": "startups",
+      "region": "Global",
+      "ats": "custom",
+      "adapter": "next-data",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://jobsinvc.getro.com/jobs",
+      "verified": "2026-09-02",
+      "params": {
+        "urls": "https://jobsinvc.getro.com/jobs",
+        "path": "props.pageProps.initialState.jobs.found"
+      },
+      "notes": "432 jobs in the embedded __NEXT_DATA__ on 2026-09-02, each linking to the employer's own ATS. Guessed REST endpoints (/api/jobs, /api/get_jobs) 404/406 — the embedded JSON is the only route."
+    },
+    {
+      "id": "themuse-early-career",
+      "name": "The Muse · internship & entry level",
+      "kind": "aggregator",
+      "sector": "job-board",
+      "region": "US",
+      "ats": "custom",
+      "adapter": "themuse",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://www.themuse.com/search/",
+      "verified": "2026-09-02",
+      "params": {
+        "levels": "Internship,Entry Level",
+        "maxPages": "4"
+      },
+      "notes": "Keyless public API with an explicit level filter — the cheapest US early-career volume available."
+    },
+    {
+      "id": "arbeitnow-eu",
+      "name": "Arbeitnow · EU board",
+      "kind": "aggregator",
+      "sector": "job-board",
+      "region": "EU",
+      "ats": "custom",
+      "adapter": "arbeitnow",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://www.arbeitnow.com/",
+      "verified": "2026-09-02",
+      "params": {
+        "maxPages": "5"
+      },
+      "notes": "Keyless, DE/EU-heavy. Volume is modest and mostly tech, but it is free and covers a region nothing else here does."
+    },
+    {
+      "id": "simplify-internships-2027",
+      "name": "Simplify · Summer 2027 Internships",
+      "kind": "aggregator",
+      "sector": "community-list",
+      "region": "US",
+      "ats": "custom",
+      "adapter": "github-list",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://github.com/SimplifyJobs/Summer2027-Internships",
+      "verified": "2026-09-02",
+      "params": {
+        "url": "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/.github/scripts/listings.json",
+        "level": "internship"
+      },
+      "notes": "15,532 rows of which 2,759 are active AND visible (2026-09-02); 147 of those are London. Bot-updated about every 30 minutes. ⚠️ The data file is on the `dev` BRANCH, not main. ⚠️ Rows must be filtered on active AND is_visible — the adapter does that. Several recruiting cycles coexist in one file. Categories are AI/ML/Data, Software, Hardware, Quant, Product, so this is tech and quant volume, not chemical engineering. raw.githubusercontent.com is a CDN and is not subject to the GitHub API's 60/hour limit."
+    },
+    {
+      "id": "simplify-new-grad",
+      "name": "Simplify · New Grad Positions",
+      "kind": "aggregator",
+      "sector": "community-list",
+      "region": "US",
+      "ats": "custom",
+      "adapter": "github-list",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://github.com/SimplifyJobs/New-Grad-Positions",
+      "verified": "2026-09-02",
+      "params": {
+        "url": "https://raw.githubusercontent.com/SimplifyJobs/New-Grad-Positions/dev/.github/scripts/listings.json",
+        "level": "graduate"
+      },
+      "notes": "19,456 rows, same bot infrastructure and same dev-branch and active/is_visible caveats as the internships list."
+    },
+    {
+      "id": "vanshb03-internships-2027",
+      "name": "vanshb03 · Summer 2027 Internships",
+      "kind": "aggregator",
+      "sector": "community-list",
+      "region": "US",
+      "ats": "custom",
+      "adapter": "github-list",
+      "chemEngRelevance": "low",
+      "careersUrl": "https://github.com/vanshb03/Summer2027-Internships",
+      "verified": "2026-09-02",
+      "enabled": false,
+      "params": {
+        "url": "https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/main/.github/scripts/listings.json",
+        "level": "internship"
+      },
+      "notes": "OFF by default: 471 rows and 10 days stale on 2026-09-02, and it largely duplicates Simplify (its rows carry source:'cvrve-bot'). The cvrve repos this absorbed are now 404. Kept as a fallback if Simplify's bot ever stops."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+node_modules/
+selftest-data/
+.env
+.env.*
+*.log
+.DS_Store
