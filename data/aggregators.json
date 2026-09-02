@@ -17,9 +17,10 @@
         "maxPages": "6"
       },
       "verified": "2026-09-02",
-      "notes": "289 live rows on 2026-09-02 (136 graduate jobs + 153 placements/internships). Server-rendered, 80 cards per page, ?page=N. The single best UK source for this discipline.",
+      "notes": "289 live rows on 2026-09-02 (136 graduate jobs + 153 placements/internships). Server-rendered, 80 cards per page, ?page=N. The single best UK source for this discipline. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
       "disciplineTag": "chem-eng",
-      "acceptsChemEng": true
+      "acceptsChemEng": true,
+      "enabled": false
     },
     {
       "id": "gradcracker-mechanical",
@@ -36,7 +37,9 @@
         "maxPages": "6"
       },
       "verified": "2026-09-02",
-      "disciplineTag": "mech"
+      "disciplineTag": "mech",
+      "enabled": false,
+      "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
     },
     {
       "id": "gradcracker-electronic-electrical",
@@ -53,8 +56,9 @@
         "maxPages": "6"
       },
       "verified": "2026-09-02",
-      "notes": "Includes the control-and-instrumentation sub-discipline, which is process-plant work.",
-      "disciplineTag": "elec"
+      "notes": "Includes the control-and-instrumentation sub-discipline, which is process-plant work. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
+      "disciplineTag": "elec",
+      "enabled": false
     },
     {
       "id": "gradcracker-civil-building",
@@ -71,7 +75,9 @@
         "maxPages": "6"
       },
       "verified": "2026-09-02",
-      "disciplineTag": "civil"
+      "disciplineTag": "civil",
+      "enabled": false,
+      "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
     },
     {
       "id": "gradcracker-science",
@@ -88,8 +94,9 @@
         "maxPages": "6"
       },
       "verified": "2026-09-02",
-      "notes": "Carries chemistry and bioengineering/biotechnology, which is where pharma process roles are listed.",
-      "disciplineTag": "science"
+      "notes": "Carries chemistry and bioengineering/biotechnology, which is where pharma process roles are listed. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
+      "disciplineTag": "science",
+      "enabled": false
     },
     {
       "id": "gradcracker-computing",
@@ -106,7 +113,9 @@
         "maxPages": "6"
       },
       "verified": "2026-09-02",
-      "disciplineTag": "software"
+      "disciplineTag": "software",
+      "enabled": false,
+      "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
     },
     {
       "id": "gradcracker-maths-business",
@@ -123,8 +132,9 @@
         "maxPages": "6"
       },
       "verified": "2026-09-02",
-      "notes": "Accountancy, analytics, economics and business routes — the non-engineering half of the same employers.",
-      "disciplineTag": "business"
+      "notes": "Accountancy, analytics, economics and business routes — the non-engineering half of the same employers. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
+      "disciplineTag": "business",
+      "enabled": false
     },
     {
       "id": "gradcracker-aerospace",
@@ -140,7 +150,9 @@
         "urls": "https://www.gradcracker.com/search/aerospace/aerospace-jobs?order=dateAdded",
         "maxPages": "4"
       },
-      "verified": "2026-09-02"
+      "verified": "2026-09-02",
+      "enabled": false,
+      "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
     },
     {
       "id": "gradcracker-apprenticeships",
@@ -157,7 +169,9 @@
         "maxPages": "4",
         "level": "apprenticeship"
       },
-      "verified": "2026-09-02"
+      "verified": "2026-09-02",
+      "enabled": false,
+      "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
     },
     {
       "id": "trackr-uk-engineering",
@@ -432,6 +446,22 @@
         "level": "internship"
       },
       "notes": "OFF by default: 471 rows and 10 days stale on 2026-09-02, and it largely duplicates Simplify (its rows carry source:'cvrve-bot'). The cvrve repos this absorbed are now 404. Kept as a fallback if Simplify's bot ever stops."
+    },
+    {
+      "id": "gradcracker-sitemap",
+      "name": "Gradcracker",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "gradcracker",
+      "chemEngRelevance": "high",
+      "careersUrl": "https://www.gradcracker.com/",
+      "verified": "2026-09-02",
+      "params": {
+        "mode": "sitemap"
+      },
+      "notes": "Reads https://www.gradcracker.com/sitemap.xml, which robots.txt advertises and which is served to any client, including the datacentre IPs that the search pages refuse. 825 job URLs on 2026-09-02, 752 of them early-career. Each URL is /hub/{employerId}/{employer-slug}/{type}/{jobId}/{title-slug}, so the employer, the stage and the title all come from the path. It has no deadline and no location — for those, run the per-discipline sources locally."
     }
   ]
 }

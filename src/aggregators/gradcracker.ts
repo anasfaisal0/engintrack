@@ -24,7 +24,23 @@ import type { Level, RawJob, Source } from "../types.ts";
  * ⚠️ THROWS on zero rows, so a layout change carries state forward instead of
  * reporting every listing removed.
  *
+ * ⚠️⚠️ THE SEARCH PAGES ARE UNREACHABLE FROM A DATACENTRE IP, which is where the
+ * daily Action runs. Measured on a GitHub-hosted runner: all nine discipline
+ * feeds returned Cloudflare's "Just a moment…" challenge within half a second of
+ * the run starting — far too fast to be rate limiting, so it is the IP range
+ * itself. The same URLs answer 200 from a home connection.
+ *
+ * The SITEMAP is the way in, and it is `mode: "sitemap"`. robots.txt advertises
+ * it, it is served to anyone, and its job URLs are
+ *   /hub/{employerId}/{employer-slug}/{type}/{jobId}/{title-slug}
+ * which carries the employer, the stage and the title — 825 live jobs on
+ * 2026-09-02, of which 752 classify as early-career. It loses the location and
+ * the deadline that the cards carry, so the discipline feeds are still the
+ * better read when the network allows them; they are off by default and worth
+ * turning on for a local run.
+ *
  * params:
+ *   mode  — "sitemap" to read only the sitemap (what CI uses)
  *   urls  — pipe-separated listing URLs (one per discipline × type)
  *   level — Level to stamp when the URL segment does not imply one
  */
@@ -50,6 +66,14 @@ export const gradcracker = async (s: Source): Promise<RawJob[]> => {
 };
 
 const fetchDiscipline = async (s: Source): Promise<RawJob[]> => {
+  // mode=sitemap skips the search pages entirely. That is the mode the daily
+  // Action uses, because the search pages are unreachable from a datacentre IP.
+  if (s.params?.mode === "sitemap") {
+    const rows = await fromSitemap();
+    if (rows.length === 0) throw new Error(`gradcracker: ${s.id} — the sitemap returned no job URLs`);
+    return rows;
+  }
+
   const urls = (s.params?.urls ?? "").split("|").map((u) => u.trim()).filter(Boolean);
   if (urls.length === 0) throw new Error(`gradcracker: ${s.id} needs params.urls`);
   const fallbackLevel = s.params?.level as Level | undefined;
@@ -90,6 +114,49 @@ const fetchDiscipline = async (s: Source): Promise<RawJob[]> => {
   if (out.length === 0) throw new Error(`gradcracker: ${s.id} — parsed zero rows (page structure changed?)`);
   return out;
 };
+
+/** Only one source needs to pay for the sitemap; the rest reuse it this run. */
+let sitemapCache: { at: number; rows: RawJob[] } | null = null;
+
+async function fromSitemap(): Promise<RawJob[]> {
+  if (sitemapCache && Date.now() - sitemapCache.at < 10 * 60_000) return sitemapCache.rows;
+  let xml: string;
+  try {
+    xml = await fetchText("https://www.gradcracker.com/sitemap.xml", { client: "curl" });
+  } catch {
+    return [];
+  }
+  const rows: RawJob[] = [];
+  const seen = new Set<string>();
+  for (const m of xml.matchAll(/<loc>(https?:\/\/(?:www\.)?gradcracker\.com\/hub\/\d+\/([a-z0-9-]+)\/([a-z-]+)\/(\d+)\/([a-z0-9-]+))<\/loc>/gi)) {
+    const [, url, employerSlug, typeSegment, jobId, titleSlug] = m;
+    if (seen.has(jobId)) continue;
+    seen.add(jobId);
+    rows.push({
+      externalId: jobId,
+      title: slugToTitle(titleSlug),
+      url,
+      location: null,
+      postedAt: null,
+      employer: prettify(employerSlug),
+      levelHint: LEVEL_BY_SEGMENT[typeSegment.toLowerCase()],
+    });
+  }
+  sitemapCache = { at: Date.now(), rows };
+  return rows;
+}
+
+function slugToTitle(slug: string): string {
+  const words = slug.split("-");
+  const SMALL = new Set(["and", "the", "of", "for", "at", "in", "to", "a", "an", "with", "on"]);
+  return words
+    .map((w, i) => {
+      if (/^\d+$/.test(w)) return w;
+      if (i > 0 && SMALL.has(w)) return w;
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    })
+    .join(" ");
+}
 
 const JOB_HREF =
   /https?:\/\/(?:www\.)?gradcracker\.com\/hub\/(\d+)\/([a-z0-9-]+)\/([a-z-]+)\/(\d+)\/([a-z0-9-]+)/i;

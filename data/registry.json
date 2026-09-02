@@ -54,6 +54,22 @@
    "notes": "432 jobs in the embedded __NEXT_DATA__ on 2026-09-02, each linking to the employer's own ATS. Guessed REST endpoints (/api/jobs, /api/get_jobs) 404/406 — the embedded JSON is the only route."
   },
   {
+   "id": "gradcracker-sitemap",
+   "name": "Gradcracker",
+   "kind": "aggregator",
+   "sector": "student-board",
+   "region": "UK",
+   "ats": "custom",
+   "adapter": "gradcracker",
+   "chemEngRelevance": "high",
+   "careersUrl": "https://www.gradcracker.com/",
+   "verified": "2026-09-02",
+   "params": {
+    "mode": "sitemap"
+   },
+   "notes": "Reads https://www.gradcracker.com/sitemap.xml, which robots.txt advertises and which is served to any client, including the datacentre IPs that the search pages refuse. 825 job URLs on 2026-09-02, 752 of them early-career. Each URL is /hub/{employerId}/{employer-slug}/{type}/{jobId}/{title-slug}, so the employer, the stage and the title all come from the path. It has no deadline and no location — for those, run the per-discipline sources locally."
+  },
+  {
    "id": "gradcracker-aerospace",
    "name": "Gradcracker · Aerospace",
    "kind": "aggregator",
@@ -67,7 +83,9 @@
     "urls": "https://www.gradcracker.com/search/aerospace/aerospace-jobs?order=dateAdded",
     "maxPages": "4"
    },
-   "verified": "2026-09-02"
+   "verified": "2026-09-02",
+   "enabled": false,
+   "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
   },
   {
    "id": "gradcracker-chemical-process",
@@ -84,9 +102,10 @@
     "maxPages": "6"
    },
    "verified": "2026-09-02",
-   "notes": "289 live rows on 2026-09-02 (136 graduate jobs + 153 placements/internships). Server-rendered, 80 cards per page, ?page=N. The single best UK source for this discipline.",
+   "notes": "289 live rows on 2026-09-02 (136 graduate jobs + 153 placements/internships). Server-rendered, 80 cards per page, ?page=N. The single best UK source for this discipline. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
    "disciplineTag": "chem-eng",
-   "acceptsChemEng": true
+   "acceptsChemEng": true,
+   "enabled": false
   },
   {
    "id": "gradcracker-civil-building",
@@ -103,7 +122,9 @@
     "maxPages": "6"
    },
    "verified": "2026-09-02",
-   "disciplineTag": "civil"
+   "disciplineTag": "civil",
+   "enabled": false,
+   "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
   },
   {
    "id": "gradcracker-computing",
@@ -120,7 +141,9 @@
     "maxPages": "6"
    },
    "verified": "2026-09-02",
-   "disciplineTag": "software"
+   "disciplineTag": "software",
+   "enabled": false,
+   "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
   },
   {
    "id": "gradcracker-apprenticeships",
@@ -137,7 +160,9 @@
     "maxPages": "4",
     "level": "apprenticeship"
    },
-   "verified": "2026-09-02"
+   "verified": "2026-09-02",
+   "enabled": false,
+   "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
   },
   {
    "id": "gradcracker-electronic-electrical",
@@ -154,8 +179,9 @@
     "maxPages": "6"
    },
    "verified": "2026-09-02",
-   "notes": "Includes the control-and-instrumentation sub-discipline, which is process-plant work.",
-   "disciplineTag": "elec"
+   "notes": "Includes the control-and-instrumentation sub-discipline, which is process-plant work. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
+   "disciplineTag": "elec",
+   "enabled": false
   },
   {
    "id": "gradcracker-maths-business",
@@ -172,8 +198,9 @@
     "maxPages": "6"
    },
    "verified": "2026-09-02",
-   "notes": "Accountancy, analytics, economics and business routes — the non-engineering half of the same employers.",
-   "disciplineTag": "business"
+   "notes": "Accountancy, analytics, economics and business routes — the non-engineering half of the same employers. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
+   "disciplineTag": "business",
+   "enabled": false
   },
   {
    "id": "gradcracker-mechanical",
@@ -190,7 +217,9 @@
     "maxPages": "6"
    },
    "verified": "2026-09-02",
-   "disciplineTag": "mech"
+   "disciplineTag": "mech",
+   "enabled": false,
+   "notes": "OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has."
   },
   {
    "id": "gradcracker-science",
@@ -207,8 +236,9 @@
     "maxPages": "6"
    },
    "verified": "2026-09-02",
-   "notes": "Carries chemistry and bioengineering/biotechnology, which is where pharma process roles are listed.",
-   "disciplineTag": "science"
+   "notes": "Carries chemistry and bioengineering/biotechnology, which is where pharma process roles are listed. | OFF by default because the search pages are unreachable from a datacentre IP, which is where the daily Action runs (all nine feeds got a Cloudflare challenge within half a second on a GitHub runner). Turn these on for a LOCAL run: they carry the deadline, the location and Gradcracker's own discipline line, none of which the sitemap has.",
+   "disciplineTag": "science",
+   "enabled": false
   },
   {
    "id": "madgex-guardian-jobs",
@@ -607,6 +637,19 @@
    "enabled": false
   },
   {
+   "id": "aldi-uk",
+   "name": "Aldi UK",
+   "kind": "ats",
+   "sector": "retail",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.aldirecruitment.co.uk/",
+   "earlyCareersUrl": "https://www.aldirecruitment.co.uk/head-office/graduate-programmes",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug confirmed invalid.",
+   "enabled": false
+  },
+  {
    "id": "alfa-laval-uk",
    "name": "Alfa Laval (UK)",
    "kind": "ats",
@@ -618,6 +661,45 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Careers page (200, 108KB) loaded; an initial broad grep flagged the word 'greenhouse' but on closer inspection this was a false positive (sustainability/greenhouse-gas content), not the Greenhouse ATS. No genuine ATS vendor signature found. No keyless API discovered in the time available.",
+   "enabled": false
+  },
+  {
+   "id": "allianz",
+   "name": "Allianz",
+   "kind": "ats",
+   "sector": "insurance",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.allianz.com/",
+   "earlyCareersUrl": "https://careers.allianz.com/search",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/SmartRecruiters token guesses invalid.",
+   "enabled": false
+  },
+  {
+   "id": "alvarez-and-marsal",
+   "name": "Alvarez & Marsal",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.alvarezandmarsal.com/careers",
+   "earlyCareersUrl": "https://www.alvarezandmarsal.com/careers/students",
+   "verified": "2026-09-02",
+   "notes": "Careers page returns 403 to a plain HTTP client (bot-protected); SmartRecruiters slug 'alvarezandmarsal' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
+   "id": "amazon",
+   "name": "Amazon",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.amazon.jobs/en/business_categories/student-programs",
+   "earlyCareersUrl": "https://www.amazon.jobs/en/business_categories/student-programs",
+   "verified": "2026-09-02",
+   "notes": "amazon.jobs is a proprietary portal; page loads (200) but underlying search API requires session/CSRF tokens not usable keylessly within this scope.",
    "enabled": false
   },
   {
@@ -667,6 +749,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "CONFIRMED LIVE. Token 'AngloAmericanDeBeersGroup' found in a 'my-applications' sign-in link embedded on the careers/job-opportunities/apply page. UK-filtered (country=gb) totalFound=8 real current postings (mostly corporate/UK-office roles rather than site-based mining roles, which likely sit on a separate regional instance)."
+  },
+  {
+   "id": "apple",
+   "name": "Apple",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.apple.com/careers/uk/students.html",
+   "earlyCareersUrl": "https://www.apple.com/careers/uk/students.html",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
   },
   {
    "id": "arcadis",
@@ -806,6 +901,19 @@
    "enabled": false
   },
   {
+   "id": "aviva",
+   "name": "Aviva",
+   "kind": "ats",
+   "sector": "insurance",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.aviva.co.uk/",
+   "earlyCareersUrl": "https://careers.aviva.co.uk/early-careers/",
+   "verified": "2026-09-02",
+   "notes": "Careers site returns 403 to a plain HTTP client (bot-protected); SmartRecruiters slug 'aviva' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
    "id": "awe",
    "name": "AWE (Atomic Weapons Establishment)",
    "kind": "ats",
@@ -821,6 +929,19 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "searchText:'graduate' returned 0 results at verification time (grad scheme window likely closed/not yet open for this cycle) but the empty-searchText query confirms the endpoint is live with 20 total current vacancies, mostly Reading-area/Aldermaston. AWE's defence-nuclear graduate and industrial placement schemes run a single annual intake, applications typically open Sept-Oct for the following year - re-poll searchText:'graduate' or 'apprentice' periodically."
+  },
+  {
+   "id": "axa",
+   "name": "AXA",
+   "kind": "ats",
+   "sector": "insurance",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.axa.co.uk/",
+   "earlyCareersUrl": "https://careers.axa.co.uk/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Confirmed on iCIMS (careers-en-axa.icims.com, move-en-axa.icims.com) but the instance is behind an AWS WAF bot-verification challenge — /xmlfeed returns a 'Human Verification' page (HTTP 405), not JSON/XML, to a plain HTTP client.",
+   "enabled": false
   },
   {
    "id": "babcock",
@@ -869,6 +990,32 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "CONFIRMED LIVE via a real careers subdomain (jobs.baesystems.com), not www.baesystems.com which is Incapsula-blocked. Phenom front-end (refNum BAE1US) whose real ATS is IBM Kenexa BrassRing (sjobs.brassring.com, partnerid=25771, siteid=5403) — but the Phenom search-results page server-renders job data as embedded JSON so it's directly usable without touching BrassRing. 48 results for keywords=graduate are almost all US postings; location=United+Kingdom filter returned 0 (wrong param name) — needs client-side filtering on embedded location fields for UK-only. | Not polled: no adapter for phenom yet. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "baillie-gifford",
+   "name": "Baillie Gifford",
+   "kind": "ats",
+   "sector": "asset-management",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.bailliegifford.com/en/uk/individual-investors/careers/",
+   "earlyCareersUrl": "https://www.bailliegifford.com/en/uk/individual-investors/careers/early-careers/",
+   "verified": "2026-09-02",
+   "notes": "Greenhouse and SmartRecruiters slug guesses ('baillie', 'bailliegifford') both confirmed invalid. No ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
+   "id": "bain",
+   "name": "Bain & Company",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.bain.com/careers/",
+   "earlyCareersUrl": "https://www.bain.com/careers/students/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
    "enabled": false
   },
   {
@@ -981,6 +1128,45 @@
    "notes": "Genuine Eightfold instance confirmed exactly matching the brief's documented API shape (domain=bayer.com) - the only employer found in this whole sweep using true Eightfold rather than a Phenom/SuccessFactors lookalike. Co-ops sample is US-heavy; check UK sites (Newbury, Cambridge) via a location-filtered query."
   },
   {
+   "id": "bbc",
+   "name": "BBC",
+   "kind": "ats",
+   "sector": "media",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.bbc.co.uk/",
+   "earlyCareersUrl": "https://careers.bbc.co.uk/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Confirmed on SAP SuccessFactors (career2.successfactors.eu) but the specific company id could not be extracted from static HTML within budget; SmartRecruiters slug 'bbc' confirmed invalid.",
+   "enabled": false
+  },
+  {
+   "id": "bdo-uk",
+   "name": "BDO UK",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.bdo.co.uk/en-gb/careers",
+   "earlyCareersUrl": "https://earlycareers.bdo.co.uk/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #24 (Graduate) / #86 (Undergraduate) on the 2026-27 Higherin lists. Careers URLs returned 404/timeout at check time; SmartRecruiters slug 'bdo' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
+   "id": "beazley",
+   "name": "Beazley",
+   "kind": "ats",
+   "sector": "insurance",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.beazley.com/en-001/careers",
+   "earlyCareersUrl": "https://www.beazley.com/en-001/careers/current-vacancies",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever/SmartRecruiters token guesses invalid.",
+   "enabled": false
+  },
+  {
    "id": "bechtel",
    "name": "Bechtel",
    "kind": "ats",
@@ -1026,6 +1212,20 @@
    "enabled": false
   },
   {
+   "id": "bloomberg",
+   "name": "Bloomberg",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "host": "bloomberg.avature.net",
+   "careersUrl": "https://careers.bloomberg.com/",
+   "earlyCareersUrl": "https://careers.bloomberg.com/students",
+   "verified": "2026-09-02",
+   "notes": "Ranked #2 on the 2026-27 Higherin Top Undergraduate Employers list. Uses Avature (bloomberg.avature.net/careers/SearchJobs/graduate, confirmed 200) but it is a fully client-rendered SPA — the HTML/JSON payload only carries i18n UI strings, not job data; no keyless data endpoint found despite trying an Accept:application/json header and offset/pageSize query params.",
+   "enabled": false
+  },
+  {
    "id": "bmt",
    "name": "BMT",
    "kind": "ats",
@@ -1053,6 +1253,32 @@
    "chemEngRelevance": "low",
    "verified": "2026-09-02",
    "notes": "bmwgroup.jobs did not resolve/connect within the time available (connection failure, status 0). Not further investigated.",
+   "enabled": false
+  },
+  {
+   "id": "bnp-paribas",
+   "name": "BNP Paribas",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.bnpparibas/",
+   "earlyCareersUrl": "https://careers.bnpparibas/en/students-graduates",
+   "verified": "2026-09-02",
+   "notes": "Ranked #26 (Undergraduate) on the 2026-27 Higherin list. Careers site returns 403 to a plain HTTP client (bot-protected); SmartRecruiters slug 'bnpparibas' confirmed invalid.",
+   "enabled": false
+  },
+  {
+   "id": "booking-com",
+   "name": "Booking.com",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "Global",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.booking.com/",
+   "earlyCareersUrl": "https://careers.booking.com/students",
+   "verified": "2026-09-02",
+   "notes": "Uses iCIMS (internal-workingatbooking.icims.com found) but that instance is an internal-mobility board, not the public one; the public board's API requires session state. No keyless endpoint confirmed.",
    "enabled": false
   },
   {
@@ -1099,6 +1325,19 @@
    "enabled": false
   },
   {
+   "id": "british-airways",
+   "name": "British Airways",
+   "kind": "ats",
+   "sector": "transport",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.ba.com/",
+   "earlyCareersUrl": "https://careers.ba.com/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Ranked #22 (Graduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal (IAG group ATS); no ATS pattern found in static HTML (unlike sibling Virgin Atlantic, which uses Oracle Cloud HCM under tenant 'iagime').",
+   "enabled": false
+  },
+  {
    "id": "bat",
    "name": "British American Tobacco",
    "kind": "ats",
@@ -1113,6 +1352,19 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "Classic SAP SuccessFactors career portal confirmed live. Southampton HQ/R&D site does process/formulation chemistry for next-gen products (vapes, heated tobacco) - moderate chem-eng relevance. | Not polled: no adapter for successfactors yet. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "british-land",
+   "name": "British Land",
+   "kind": "ats",
+   "sector": "property",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.britishland.com/careers",
+   "earlyCareersUrl": "https://www.britishland.com/careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/SmartRecruiters slug guesses invalid.",
    "enabled": false
   },
   {
@@ -1144,6 +1396,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Classic SAP SuccessFactors career portal confirmed live (same career2.successfactors.eu shard as Kemira). Sugar refining/processing (Wissington, Bury St Edmunds, Cantley, Newark) is highly chem-eng relevant - ABF subsidiary but has its own dedicated ATS instance. | Not polled: no adapter for successfactors yet. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "bt-group",
+   "name": "BT Group",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.bt.com/careers",
+   "earlyCareersUrl": "https://www.bt.com/careers/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Confirmed SAP SuccessFactors, company id 'britisht01P1', hosted at career2.successfactors.eu. Base career page loads (200) but the underlying job-search results are populated via internal AJAX calls that require session state — no static keyless GET returning job JSON/HTML was found within budget.",
    "enabled": false
   },
   {
@@ -1210,6 +1475,19 @@
    "enabled": false
   },
   {
+   "id": "cbre",
+   "name": "CBRE",
+   "kind": "ats",
+   "sector": "property",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.cbre.com/",
+   "earlyCareersUrl": "https://careers.cbre.com/en_US/careersUK/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #17 (Graduate) on the 2026-27 Higherin list. A Workday tenant 'cbre.wd1.myworkdayjobs.com' exists (406 to curl, and a guessed site name 'Search' returned HTTP 422 'invalid site') but the real Workday site name could not be confirmed within budget.",
+   "enabled": false
+  },
+  {
    "id": "cemex-uk",
    "name": "Cemex UK",
    "kind": "ats",
@@ -1256,6 +1534,32 @@
    "notes": "Runs on Teamtailor (CNAME'd to careers.ceres.tech) - the /jobs listing page is server-rendered HTML with direct links to individual postings (confirmed by curl, no JS needed to see titles), but Teamtailor has no public unauthenticated JSON API (unlike Greenhouse) so HTML scraping of /jobs is the only keyless route. Only 2 live vacancies (Horsham/Redhill, UK fuel-cell/SOEC manufacturer) at verification time - small headcount company, hiring is naturally low-volume/rolling rather than seasonal cohorts, though an early-careers page exists."
   },
   {
+   "id": "channel-4",
+   "name": "Channel 4",
+   "kind": "ats",
+   "sector": "media",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.channel4.com/",
+   "earlyCareersUrl": "https://careers.channel4.com/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'channel4' confirmed invalid.",
+   "enabled": false
+  },
+  {
+   "id": "checkout-com",
+   "name": "Checkout.com",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.checkout.com/careers",
+   "earlyCareersUrl": "https://www.checkout.com/careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live); page returns essentially empty static HTML (fully client-rendered SPA). Not found on Greenhouse ('checkoutcom'), Lever, or Ashby under obvious token guesses.",
+   "enabled": false
+  },
+  {
    "id": "chevron",
    "name": "Chevron",
    "kind": "ats",
@@ -1268,6 +1572,45 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "Eightfold-powered (script references chevron.eightfold.ai/careers), but the standard keyless /api/apply/v2/jobs endpoint returned 404 on every domain param variant tried (chevron.com, chevron.eightfold.ai, chevron) - likely requires a session-scoped tenant param not derivable statically. Chevron has minimal direct UK operations (mostly via JVs); low priority to re-crack.",
+   "enabled": false
+  },
+  {
+   "id": "cisco",
+   "name": "Cisco",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://jobs.cisco.com/",
+   "earlyCareersUrl": "https://jobs.cisco.com/jobs/SearchJobs/?jobFamilyGroup=Graduates%2FUniversity",
+   "verified": "2026-09-02",
+   "notes": "Ranked #21 on the 2026-27 Higherin Top Graduate Employers list. Careers site (200 live) is a proprietary (Oracle Taleo-derived) JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
+   "id": "citadel",
+   "name": "Citadel",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "Global",
+   "ats": "unsupported",
+   "careersUrl": "https://www.citadel.com/careers/",
+   "earlyCareersUrl": "https://www.citadel.com/careers/students/",
+   "verified": "2026-09-02",
+   "notes": "Careers site returns 403 to a plain HTTP client (bot-protected). Greenhouse, Lever, and SmartRecruiters slug guesses all confirmed invalid.",
+   "enabled": false
+  },
+  {
+   "id": "citi",
+   "name": "Citi",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://jobs.citi.com/",
+   "earlyCareersUrl": "https://citi.eightfold.ai/careers/join?jtn_form_id=jtn-early-career",
+   "verified": "2026-09-02",
+   "notes": "Ranked #5 (Undergraduate) on the 2026-27 Higherin list. Uses Eightfold (citi.eightfold.ai) but the API requires an authorized domain param — attempted domain=citi.com (403) and domain=citi.eightfold.ai (404/'Not authorized for PCSX') without success. A Workday instance (citi.wd5.myworkdayjobs.com) also referenced but only for internal SSO, not the public board.",
    "enabled": false
   },
   {
@@ -1395,6 +1738,45 @@
    "notes": "Oracle Cloud HCM Recruiting confirmed via cummins.jobs (a separate branded domain from cummins.com/careers, which just links out to it). siteNumber CX_1 is global; a second site id CX_1006 also appears in the page and may be a region-specific board worth checking. keyword='graduate' returned 70 postings including explicit 'Long-Term Internship' roles (UK internships/placements branded this way). For strict UK filtering, add WorkLocationCountryCode or LocationId params (not yet resolved to a UK-specific GUID in this pass) or filter client-side on job Location text. Cummins runs rolling internship/graduate hiring rather than one fixed UK cohort date."
   },
   {
+   "id": "currys",
+   "name": "Currys",
+   "kind": "ats",
+   "sector": "retail",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.currys.co.uk/",
+   "earlyCareersUrl": "https://careers.currys.co.uk/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site returns 403 to a plain HTTP client (bot-protected); SmartRecruiters/Greenhouse slug guesses invalid.",
+   "enabled": false
+  },
+  {
+   "id": "cushman-and-wakefield",
+   "name": "Cushman & Wakefield",
+   "kind": "ats",
+   "sector": "property",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.cushmanwakefield.com/en/united-kingdom/careers",
+   "earlyCareersUrl": "https://www.cushmanwakefield.com/en/united-kingdom/careers/students-and-graduates",
+   "verified": "2026-09-02",
+   "notes": "A Workday tenant 'cushmanwakefield.wd1.myworkdayjobs.com' exists (406 to curl) but the real site name could not be confirmed within budget; Greenhouse/SmartRecruiters slug guesses invalid.",
+   "enabled": false
+  },
+  {
+   "id": "de-shaw",
+   "name": "D. E. Shaw & Co.",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "US",
+   "ats": "unsupported",
+   "careersUrl": "https://www.deshaw.com/careers",
+   "earlyCareersUrl": "https://www.deshaw.com/careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever token guesses invalid.",
+   "enabled": false
+  },
+  {
    "id": "darktrace",
    "name": "Darktrace",
    "kind": "ats",
@@ -1411,6 +1793,20 @@
    "notes": "Workday site name is literally 'DarktaceExternal' (note the typo baked into their tenant config — confirmed live, not a transcription error). No graduate/intern-titled roles live at check time; searchText:'graduate' returned 0."
   },
   {
+   "id": "datadog",
+   "name": "Datadog",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "Global",
+   "ats": "greenhouse",
+   "token": "datadog",
+   "endpoint": "https://boards-api.greenhouse.io/v1/boards/datadog/jobs?content=true",
+   "careersUrl": "https://careers.datadoghq.com/",
+   "earlyCareersUrl": "https://careers.datadoghq.com/university/",
+   "verified": "2026-09-02",
+   "notes": "Large live board (442 roles); confirmed genuine internship postings. Filter locationsText/departments for London/UK office."
+  },
+  {
    "id": "deliveroo",
    "name": "Deliveroo",
    "kind": "ats",
@@ -1423,6 +1819,58 @@
    "earlyCareersUrl": "https://careers.deliveroo.co.uk/",
    "verified": "2026-09-02",
    "notes": "4 of 190 are New Grad/Intern titled including a London-based New Grad SWE role."
+  },
+  {
+   "id": "deloitte-uk",
+   "name": "Deloitte UK",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www2.deloitte.com/uk/en/careers.html",
+   "earlyCareersUrl": "https://apply.deloitte.com/en_GB/careers",
+   "verified": "2026-09-02",
+   "notes": "Ranked #11 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'deloitteuk' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
+   "id": "dentsu",
+   "name": "Dentsu",
+   "kind": "ats",
+   "sector": "media",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.dentsu.com/uk/en/careers",
+   "earlyCareersUrl": "https://www.dentsu.com/uk/en/careers",
+   "verified": "2026-09-02",
+   "notes": "Greenhouse/SmartRecruiters token guesses ('dentsu') both confirmed invalid; no ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
+   "id": "deutsche-bank",
+   "name": "Deutsche Bank",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.db.com/",
+   "earlyCareersUrl": "https://careers.db.com/students-graduates/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #50 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'deutschebank' confirmed invalid.",
+   "enabled": false
+  },
+  {
+   "id": "dhl",
+   "name": "DHL",
+   "kind": "ats",
+   "sector": "transport",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.dhl.com/global/en/",
+   "earlyCareersUrl": "https://careers.dhl.com/global/en/graduates",
+   "verified": "2026-09-02",
+   "notes": "Ranked #46 (Graduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal (SuccessFactors group-wide, per public knowledge, but no confirmable static endpoint found).",
+   "enabled": false
   },
   {
    "id": "diageo",
@@ -1490,6 +1938,19 @@
    "enabled": false
   },
   {
+   "id": "drw",
+   "name": "DRW",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "US",
+   "ats": "unsupported",
+   "careersUrl": "https://drw.com/careers",
+   "earlyCareersUrl": "https://drw.com/careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever token guesses invalid.",
+   "enabled": false
+  },
+  {
    "id": "ds-smith",
    "name": "DS Smith",
    "kind": "ats",
@@ -1518,6 +1979,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Dstl recruits via the legacy Civil Service Jobs site (civilservicejobs.service.gov.uk, dept code nghr_dept=183873, linked directly from the gov.uk recruitment page). That legacy domain now serves a 'Quick Check Needed' bot-verification interstitial (redirecting toward a generic GOV.UK page) instead of the job search UI when hit directly with curl — no keyless route found. Modern Civil Service recruitment appears to have moved off this old domain; the current replacement search endpoint was not identified in the time available.",
+   "enabled": false
+  },
+  {
+   "id": "dunelm",
+   "name": "Dunelm",
+   "kind": "ats",
+   "sector": "retail",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.dunelm.com/",
+   "earlyCareersUrl": "https://careers.dunelm.com/",
+   "verified": "2026-09-02",
+   "notes": "Connection failed at check time from a plain HTTP client; SmartRecruiters/Greenhouse slug guesses invalid.",
    "enabled": false
   },
   {
@@ -1550,6 +2024,19 @@
    "chemEngRelevance": "low",
    "verified": "2026-09-02",
    "notes": "Bespoke Umbraco-based career CMS (no ATS vendor markers found). No JSON API, but the server-rendered search-results page is reliably scrapeable via query params (pagesize/page/countries=1443 for UK, earlyCareers=0|1). Live-verified 200, 'Showing 17 job(s) found' for countries=1443 with no filter; earlyCareers=1 for UK returned 0 live postings at check time. 'ats' is 'unsupported' since no enum vendor fits, though the endpoint genuinely works and is keyless.",
+   "enabled": false
+  },
+  {
+   "id": "easyjet",
+   "name": "easyJet",
+   "kind": "ats",
+   "sector": "transport",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.easyjet.com/",
+   "earlyCareersUrl": "https://careers.easyjet.com/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever/SmartRecruiters slug guesses invalid.",
    "enabled": false
   },
   {
@@ -1734,6 +2221,19 @@
    "enabled": false
   },
   {
+   "id": "evercore",
+   "name": "Evercore",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.evercore.com/careers/",
+   "earlyCareersUrl": "https://www.evercore.com/careers/experienced-professionals/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
    "id": "evonik",
    "name": "Evonik",
    "kind": "ats",
@@ -1793,6 +2293,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "SAP SuccessFactors career site confirmed (rmkcdn.successfactors.com assets, /go/{category}/{id}/ category paths). Global site - UK roles (Fawley refinery) need location filter. Server-rendered HTML, no clean JSON API - parse jobTitle-link anchors. | Not polled: no adapter for successfactors yet. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "ey-uk",
+   "name": "EY UK",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.ey.com/en_uk/careers",
+   "earlyCareersUrl": "https://www.ey.com/en_uk/careers/students",
+   "verified": "2026-09-02",
+   "notes": "Ranked #48 (Graduate) / #19 (Undergraduate) on the 2026-27 Higherin lists. Confirmed on SAP SuccessFactors (successfactors.eu/.com hosts referenced in page) but exact company id and working search endpoint not resolved within budget; SmartRecruiters slug 'eyglobal' confirmed invalid.",
    "enabled": false
   },
   {
@@ -1858,6 +2371,20 @@
    "notes": "Eightfold-powered careers site directly at fluor.eightfold.ai (not gated like Worley's tenant). GET https://fluor.eightfold.ai/api/apply/v2/jobs?domain=fluor.com&query=graduate&start=0&num=10 returns HTTP 200 real JSON with 'positions' array and 'count'. count=6 for query 'graduate' (2026-09-02); broaden query for more results. careers.fluor.com/careers redirects to a Phenom-styled shell but underlying data-fetch verified against the eightfold.ai host directly."
   },
   {
+   "id": "forvis-mazars-global",
+   "name": "Forvis Mazars (Global/DACH board)",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "Global",
+   "ats": "greenhouse",
+   "token": "forvismazars",
+   "endpoint": "https://boards-api.greenhouse.io/v1/boards/forvismazars/jobs?content=true",
+   "careersUrl": "https://karriere-de.forvismazars.com/",
+   "earlyCareersUrl": "https://karriere-de.forvismazars.com/",
+   "verified": "2026-09-02",
+   "notes": "This is the DACH-region (German) Forvis Mazars board, distinct from the UK-specific Workday feed already recorded under 'forvis-mazars-uk'. 24 of 190 postings are internship/Praktikum-titled (mostly German offices)."
+  },
+  {
    "id": "forvis-mazars-uk",
    "name": "Forvis Mazars (UK)",
    "kind": "ats",
@@ -1890,6 +2417,45 @@
    "enabled": false
   },
   {
+   "id": "frontier-economics",
+   "name": "Frontier Economics",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.frontier-economics.com/uk/en/about-us/careers/",
+   "earlyCareersUrl": "https://www.frontier-economics.com/uk/en/about-us/careers/",
+   "verified": "2026-09-02",
+   "notes": "Careers URL 404 at check time; SmartRecruiters slug confirmed invalid (totalFound:0). Small firm — likely uses a simple ATS not covered by the known keyless platforms.",
+   "enabled": false
+  },
+  {
+   "id": "frontline",
+   "name": "Frontline (social work leadership programme)",
+   "kind": "ats",
+   "sector": "public-sector",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://thefrontline.org.uk/apply/",
+   "earlyCareersUrl": "https://thefrontline.org.uk/apply/",
+   "verified": "2026-09-02",
+   "notes": "Application site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever/SmartRecruiters slug guesses invalid. Single national graduate-entry programme, not a conventional jobs board.",
+   "enabled": false
+  },
+  {
+   "id": "fti-consulting",
+   "name": "FTI Consulting",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.fticonsulting.com/about/careers",
+   "earlyCareersUrl": "https://www.fticonsulting.com/about/careers",
+   "verified": "2026-09-02",
+   "notes": "Careers URL structure likely changed (404 at check time); SmartRecruiters slug 'fticonsulting' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
    "id": "fujifilm-diosynth",
    "name": "Fujifilm Diosynth Biotechnologies",
    "kind": "ats",
@@ -1905,6 +2471,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Workday confirmed live (searchText='graduate' returned 0 - use empty/'' or 'intern' instead). Recently rebranded 'Fujifilm Biotechnologies'; separate uscareers-fujifilm.icims.com exists for a different FUJIFILM business unit (imaging/US corporate) - not the same jobs pool. Teesside, UK site is one of the world's largest biologics/bioprocessing plants - very high chem-eng relevance."
+  },
+  {
+   "id": "g-research",
+   "name": "G-Research",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.gresearch.com/careers/",
+   "earlyCareersUrl": "https://www.gresearch.com/careers/graduate-and-intern-programmes/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is fully client-rendered; not found on Greenhouse, Lever, or Ashby under obvious token guesses ('gresearch').",
+   "enabled": false
   },
   {
    "id": "ge-vernova",
@@ -1965,6 +2544,45 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Both /careers and /en/careers/jobs load (200) with no ATS vendor signature found in the HTML. No keyless API discovered in the time available.",
+   "enabled": false
+  },
+  {
+   "id": "goldman-sachs",
+   "name": "Goldman Sachs",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.goldmansachs.com/careers/students/",
+   "earlyCareersUrl": "https://www.goldmansachs.com/careers/students/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #84 (Undergraduate) on the 2026-27 Higherin list. Page references Avature ('recruiting360.avature.net') but only as a candidate-relationship widget, not the main job board; the actual careers.gs.com search requires session state — no keyless endpoint confirmed.",
+   "enabled": false
+  },
+  {
+   "id": "google",
+   "name": "Google",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.google.com/students/",
+   "earlyCareersUrl": "https://careers.google.com/students/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a fully JS-rendered proprietary portal with no discoverable keyless JSON endpoint; no public Greenhouse/Lever/Workday/etc. board found.",
+   "enabled": false
+  },
+  {
+   "id": "grant-thornton-uk",
+   "name": "Grant Thornton UK",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.grantthornton.co.uk/careers/",
+   "earlyCareersUrl": "https://www.grantthornton.co.uk/careers/students-and-graduates/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #64 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug confirmed invalid (totalFound:0).",
    "enabled": false
   },
   {
@@ -2093,6 +2711,19 @@
    "enabled": false
   },
   {
+   "id": "hiscox",
+   "name": "Hiscox",
+   "kind": "ats",
+   "sector": "insurance",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.hiscoxgroup.com/",
+   "earlyCareersUrl": "https://careers.hiscoxgroup.com/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Ranked #12 (Graduate) on the 2026-27 Higherin list. Connection failed at check time from a plain HTTP client; Greenhouse/Lever/SmartRecruiters token guesses invalid.",
+   "enabled": false
+  },
+  {
    "id": "honeywell-uk",
    "name": "Honeywell (UK)",
    "kind": "ats",
@@ -2110,6 +2741,19 @@
    "notes": "CONFIRMED LIVE. Oracle Cloud HCM, host+tenant 'ibqbjb' found embedded in careers.honeywell.com search-results page JS; siteNumber CX_1 worked on first try. TotalJobsCount=59 globally for keyword='graduate'. Honeywell UK has significant process-control/UOP (chemical process technology licensing) presence, hence high chem-eng relevance. Results are global, not UK-filtered by this simple query."
   },
   {
+   "id": "houlihan-lokey",
+   "name": "Houlihan Lokey",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.hl.com/careers/",
+   "earlyCareersUrl": "https://www.hl.com/careers/experienced-professionals/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
    "id": "hs2",
    "name": "HS2",
    "kind": "ats",
@@ -2125,6 +2769,19 @@
    "chemEngRelevance": "low",
    "verified": "2026-09-02",
    "notes": "CONFIRMED LIVE (verified by background research agent). HS2 Ltd's own vacancies (distinct from its supply-chain jobs board at hs2jobs.org.uk) are hosted at jobs.hs2.org.uk, a branded front-end for Oracle Fusion Cloud Recruiting (candidate-experience host embedded in page JS: egif.fa.em1.ukg.oraclecloud.com, site CX_1001). finder=findReqs;siteNumber=CX_1001 returns real JSON with TotalJobsCount and full requisitionList (26 live roles at check time, e.g. Senior Project Manager, Cost Manager, Legal Counsel, Senior Project Engineer). keyword=graduate / apprentice / placement all returned TotalJobsCount:0 at check time (2025 graduate programme window closed, 2026/27 cycle not yet posted); keyword=intern returned 16 but these were false-positive matches on words like 'international'."
+  },
+  {
+   "id": "hsbc",
+   "name": "HSBC",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.hsbc.com/careers",
+   "earlyCareersUrl": "https://www.hsbc.com/careers/students-and-graduates",
+   "verified": "2026-09-02",
+   "notes": "Ranked #35 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; no ATS pattern found in static HTML.",
+   "enabled": false
   },
   {
    "id": "hse",
@@ -2171,6 +2828,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Workday confirmed live; total=6 matched 'graduate' filter (search picks up 'intern' roles too under same query oddly - Workday's fuzzy match). Mostly non-UK sites in current postings."
+  },
+  {
+   "id": "ibm",
+   "name": "IBM",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.ibm.com/uk-en/careers",
+   "earlyCareersUrl": "https://www.ibm.com/uk-en/careers/early-career",
+   "verified": "2026-09-02",
+   "notes": "Ranked #39 (Graduate) / #57 (Undergraduate) on the 2026-27 Higherin lists. Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
   },
   {
    "id": "imc-trading",
@@ -2304,6 +2974,19 @@
    "notes": "TotalJobsCount reported as 20 (may be capped/paginated — add keyword=graduate or increase limit/offset to page further). ITV Academy traineeship confirmed live."
   },
   {
+   "id": "jpmorgan",
+   "name": "J.P. Morgan",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.jpmorgan.com/uk/en/students",
+   "earlyCareersUrl": "https://careers.jpmorgan.com/uk/en/students",
+   "verified": "2026-09-02",
+   "notes": "Ranked #21 (Undergraduate) on the 2026-27 Higherin list. Connection failed/timed out from a plain HTTP client at check time (likely bot-protected edge); no ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
    "id": "jacobs",
    "name": "Jacobs",
    "kind": "ats",
@@ -2360,6 +3043,32 @@
    "earlyCareersUrl": "https://careers.jdplc.com/",
    "verified": "2026-09-02",
    "notes": "Verified via absolute_url on job-boards.eu.greenhouse.io/jdsports. 213 live roles (mostly retail store ops); no graduate-titled roles at check time."
+  },
+  {
+   "id": "jefferies",
+   "name": "Jefferies",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.jefferies.com/OurFirm/1/13/Career-Opportunities",
+   "earlyCareersUrl": "https://www.jefferies.com/OurFirm/1/13/Career-Opportunities",
+   "verified": "2026-09-02",
+   "notes": "Ranked #39 (Undergraduate, as 'Jefferies International') on the 2026-27 Higherin list. Careers URL structure has changed (404 at check time) — needs a fresh URL lookup.",
+   "enabled": false
+  },
+  {
+   "id": "jll",
+   "name": "JLL",
+   "kind": "ats",
+   "sector": "property",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.jll.com/",
+   "earlyCareersUrl": "https://careers.jll.com/global/en/students",
+   "verified": "2026-09-02",
+   "notes": "Ranked #55 (Undergraduate) on the 2026-27 Higherin list. Site returns 406 to curl (content-negotiation/bot check); Greenhouse/SmartRecruiters slug guesses invalid.",
+   "enabled": false
   },
   {
    "id": "jlr",
@@ -2426,6 +3135,19 @@
    "notes": "34 of 108 postings are Campus/Intern roles. London office recruits via same board (filter by location)."
   },
   {
+   "id": "just-eat-takeaway",
+   "name": "Just Eat Takeaway.com",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.justeattakeaway.com/",
+   "earlyCareersUrl": "https://careers.justeattakeaway.com/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
    "id": "kbr",
    "name": "KBR",
    "kind": "ats",
@@ -2440,6 +3162,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Phenom People (CareerConnect) platform, tenant KIVKBRUS. No clean JSON REST API found (the /api/apply/v2/jobs Eightfold-style path on same host returns 'Tenant not identified' - not applicable here). The search-results page itself is server-rendered and embeds a full JSON 'jobs' array plus 'totalHits' inside a <script> tag - scrapable without auth. verified via curl -k -L with Chrome UA, HTTP 200, totalHits=590 for query 'graduate engineer'. | Not polled: no adapter for phenom yet. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "kearney",
+   "name": "Kearney",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.kearney.com/careers",
+   "earlyCareersUrl": "https://www.kearney.com/careers",
+   "verified": "2026-09-02",
+   "notes": "Careers page returns 403 to a plain HTTP client (bot-protected); SmartRecruiters slug 'kearney' confirmed invalid (totalFound:0).",
    "enabled": false
   },
   {
@@ -2474,6 +3209,45 @@
    "enabled": false
   },
   {
+   "id": "kingfisher",
+   "name": "Kingfisher plc",
+   "kind": "ats",
+   "sector": "retail",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.kingfisher.com/en/careers.html",
+   "earlyCareersUrl": "https://www.kingfisher.com/en/careers.html",
+   "verified": "2026-09-02",
+   "notes": "Careers URL structure has likely changed (404 at check time); SmartRecruiters/Greenhouse slug guesses invalid.",
+   "enabled": false
+  },
+  {
+   "id": "knight-frank",
+   "name": "Knight Frank",
+   "kind": "ats",
+   "sector": "property",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.knightfrank.co.uk/careers",
+   "earlyCareersUrl": "https://www.knightfrank.co.uk/careers/graduates",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/SmartRecruiters slug guesses invalid.",
+   "enabled": false
+  },
+  {
+   "id": "kpmg-uk",
+   "name": "KPMG UK",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.kpmgcareers.co.uk/",
+   "earlyCareersUrl": "https://www.kpmgcareers.co.uk/students/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #83 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'kpmguk' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
    "id": "kraft-heinz",
    "name": "Kraft Heinz",
    "kind": "ats",
@@ -2485,6 +3259,19 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "Eightfold confirmed as the vendor (page source), but the standard public API path returned {\"message\":\"Not authorized for PCSX\"} (403) for domain=kraftheinz.com - this tenant has locked down the normally-keyless Eightfold endpoint. Not usable without credentials. | Not polled: Eightfold needs a careers host and a domain param. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "lek-consulting",
+   "name": "L.E.K. Consulting",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.lek.com/careers",
+   "earlyCareersUrl": "https://www.lek.com/careers/students",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'lek' confirmed invalid (totalFound:0).",
    "enabled": false
   },
   {
@@ -2577,6 +3364,19 @@
    "notes": "CONFIRMED LIVE. careers.uk.leonardo.com is a Phenom front-end; the real Workday tenant was found by grepping the Phenom search-results HTML for 'apply' links (leonardocompany.wd3.myworkdayjobs.com/LeonardoCareerSite/job/.../apply). Workday cxs endpoint verified 200, total=11 for full-text search 'graduate United Kingdom'. No explicit Graduate-titled role live at check time."
   },
   {
+   "id": "lidl-uk",
+   "name": "Lidl UK",
+   "kind": "ats",
+   "sector": "retail",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.lidl.co.uk/",
+   "earlyCareersUrl": "https://careers.lidl.co.uk/graduates",
+   "verified": "2026-09-02",
+   "notes": "Ranked #42 (Graduate) on the 2026-27 Higherin list. Confirmed on SAP SuccessFactors (career5.successfactors.eu, company id 'lidlstiftuP2') but the job-listing page returned no static results within budget (likely fully AJAX-driven).",
+   "enabled": false
+  },
+  {
    "id": "linde",
    "name": "Linde plc",
    "kind": "ats",
@@ -2655,6 +3455,19 @@
    "enabled": false
   },
   {
+   "id": "macquarie",
+   "name": "Macquarie Group",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.macquarie.com/careers.html",
+   "earlyCareersUrl": "https://www.macquarie.com/careers/students-and-graduates.html",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no ATS pattern found in static HTML.",
+   "enabled": false
+  },
+  {
    "id": "man-group",
    "name": "Man Group",
    "kind": "ats",
@@ -2728,6 +3541,19 @@
    "notes": "CONFIRMED LIVE. mbdacareers.co.uk's visible job search widget is Algolia (public search key RVMOB42DFH, index production__mbdacare2101__sort-rank), live-verified against algolia.net; each hit carries provider:workday and an apply_url on mbda.wd3.myworkdayjobs.com/MBDA-UK/..., which is the cleaner underlying endpoint recorded here. MBDA graduate scheme (propellants/energetic materials, missile systems) is a strong chemical/materials-engineering employer even though 'graduate' keyword search wasn't matching scheme-titled postings at check time (Sept-2026 intake closed, 2027 registrations only)."
   },
   {
+   "id": "mckinsey",
+   "name": "McKinsey & Company",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.mckinsey.com/careers",
+   "earlyCareersUrl": "https://www.mckinsey.com/careers/students",
+   "verified": "2026-09-02",
+   "notes": "Careers page fetch timed out at check time (likely bot-protected); no ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
    "id": "mclaren",
    "name": "McLaren",
    "kind": "ats",
@@ -2755,6 +3581,32 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "CONFIRMED LIVE (verified by background research agent). Careers site runs on Concrete CMS (self-hosted, no 3rd-party ATS signature). The job-search form (id='jobSearch', action='#results') submits as a plain GET with searchQuery/dept/region params back to /join-us/search-our-jobs, returning server-rendered HTML with real listings — keyless and scriptable even though not JSON. Verified live with dept= (All): 2 open roles (Senior Scientific Software Engineer, Corporate Risk Manager). dept=Graduates and dept=Industrial+Placements (valid facet values scraped from the form) both returned 0 results at check time — the Graduate Development Scheme/Industrial Placements pages exist as evergreen programme pages but had no live requisitions at this moment.",
+   "enabled": false
+  },
+  {
+   "id": "meta",
+   "name": "Meta",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.metacareers.com/students-and-grads/",
+   "earlyCareersUrl": "https://www.metacareers.com/students-and-grads/",
+   "verified": "2026-09-02",
+   "notes": "metacareers.com actively blocks non-browser HTTP clients (curl with Chrome UA still returns 400) — likely TLS/JA3 fingerprinting at the edge. No keyless endpoint accessible from a plain HTTP client.",
+   "enabled": false
+  },
+  {
+   "id": "microsoft",
+   "name": "Microsoft",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.microsoft.com/students/en/us",
+   "earlyCareersUrl": "https://careers.microsoft.com/students/en/us",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
    "enabled": false
   },
   {
@@ -2862,6 +3714,19 @@
    "enabled": false
   },
   {
+   "id": "morgan-stanley",
+   "name": "Morgan Stanley",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.morganstanley.com/careers",
+   "earlyCareersUrl": "https://www.morganstanley.com/careers/students-graduates",
+   "verified": "2026-09-02",
+   "notes": "Ranked #72 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
    "id": "mott-macdonald",
    "name": "Mott MacDonald",
    "kind": "ats",
@@ -2927,6 +3792,45 @@
    "enabled": false
   },
   {
+   "id": "nationwide",
+   "name": "Nationwide Building Society",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.nationwidebuildingsociety.jobs/",
+   "earlyCareersUrl": "https://www.nationwidebuildingsociety.jobs/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Ranked #38 (Undergraduate) on the 2026-27 Higherin list. Connection failed at check time from a plain HTTP client; no ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
+   "id": "natwest-group",
+   "name": "NatWest Group",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://jobs.natwestgroup.com/",
+   "earlyCareersUrl": "https://jobs.natwestgroup.com/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Ranked #14 (Graduate) / #16 (Undergraduate) on the 2026-27 Higherin lists. Careers site returns 403 to a plain HTTP client (bot-protected); no ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
+   "id": "nera-economic-consulting",
+   "name": "NERA Economic Consulting",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.nera.com/careers.html",
+   "earlyCareersUrl": "https://www.nera.com/careers.html",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
    "id": "nestle",
    "name": "Nestle",
    "kind": "ats",
@@ -2970,6 +3874,19 @@
    "enabled": false
   },
   {
+   "id": "nhs-graduate-management-training-scheme",
+   "name": "NHS Graduate Management Training Scheme",
+   "kind": "ats",
+   "sector": "public-sector",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://graduates.nhs.uk/",
+   "earlyCareersUrl": "https://graduates.nhs.uk/",
+   "verified": "2026-09-02",
+   "notes": "Single annual national scheme with its own dedicated application portal; not backed by any of the known keyless ATS platforms. Requires a fresh live check of graduates.nhs.uk (not reached within this session's connectivity budget).",
+   "enabled": false
+  },
+  {
    "id": "nissan-uk-sunderland",
    "name": "Nissan (UK, Sunderland)",
    "kind": "ats",
@@ -2983,6 +3900,19 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "WordPress site using the JetEngine plugin for a custom 'jobs' post type, not a dedicated ATS — discovered via the wp-json route list. Endpoint is genuinely keyless and live-verified (200, X-WP-Total: 1). Only 1 vacancy live at check time (Manufacturing Staff), no current graduate/placement posting — Nissan's Sunderland graduate schemes (incl. EV battery/gigafactory-adjacent roles) run on an annual cycle and were off-cycle. 'ats' is 'unsupported' since WordPress/JetEngine isn't in the given vendor enum despite the working feed.",
+   "enabled": false
+  },
+  {
+   "id": "nomura",
+   "name": "Nomura",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.nomura.com/careers/",
+   "earlyCareersUrl": "https://www.nomura.com/careers/graduates/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #4 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; no ATS pattern found in static HTML.",
    "enabled": false
   },
   {
@@ -3130,6 +4060,20 @@
    "enabled": false
   },
   {
+   "id": "ocado-group",
+   "name": "Ocado Group (incl. Ocado Technology)",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "greenhouse",
+   "token": "ocadogroup",
+   "endpoint": "https://boards-api.greenhouse.io/v1/boards/ocadogroup/jobs?content=true",
+   "careersUrl": "https://careers.ocadogroup.com/",
+   "earlyCareersUrl": "https://careers.ocadogroup.com/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Single group-wide board covers both retail/ops and Ocado Technology engineering roles. 53 live roles; no graduate/intern-titled roles live at check time."
+  },
+  {
    "id": "octopus-energy",
    "name": "Octopus Energy",
    "kind": "ats",
@@ -3143,6 +4087,45 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "Clean textbook Lever board - GET https://api.lever.co/v0/postings/octoenergy?mode=json returned 200 with 138 live postings as proper JSON (title, categories, location, descriptionPlain, applyUrl etc.), no key required. Only 1 posting matched graduate/intern/placement/apprentice/trainee keywords at verification ('Octopus Internships', a rolling speculative-application posting) - Octopus's graduate intake (Commercial/Operations/Electrification Graduate roles, assessment centre nicknamed 'Octopalooza') is run in bursts throughout the year rather than a single autumn cycle, so poll this endpoint regularly rather than expecting a single seasonal spike."
+  },
+  {
+   "id": "ons",
+   "name": "Office for National Statistics (ONS)",
+   "kind": "ats",
+   "sector": "public-sector",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.ons.gov.uk/",
+   "earlyCareersUrl": "https://careers.ons.gov.uk/graduates",
+   "verified": "2026-09-02",
+   "notes": "ONS recruitment for most roles runs through Civil Service Jobs (civil-service-careers.gov.uk, confirmed live at 200) rather than a standalone ONS ATS; direct careers.ons.gov.uk subpages 404'd at check time.",
+   "enabled": false
+  },
+  {
+   "id": "oliver-wyman",
+   "name": "Oliver Wyman",
+   "kind": "ats",
+   "sector": "consulting",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.oliverwyman.com/careers.html",
+   "earlyCareersUrl": "https://www.oliverwyman.com/careers/students.html",
+   "verified": "2026-09-02",
+   "notes": "SmartRecruiters slug 'oliverwyman' confirmed invalid (totalFound:0); careers site is a proprietary JS-rendered portal (part of Marsh McLennan group ATS).",
+   "enabled": false
+  },
+  {
+   "id": "oracle",
+   "name": "Oracle",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.oracle.com/uk/careers/",
+   "earlyCareersUrl": "https://www.oracle.com/uk/careers/students-graduates/",
+   "verified": "2026-09-02",
+   "notes": "Oracle runs its own Oracle Cloud HCM Recruiting instance internally but the public entry point is a JS-rendered marketing/portal page; the underlying tenant host was not discoverable from static HTML within budget.",
+   "enabled": false
   },
   {
    "id": "orsted",
@@ -3344,6 +4327,19 @@
    "notes": "30 of 238 postings are internship/Academy titled; filter feed for London/UK location and Cubist (quant arm)."
   },
   {
+   "id": "police-now",
+   "name": "Police Now",
+   "kind": "ats",
+   "sector": "public-sector",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.policenow.org.uk/join/",
+   "earlyCareersUrl": "https://www.policenow.org.uk/join/",
+   "verified": "2026-09-02",
+   "notes": "Application site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever/SmartRecruiters slug guesses invalid. Single national graduate-entry policing programme, not a conventional jobs board.",
+   "enabled": false
+  },
+  {
    "id": "ppg",
    "name": "PPG",
    "kind": "ats",
@@ -3388,6 +4384,32 @@
    "enabled": false
   },
   {
+   "id": "publicis-groupe",
+   "name": "Publicis Groupe",
+   "kind": "ats",
+   "sector": "media",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.publicisgroupe.com/en/careers",
+   "earlyCareersUrl": "https://www.publicisgroupe.com/en/careers",
+   "verified": "2026-09-02",
+   "notes": "Greenhouse/SmartRecruiters token guesses ('publicis') both confirmed invalid; no ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
+   "id": "pwc-uk",
+   "name": "PwC UK",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.pwc.co.uk/careers.html",
+   "earlyCareersUrl": "https://www.pwc.co.uk/careers/student-careers.html",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'pwcuk' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
    "id": "qinetiq",
    "name": "QinetiQ",
    "kind": "ats",
@@ -3403,6 +4425,20 @@
    "verified": "2026-09-02",
    "notes": "CONFIRMED LIVE. SAP SuccessFactors Career Site Builder on QinetiQ's own domain (backend career5.successfactors.eu, company=qinetiqlimP2). Server-rendered /search/ page confirmed live with real job listing markup (class=jobTitle-link) and pager text 'of 2' for keyword 'graduate'. Neither current match is a true graduate-scheme title. | Not polled: no adapter for successfactors yet. Careers link kept for manual checking.",
    "enabled": false
+  },
+  {
+   "id": "qube-research-technologies",
+   "name": "Qube Research & Technologies (QRT)",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "UK",
+   "ats": "greenhouse",
+   "token": "quberesearchandtechnologies",
+   "endpoint": "https://boards-api.greenhouse.io/v1/boards/quberesearchandtechnologies/jobs?content=true",
+   "careersUrl": "https://www.qube-rt.com/careers/",
+   "earlyCareersUrl": "https://www.qube-rt.com/careers/students/",
+   "verified": "2026-09-02",
+   "notes": "London-headquartered quant fund; 8+ of 194 postings are 2026/2027 internship/graduate titled."
   },
   {
    "id": "ramboll",
@@ -3449,6 +4485,19 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "Several plausible careers URL slugs (/en/careers--1256, /en/careers/, /en/careers-and-vacancies--32014) all returned 404 to curl. The real current careers URL/slug was not found in the time available, so no ATS could be identified.",
+   "enabled": false
+  },
+  {
+   "id": "revolut",
+   "name": "Revolut",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.revolut.com/careers/",
+   "earlyCareersUrl": "https://www.revolut.com/careers/",
+   "verified": "2026-09-02",
+   "notes": "Not found on Greenhouse or Lever under obvious token guesses ('revolut'). Revolut runs a proprietary careers portal; no keyless endpoint discovered within budget.",
    "enabled": false
   },
   {
@@ -3549,6 +4598,32 @@
    "notes": "Separate legal entity from Rolls-Royce plc with its own Workday tenant (rollsroycesmr.wd103 / site RRSMR), confirmed via /careers/vacancies iframe script src. 77 live jobs, mostly Derby-based, heavy on nuclear component/fuel engineering. Runs its own graduate/early-careers scheme (separate from Rolls-Royce plc's much larger graduate programme) - search with searchText 'graduate' or 'apprentice' to isolate a specific intake; annual cohort, opens autumn."
   },
   {
+   "id": "rothschild-and-co",
+   "name": "Rothschild & Co",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.rothschildandco.com/en/careers/",
+   "earlyCareersUrl": "https://www.rothschildandco.com/en/careers/students-graduates/",
+   "verified": "2026-09-02",
+   "notes": "Ranked #36 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
+   "id": "royal-mail",
+   "name": "Royal Mail Group",
+   "kind": "ats",
+   "sector": "transport",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.royalmailgroup.com/",
+   "earlyCareersUrl": "https://careers.royalmailgroup.com/students-and-graduates",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/SmartRecruiters slug guesses invalid.",
+   "enabled": false
+  },
+  {
    "id": "rsk-group",
    "name": "RSK Group",
    "kind": "ats",
@@ -3573,6 +4648,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Careers and jobs-by-market pages load (200) but no ATS vendor signature found in HTML (RSK Group is a large decentralised group of ~200+ subsidiary brands, plausibly using multiple disparate ATSs per subsidiary, or a custom aggregator) - no keyless API found in the time available.",
+   "enabled": false
+  },
+  {
+   "id": "rsm-uk",
+   "name": "RSM UK",
+   "kind": "ats",
+   "sector": "accountancy",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.rsmuk.com/careers",
+   "earlyCareersUrl": "https://www.rsmuk.com/careers/students-and-graduates",
+   "verified": "2026-09-02",
+   "notes": "Ranked #95 (Undergraduate) on the 2026-27 Higherin list. Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug confirmed invalid (totalFound:0).",
    "enabled": false
   },
   {
@@ -3626,6 +4714,32 @@
    "enabled": false
   },
   {
+   "id": "sage",
+   "name": "Sage",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.sage.com/en-gb/company/careers/",
+   "earlyCareersUrl": "https://www.sage.com/en-gb/company/careers/early-careers/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
+   "id": "sainsburys",
+   "name": "Sainsbury's",
+   "kind": "ats",
+   "sector": "retail",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.sainsburys.jobs/",
+   "earlyCareersUrl": "https://www.sainsburys.jobs/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Early-careers subpage 404'd at check time; base site is a proprietary JS-rendered portal. SmartRecruiters slug 'Sainsburys' confirmed invalid (totalFound:0).",
+   "enabled": false
+  },
+  {
    "id": "saipem",
    "name": "Saipem",
    "kind": "ats",
@@ -3639,6 +4753,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "www.saipem.com/en/careers itself is Cloudflare-blocked (HTTP 403) but the real job board lives at jobs.saipem.com ('nCore for Saipem' - nCore is an Italian ATS/careers-site vendor). That SPA loads all data client-side from a single static JSON file with NO auth: GET https://jobs.saipem.com/positions_saipem.json -> HTTP 200, ~1.2MB, {\"data\":{\"Positions\":{<company>: [ {title, description, country, sector, closingDate, url, ...} ] }}} across 16 Saipem group companies, 247 total live postings (2026-09-02), 9 of them clearly early-career (Graduate/Junior/Internship). This is a full data dump, not a paginated search API - filter client-side by title keywords.",
+   "enabled": false
+  },
+  {
+   "id": "salesforce",
+   "name": "Salesforce",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.salesforce.com/company/careers/",
+   "earlyCareersUrl": "https://www.salesforce.com/company/careers/university-recruiting/",
+   "verified": "2026-09-02",
+   "notes": "Careers page returns 403 to a plain HTTP client (bot-protected); no keyless endpoint found (not on Greenhouse/Lever/SmartRecruiters).",
    "enabled": false
   },
   {
@@ -3657,6 +4784,45 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Workday confirmed live; total=65 matched 'graduate'. Job family facet includes 'Apprentice/Intern' and 'Student' types confirming a structured early-careers pipeline; UK site Reading."
+  },
+  {
+   "id": "santander-uk",
+   "name": "Santander UK",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.santanderjobs.co.uk/",
+   "earlyCareersUrl": "https://www.santanderjobs.co.uk/students",
+   "verified": "2026-09-02",
+   "notes": "Careers site returns 403 to a plain HTTP client (bot-protected); no ATS discoverable within budget.",
+   "enabled": false
+  },
+  {
+   "id": "sap",
+   "name": "SAP",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://jobs.sap.com/",
+   "earlyCareersUrl": "https://jobs.sap.com/go/SAP-Student-Jobs/",
+   "verified": "2026-09-02",
+   "notes": "SAP runs on its own SuccessFactors product (self-hosted). Base jobs.sap.com page loads (200) but the job-search results are AJAX-populated; no static keyless endpoint confirmed within budget.",
+   "enabled": false
+  },
+  {
+   "id": "savills",
+   "name": "Savills",
+   "kind": "ats",
+   "sector": "property",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.savills.co.uk/careers/",
+   "earlyCareersUrl": "https://careers.savills.com/en/jobs",
+   "verified": "2026-09-02",
+   "notes": "Ranked #4 (Graduate) / #1 (Undergraduate) on the 2026-27 Higherin lists. Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/SmartRecruiters slug guesses invalid.",
+   "enabled": false
   },
   {
    "id": "schneider-electric-uk",
@@ -3736,6 +4902,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "Custom WordPress site (plugin ps_multi_ats). Base vacancies page is fully server-rendered HTML (curl confirms real job cards with titles/salary/location/closing date) so it is keyless-scrapeable, but only 2 live vacancies right now - most Sellafield hiring is very seasonal. The page also exposes an AJAX search (wp-admin/admin-ajax.php action=ajax_js_get_jobs with a nonce) for filtering, but repeated attempts with a freshly-scraped nonce and session cookie still returned {\"totalpost\":0} - likely needs additional undocumented params or server-side referer checks, so treat only the static page GET as reliable. Sellafield's graduate/early-careers scheme (design engineering, operations) is a single annual cohort, applications typically open autumn for the following year's intake.",
+   "enabled": false
+  },
+  {
+   "id": "servicenow",
+   "name": "ServiceNow",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.servicenow.com/",
+   "earlyCareersUrl": "https://careers.servicenow.com/students/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint (not on Greenhouse/Lever/SmartRecruiters).",
    "enabled": false
   },
   {
@@ -3836,6 +5015,19 @@
    "enabled": false
   },
   {
+   "id": "sky",
+   "name": "Sky",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.skycareers.com/",
+   "earlyCareersUrl": "https://www.skycareers.com/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary/Phenom-style JS-rendered portal; no discoverable keyless endpoint in static HTML.",
+   "enabled": false
+  },
+  {
    "id": "skyscanner",
    "name": "Skyscanner",
    "kind": "ats",
@@ -3916,6 +5108,46 @@
    "enabled": false
   },
   {
+   "id": "snap-inc",
+   "name": "Snap Inc.",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.snap.com/",
+   "earlyCareersUrl": "https://careers.snap.com/students",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint (not on Greenhouse/Lever).",
+   "enabled": false
+  },
+  {
+   "id": "snowflake",
+   "name": "Snowflake",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "Global",
+   "ats": "ashby",
+   "token": "snowflake",
+   "endpoint": "https://api.ashbyhq.com/posting-api/job-board/snowflake",
+   "careersUrl": "https://careers.snowflake.com/",
+   "earlyCareersUrl": "https://careers.snowflake.com/us/en/students",
+   "verified": "2026-09-02",
+   "notes": "Large live board (378 roles); confirmed live London SDR Intern posting. Career site itself is Phenom-People-fronted but the real feed is Ashby."
+  },
+  {
+   "id": "societe-generale",
+   "name": "Societe Generale",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.societegenerale.com/",
+   "earlyCareersUrl": "https://careers.societegenerale.com/en/graduates",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'socgen' confirmed invalid.",
+   "enabled": false
+  },
+  {
    "id": "southern-water",
    "name": "Southern Water",
    "kind": "ats",
@@ -3961,6 +5193,20 @@
    "notes": "79 live roles; no graduate/intern-titled roles live at check time — Spotify runs a seasonal 'Backstage' internship/grad programme via same board."
   },
   {
+   "id": "squarepoint-capital",
+   "name": "Squarepoint Capital",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "UK",
+   "ats": "greenhouse",
+   "token": "squarepointcapital",
+   "endpoint": "https://boards-api.greenhouse.io/v1/boards/squarepointcapital/jobs?content=true",
+   "careersUrl": "https://www.squarepoint-capital.com/careers",
+   "earlyCareersUrl": "https://www.squarepoint-capital.com/open-opportunities",
+   "verified": "2026-09-02",
+   "notes": "11 of 93 postings are graduate/intern titled, including a London 2027 internship. (Correction: an earlier check under a different token guess wrongly concluded this careers URL 404'd — the real Greenhouse token 'squarepointcapital' is live.)"
+  },
+  {
    "id": "sse",
    "name": "SSE",
    "kind": "ats",
@@ -3974,6 +5220,19 @@
    "chemEngRelevance": "high",
    "verified": "2026-09-02",
    "notes": "careers.sse.com runs on Clinch (career-site CMS, confirmed via _clinch_session cookie), server-rendered HTML, no API key required. /jobs/search returns the full open-roles list (~30 live jobs); query params (?q=, ?keywords=) did not visibly filter server-side in a keyless GET (search appears to be JS/AJAX-driven client-side), so treat the endpoint as 'fetch all, filter client-side for graduate/apprentice/trainee keywords'. Dedicated early-careers content lives at /early-careers, /apprenticeships-and-trainees and /graduate-commercial-programme but these are landing pages, not separate job feeds. SSE graduate scheme (Engineering, IT, Finance, Commercial) recruits annually - site referenced '2025 apprentice and trainee opportunities now open' banner, so cycle appears to open in autumn for following year.",
+   "enabled": false
+  },
+  {
+   "id": "standard-chartered",
+   "name": "Standard Chartered",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.sc.com/en/careers/",
+   "earlyCareersUrl": "https://www.sc.com/en/careers/graduates-and-internships/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal (historically Oracle Taleo-based); no keyless endpoint confirmed within budget.",
    "enabled": false
   },
   {
@@ -3992,6 +5251,19 @@
    "enabled": false
   },
   {
+   "id": "starling-bank",
+   "name": "Starling Bank",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.starlingbank.com/careers/",
+   "earlyCareersUrl": "https://www.starlingbank.com/careers/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is fully client-rendered; not found on Greenhouse, Lever, or Ashby under obvious token guesses ('starlingbank').",
+   "enabled": false
+  },
+  {
    "id": "suez-veolia-water-technologies",
    "name": "SUEZ (UK) / Veolia Water Technologies & Solutions",
    "kind": "ats",
@@ -4006,6 +5278,19 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "STATUS CHECK: SUEZ's water technology & solutions division (the part of the old SUEZ group most relevant to this registry) was bought by Veolia in Jan 2022 and its UK legal entities were renamed 'Veolia Water Technologies & Solutions' in March 2023 (Companies House filings confirm SUEZ WATER TECHNOLOGIES & SOLUTIONS UK LTD -> VEOLIA WATER TECHNOLOGIES & SOLUTIONS ... UK LTD). Note: SUEZ's separate UK waste/recycling business (SUEZ Recycling and Recovery UK) was NOT part of this deal and still trades as SUEZ - out of scope here since the brief asks specifically about the water business. The careers site jobs.watertechnologies.com is a SAP SuccessFactors board (company=suezwtsusa, career4.successfactors.com, page still shows both SUEZ and Veolia logos mid-rebrand) and is GLOBAL, not UK-only. Confirmed live: base /search/ page (no query) returns real job rows (HTTP 200, e.g. 'Operador de Campo'), proving the server-rendered search endpoint works. However repeated UK-targeted queries (q=United Kingdom, London, Manchester, Leeds, Camberley, graduate, engineer) all returned zero matching rows at time of check - either no UK reqs are open right now on this specific board, or UK water-technologies hiring has been folded into the main Veolia UK Workday board (see veolia-uk entry) post-merger. totalJobs left null because the count is not UK-specific and would be misleading; use the endpoint with a location facet/keyword and re-check periodically. | Not polled: no adapter for successfactors yet. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "sig",
+   "name": "Susquehanna International Group (SIG)",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "US",
+   "ats": "unsupported",
+   "careersUrl": "https://sig.com/careers/",
+   "earlyCareersUrl": "https://sig.com/careers/students/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever token guesses invalid.",
    "enabled": false
   },
   {
@@ -4101,6 +5386,19 @@
    "enabled": false
   },
   {
+   "id": "teach-first",
+   "name": "Teach First",
+   "kind": "ats",
+   "sector": "public-sector",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.teachfirst.org.uk/apply",
+   "earlyCareersUrl": "https://www.teachfirst.org.uk/apply",
+   "verified": "2026-09-02",
+   "notes": "Careers/application site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever/SmartRecruiters slug guesses invalid.",
+   "enabled": false
+  },
+  {
    "id": "technip-energies",
    "name": "Technip Energies",
    "kind": "ats",
@@ -4146,6 +5444,19 @@
    "earlyCareersUrl": "https://www.teneo.com/careers/open-positions",
    "verified": "2026-09-02",
    "notes": "Verified via job absolute_url pointing to teneo.com/careers/open-positions. No graduate/intern-titled roles live at check time."
+  },
+  {
+   "id": "tesco",
+   "name": "Tesco",
+   "kind": "ats",
+   "sector": "retail",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.tesco-careers.com/",
+   "earlyCareersUrl": "https://www.tesco-careers.com/early-careers/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; SmartRecruiters slug 'Tesco' confirmed invalid (totalFound:0).",
+   "enabled": false
   },
   {
    "id": "thales-uk",
@@ -4209,6 +5520,19 @@
    "enabled": false
   },
   {
+   "id": "tiktok",
+   "name": "TikTok",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.tiktok.com/",
+   "earlyCareersUrl": "https://careers.tiktok.com/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal (ByteDance internal ATS); no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
    "id": "totalenergies",
    "name": "TotalEnergies",
    "kind": "ats",
@@ -4236,6 +5560,19 @@
    "chemEngRelevance": "low",
    "verified": "2026-09-02",
    "notes": "toyotauk.com and toyota.co.uk/careers both 404'd. Correct current careers URL not found in the time available.",
+   "enabled": false
+  },
+  {
+   "id": "trainline",
+   "name": "Trainline",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.thetrainline.com/",
+   "earlyCareersUrl": "https://careers.thetrainline.com/",
+   "verified": "2026-09-02",
+   "notes": "Careers URL timed out / connection issue at check time; re-verify. No ATS discovered.",
    "enabled": false
   },
   {
@@ -4269,6 +5606,32 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "The token was cross-checked against Turner & Townsend's own first-party careers API, which returns SmartRecruiters posting refs - so this is confirmed against live postings, not merely a 200."
+  },
+  {
+   "id": "two-sigma",
+   "name": "Two Sigma",
+   "kind": "ats",
+   "sector": "quant-trading",
+   "region": "US",
+   "ats": "unsupported",
+   "careersUrl": "https://www.twosigma.com/careers/",
+   "earlyCareersUrl": "https://www.twosigma.com/careers/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/Lever/SmartRecruiters token guesses invalid.",
+   "enabled": false
+  },
+  {
+   "id": "ubs",
+   "name": "UBS",
+   "kind": "ats",
+   "sector": "banking",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.ubs.com/global/en/careers.html",
+   "earlyCareersUrl": "https://www.ubs.com/global/en/careers/students-and-graduates.html",
+   "verified": "2026-09-02",
+   "notes": "Ranked #10 (Graduate) / #27 (Undergraduate) on the 2026-27 Higherin lists. Careers site returns 403 to a plain HTTP client (bot-protected); SmartRecruiters slug 'ubs' confirmed invalid.",
+   "enabled": false
   },
   {
    "id": "ukaea",
@@ -4466,6 +5829,19 @@
    "notes": "Low volume (6 live roles) at check time; no graduate/intern titles currently. Oracle tenant host is 'iagime' (shared Oracle Fusion recruiting instance) — confirmed genuine via live Virgin Atlantic job titles returned."
   },
   {
+   "id": "vodafone",
+   "name": "Vodafone",
+   "kind": "ats",
+   "sector": "tech",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://careers.vodafone.com/",
+   "earlyCareersUrl": "https://careers.vodafone.com/graduates/",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; no discoverable keyless endpoint.",
+   "enabled": false
+  },
+  {
    "id": "weir-group",
    "name": "Weir Group",
    "kind": "ats",
@@ -4616,6 +5992,19 @@
    "chemEngRelevance": "medium",
    "verified": "2026-09-02",
    "notes": "Marketing site www.yorkshirewater.com/careers/vacancies/ links to mycareers.yorkshirewater.com, a SAP SuccessFactors Recruiting Marketing site (SSO at career2.successfactors.eu, company=keldagroup - Yorkshire Water's parent Kelda Group). Same server-rendered /search/?q=<term> pattern as Severn Trent confirmed live with HTTP 200 (page title 'Graduate - Kelda Group Limited Jobs'). Only one loosely-matching result ('Commercial Lawyer') for 'graduate' at time of test - dedicated early-careers page (separate from the jobs board) lists the scheme and typically opens for applications in autumn. | Not polled: no adapter for successfactors yet. Careers link kept for manual checking.",
+   "enabled": false
+  },
+  {
+   "id": "zurich-uk",
+   "name": "Zurich UK",
+   "kind": "ats",
+   "sector": "insurance",
+   "region": "UK",
+   "ats": "unsupported",
+   "careersUrl": "https://www.zurich.co.uk/careers",
+   "earlyCareersUrl": "https://www.zurich.co.uk/careers/early-careers",
+   "verified": "2026-09-02",
+   "notes": "Careers site (200 live) is a proprietary JS-rendered portal; Greenhouse/SmartRecruiters token guesses invalid.",
    "enabled": false
   }
  ]
