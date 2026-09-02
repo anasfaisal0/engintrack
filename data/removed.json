@@ -1,4 +1,173 @@
 {
  "version": 1,
- "listings": []
+ "listings": [
+  {
+   "id": "reed-uk:57303371",
+   "source": "reed-uk",
+   "sourceName": "Reed · graduate & placement",
+   "sourceKind": "aggregator",
+   "employer": "Graduate Geoenvironmental Engineer",
+   "sector": "job-board",
+   "title": "Graduate Geoenvironmental Engineer",
+   "url": "https://www.reed.co.uk/jobs/graduate-geoenvironmental-engineer/57303371?source=searchResults&amp;filter=%2Fjobs%2Fgraduate-engineer-jobs",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "postedAt": null,
+   "closesAt": null,
+   "opensAt": null,
+   "firstSeenAt": "2026-09-02T22:14:25.383Z",
+   "lastSeenAt": "2026-09-02T22:14:25.383Z",
+   "removedAt": "2026-09-02T22:23:37.615Z"
+  },
+  {
+   "id": "reed-uk:57263665",
+   "source": "reed-uk",
+   "sourceName": "Reed · graduate & placement",
+   "sourceKind": "aggregator",
+   "employer": "Graduate/Junior Application Engineer - APS/MES",
+   "sector": "job-board",
+   "title": "Graduate/Junior Application Engineer - APS/MES",
+   "url": "https://www.reed.co.uk/jobs/graduate-junior-application-engineer-aps-mes/57263665?source=searchResults&amp;filter=%2Fjobs%2Fprocess-engineer-graduate-jobs",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "postedAt": null,
+   "closesAt": null,
+   "opensAt": null,
+   "firstSeenAt": "2026-09-02T22:14:25.383Z",
+   "lastSeenAt": "2026-09-02T22:14:25.383Z",
+   "removedAt": "2026-09-02T22:23:37.615Z"
+  },
+  {
+   "id": "reed-uk:57283072",
+   "source": "reed-uk",
+   "sourceName": "Reed · graduate & placement",
+   "sourceKind": "aggregator",
+   "employer": "Placement Officer",
+   "sector": "job-board",
+   "title": "Placement Officer",
+   "url": "https://www.reed.co.uk/jobs/placement-officer/57283072?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "postedAt": null,
+   "closesAt": null,
+   "opensAt": null,
+   "firstSeenAt": "2026-09-02T22:14:25.383Z",
+   "lastSeenAt": "2026-09-02T22:14:25.383Z",
+   "removedAt": "2026-09-02T22:23:37.615Z"
+  },
+  {
+   "id": "reed-uk:57303176",
+   "source": "reed-uk",
+   "sourceName": "Reed · graduate & placement",
+   "sourceKind": "aggregator",
+   "employer": "Junior / Trainee Supply Chain Specialist (Engineering)",
+   "sector": "job-board",
+   "title": "Junior / Trainee Supply Chain Specialist (Engineering)",
+   "url": "https://www.reed.co.uk/jobs/junior-trainee-supply-chain-specialist-engineering/57303176?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "postedAt": null,
+   "closesAt": null,
+   "opensAt": null,
+   "firstSeenAt": "2026-09-02T22:14:25.383Z",
+   "lastSeenAt": "2026-09-02T22:14:25.383Z",
+   "removedAt": "2026-09-02T22:23:37.615Z"
+  },
+  {
+   "id": "reed-uk:57225064",
+   "source": "reed-uk",
+   "sourceName": "Reed · graduate & placement",
+   "sourceKind": "aggregator",
+   "employer": "Graduate/Trainee Project Engineer (Manufacturing)",
+   "sector": "job-board",
+   "title": "Graduate/Trainee Project Engineer (Manufacturing)",
+   "url": "https://www.reed.co.uk/jobs/graduate-trainee-project-engineer-manufacturing/57225064?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "postedAt": null,
+   "closesAt": null,
+   "opensAt": null,
+   "firstSeenAt": "2026-09-02T22:14:25.383Z",
+   "lastSeenAt": "2026-09-02T22:14:25.383Z",
+   "removedAt": "2026-09-02T22:23:37.615Z"
+  },
+  {
+   "id": "reed-uk:57255914",
+   "source": "reed-uk",
+   "sourceName": "Reed · graduate & placement",
+   "sourceKind": "aggregator",
+   "employer": "Production And Installation Trainee",
+   "sector": "job-board",
+   "title": "Production And Installation Trainee",
+   "url": "https://www.reed.co.uk/jobs/production-and-installation-trainee/57255914?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "postedAt": null,
+   "closesAt": null,
+   "opensAt": null,
+   "firstSeenAt": "2026-09-02T22:14:25.383Z",
+   "lastSeenAt": "2026-09-02T22:14:25.383Z",
+   "removedAt": "2026-09-02T22:23:37.615Z"
+  },
+  {
+   "id": "roche:Pharma-Technical-Regulatory-Submission-Intern_202608-120260",
+   "source": "roche",
+   "sourceName": "Roche",
+   "sourceKind": "ats",
+   "employer": "Roche",
+   "sector": "pharma",
+   "title": "Pharma Technical Regulatory Submission Intern",
+   "url": "https://roche.wd3.myworkdayjobs.com/en-US/roche-ext/job/Mississauga/Pharma-Technical-Regulatory-Submission-Intern_202608-120260",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "postedAt": null,
+   "closesAt": null,
+   "opensAt": null,
+   "firstSeenAt": "2026-09-02T22:14:25.383Z",
+   "lastSeenAt": "2026-09-02T22:14:25.383Z",
+   "removedAt": "2026-09-02T22:23:37.615Z"
+  }
+ ]
 }
