@@ -2,183 +2,26 @@
  "version": 1,
  "events": [
   {
-   "id": "reed-uk:57283072|added",
+   "id": "erm:Werkstudent-Office-Management--m-w-d-_R00031844-1|added",
    "kind": "added",
    "importance": "high",
-   "listingId": "reed-uk:57283072",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Placement Officer",
-   "url": "https://www.reed.co.uk/jobs/placement-officer/57283072?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "placement",
+   "listingId": "erm:Werkstudent-Office-Management--m-w-d-_R00031844-1",
+   "source": "erm",
+   "sourceName": "ERM",
+   "employer": "ERM",
+   "title": "Werkstudent Office Management (m/w/d)",
+   "url": "https://erm.wd3.myworkdayjobs.com/en-US/ERM_Careers/job/Berlin-Germany/Werkstudent-Office-Management--m-w-d-_R00031844-1",
+   "location": "Berlin, Germany",
+   "region": "EU",
+   "level": "internship",
    "disciplines": [
     "general"
    ],
    "chemEng": false,
    "acceptsChemEng": false,
    "closesAt": null,
-   "note": "New placement listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57239321|added",
-   "kind": "added",
-   "importance": "high",
-   "listingId": "reed-uk:57239321",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Graduate Commercial Programme",
-   "url": "https://www.reed.co.uk/jobs/graduate-commercial-programme/57239321?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "graduate",
-   "disciplines": [
-    "business"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57255541|added",
-   "kind": "added",
-   "importance": "high",
-   "listingId": "reed-uk:57255541",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Graduate Commercial Programme",
-   "url": "https://www.reed.co.uk/jobs/graduate-commercial-programme/57255541?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "graduate",
-   "disciplines": [
-    "business"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57263054|added",
-   "kind": "added",
-   "importance": "high",
-   "listingId": "reed-uk:57263054",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Graduate Commercial Programme",
-   "url": "https://www.reed.co.uk/jobs/graduate-commercial-programme/57263054?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "graduate",
-   "disciplines": [
-    "business"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57269016|added",
-   "kind": "added",
-   "importance": "high",
-   "listingId": "reed-uk:57269016",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Graduate Recruitment Consultant (Engineering)",
-   "url": "https://www.reed.co.uk/jobs/graduate-recruitment-consultant-engineering/57269016?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "graduate",
-   "disciplines": [
-    "consulting",
-    "business"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57210438|added",
-   "kind": "added",
-   "importance": "high",
-   "listingId": "reed-uk:57210438",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Graduate Electrical Estimator (Commercial/Industrial)",
-   "url": "https://www.reed.co.uk/jobs/graduate-electrical-estimator-commercial-industrial/57210438?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "graduate",
-   "disciplines": [
-    "elec",
-    "business"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57162732|added",
-   "kind": "added",
-   "importance": "high",
-   "listingId": "reed-uk:57162732",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Trainee / Entry-Level Recruiter (Engineering)",
-   "url": "https://www.reed.co.uk/jobs/trainee-entry-level-recruiter-engineering/57162732?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "graduate",
-   "disciplines": [
-    "business"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57285560|added",
-   "kind": "added",
-   "importance": "high",
-   "listingId": "reed-uk:57285560",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Reed · graduate & placement",
-   "title": "Graduate / Trainee Recruitment Consultant (Engineering)",
-   "url": "https://www.reed.co.uk/jobs/graduate-trainee-recruitment-consultant-engineering/57285560?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "UK",
-   "level": "graduate",
-   "disciplines": [
-    "consulting",
-    "business"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "note": "New internship listing",
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
    "id": "reed-uk:57255914|added",
@@ -200,7 +43,7 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
    "id": "reed-uk:57225064|added",
@@ -222,7 +65,7 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
    "id": "reed-uk:57303176|added",
@@ -244,7 +87,29 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
+  },
+  {
+   "id": "reed-uk:57283072|added",
+   "kind": "added",
+   "importance": "high",
+   "listingId": "reed-uk:57283072",
+   "source": "reed-uk",
+   "sourceName": "Reed · graduate & placement",
+   "employer": "Reed · graduate & placement",
+   "title": "Placement Officer",
+   "url": "https://www.reed.co.uk/jobs/placement-officer/57283072?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
+   "location": null,
+   "region": "UK",
+   "level": "placement",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "closesAt": null,
+   "note": "New placement listing",
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
    "id": "reed-uk:57263665|added",
@@ -266,32 +131,32 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "reed-uk:57232745|added",
+   "id": "reed-uk:57303371|added",
    "kind": "added",
    "importance": "high",
-   "listingId": "reed-uk:57232745",
+   "listingId": "reed-uk:57303371",
    "source": "reed-uk",
    "sourceName": "Reed · graduate & placement",
    "employer": "Reed · graduate & placement",
-   "title": "Graduate Geophysical Engineer",
-   "url": "https://www.reed.co.uk/jobs/graduate-geophysical-engineer/57232745?source=searchResults&amp;filter=%2Fjobs%2Fgraduate-engineer-jobs",
+   "title": "Graduate Geoenvironmental Engineer",
+   "url": "https://www.reed.co.uk/jobs/graduate-geoenvironmental-engineer/57303371?source=searchResults&amp;filter=%2Fjobs%2Fgraduate-engineer-jobs",
    "location": null,
    "region": "UK",
    "level": "graduate",
    "disciplines": [
-    "science"
+    "civil"
    ],
    "chemEng": false,
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "New graduate listing",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "reed-uk:57300487|removed|2026-09-02T22:33:43.240Z",
+   "id": "reed-uk:57300487|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "reed-uk:57300487",
@@ -310,230 +175,10 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "reed-uk:57295154|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57295154",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "National Supply Chain Management Placement",
-   "title": "National Supply Chain Management Placement",
-   "url": "https://www.reed.co.uk/jobs/national-supply-chain-management-placement/57295154?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57295159|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57295159",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Retail Management Placement",
-   "title": "Retail Management Placement",
-   "url": "https://www.reed.co.uk/jobs/retail-management-placement/57295159?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57295153|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57295153",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Retail Management Placement",
-   "title": "Retail Management Placement",
-   "url": "https://www.reed.co.uk/jobs/retail-management-placement/57295153?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57295149|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57295149",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Retail Management Placement",
-   "title": "Retail Management Placement",
-   "url": "https://www.reed.co.uk/jobs/retail-management-placement/57295149?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57240325|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57240325",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "2026 One Year Management Placement / Internship - Basingstoke / Farnborough / Aldershot",
-   "title": "2026 One Year Management Placement / Internship - Basingstoke / Farnborough / Aldershot",
-   "url": "https://www.reed.co.uk/jobs/2026-one-year-management-placement-internship-basingstoke-farnborough-aldershot/57240325?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57240334|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57240334",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "2026 One Year Management Placement / Internship - High Wycombe / Aylesbury",
-   "title": "2026 One Year Management Placement / Internship - High Wycombe / Aylesbury",
-   "url": "https://www.reed.co.uk/jobs/2026-one-year-management-placement-internship-high-wycombe-aylesbury/57240334?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57240328|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57240328",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "2026 One Year Management Placement / Internship - Maidstone / Gillingham / Chatham / Sittingbourne",
-   "title": "2026 One Year Management Placement / Internship - Maidstone / Gillingham / Chatham / Sittingbourne",
-   "url": "https://www.reed.co.uk/jobs/2026-one-year-management-placement-internship-maidstone-gillingham-chatham-sittingbourne/57240328?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57240326|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57240326",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "2026 One Year Management Placement / Internship - Watford",
-   "title": "2026 One Year Management Placement / Internship - Watford",
-   "url": "https://www.reed.co.uk/jobs/2026-one-year-management-placement-internship-watford/57240326?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57240329|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57240329",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "2026 One Year Management Placement / Internship - Brighton / Hove",
-   "title": "2026 One Year Management Placement / Internship - Brighton / Hove",
-   "url": "https://www.reed.co.uk/jobs/2026-one-year-management-placement-internship-brighton-hove/57240329?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "reed-uk:57268066|removed|2026-09-02T22:33:43.240Z",
-   "kind": "removed",
-   "importance": "low",
-   "listingId": "reed-uk:57268066",
-   "source": "reed-uk",
-   "sourceName": "Reed · graduate & placement",
-   "employer": "Placement Support Executive",
-   "title": "Placement Support Executive",
-   "url": "https://www.reed.co.uk/jobs/placement-support-executive/57268066?source=searchResults&amp;filter=%2Fjobs%2Findustrial-placement-jobs",
-   "location": null,
-   "region": "Other",
-   "level": "other",
-   "disciplines": [
-    "general"
-   ],
-   "chemEng": false,
-   "acceptsChemEng": false,
-   "closesAt": null,
-   "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
-  },
-  {
-   "id": "simplify-new-grad:0d26968d-9eb7-4cd0-bb5d-cb6ee2933e60|removed|2026-09-02T22:33:43.240Z",
+   "id": "simplify-new-grad:0d26968d-9eb7-4cd0-bb5d-cb6ee2933e60|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "simplify-new-grad:0d26968d-9eb7-4cd0-bb5d-cb6ee2933e60",
@@ -552,10 +197,10 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "simplify-new-grad:ac65c1d8-3900-4fdc-9a5a-bc79479f848d|removed|2026-09-02T22:33:43.240Z",
+   "id": "simplify-new-grad:ac65c1d8-3900-4fdc-9a5a-bc79479f848d|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "simplify-new-grad:ac65c1d8-3900-4fdc-9a5a-bc79479f848d",
@@ -574,10 +219,10 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "simplify-new-grad:cb5d440f-e8da-4617-be02-946e201d0160|removed|2026-09-02T22:33:43.240Z",
+   "id": "simplify-new-grad:cb5d440f-e8da-4617-be02-946e201d0160|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "simplify-new-grad:cb5d440f-e8da-4617-be02-946e201d0160",
@@ -596,10 +241,10 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "simplify-internships-2027:d0dbf9a8-a0ca-45d2-b171-45c248cd72b6|removed|2026-09-02T22:33:43.240Z",
+   "id": "simplify-internships-2027:d0dbf9a8-a0ca-45d2-b171-45c248cd72b6|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "simplify-internships-2027:d0dbf9a8-a0ca-45d2-b171-45c248cd72b6",
@@ -618,10 +263,10 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "simplify-internships-2027:083cfc54-1c27-4fc6-ab89-6606e06aca1f|removed|2026-09-02T22:33:43.240Z",
+   "id": "simplify-internships-2027:083cfc54-1c27-4fc6-ab89-6606e06aca1f|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "simplify-internships-2027:083cfc54-1c27-4fc6-ab89-6606e06aca1f",
@@ -640,10 +285,10 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "simplify-internships-2027:c000d17c-b16e-450d-839c-842ffd8be4b3|removed|2026-09-02T22:33:43.240Z",
+   "id": "simplify-internships-2027:c000d17c-b16e-450d-839c-842ffd8be4b3|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "simplify-internships-2027:c000d17c-b16e-450d-839c-842ffd8be4b3",
@@ -662,10 +307,10 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
-   "id": "simplify-internships-2027:d9fc79d8-b0e0-4d5b-b3bd-dbc216e2909a|removed|2026-09-02T22:33:43.240Z",
+   "id": "simplify-internships-2027:d9fc79d8-b0e0-4d5b-b3bd-dbc216e2909a|removed|2026-09-02T22:39:26.381Z",
    "kind": "removed",
    "importance": "low",
    "listingId": "simplify-internships-2027:d9fc79d8-b0e0-4d5b-b3bd-dbc216e2909a",
@@ -684,7 +329,29 @@
    "acceptsChemEng": false,
    "closesAt": null,
    "note": "Listing removed from the board",
-   "detectedAt": "2026-09-02T22:33:43.240Z"
+   "detectedAt": "2026-09-02T22:39:26.381Z"
+  },
+  {
+   "id": "collins-aerospace:Lead-Engineer_01867866|removed|2026-09-02T22:39:26.381Z",
+   "kind": "removed",
+   "importance": "low",
+   "listingId": "collins-aerospace:Lead-Engineer_01867866",
+   "source": "collins-aerospace",
+   "sourceName": "Collins Aerospace",
+   "employer": "Collins Aerospace",
+   "title": "Associate Engineer(Structural Analysis)",
+   "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/IN-KA-BENGALURU-NORTHGATE--Sy-No-22-Venkatala-Village--SY-NO-22-VENKATALA-VILLAGE-Yelahanka-Hobli/Lead-Engineer_01867866",
+   "location": null,
+   "region": "Other",
+   "level": "other",
+   "disciplines": [
+    "general"
+   ],
+   "chemEng": false,
+   "acceptsChemEng": false,
+   "closesAt": null,
+   "note": "Listing removed from the board",
+   "detectedAt": "2026-09-02T22:39:26.381Z"
   },
   {
    "id": "reed-uk:57303371|removed|2026-09-02T22:23:37.615Z",
