@@ -19,6 +19,7 @@ import { themuse } from "../aggregators/themuse.ts";
 import { arbeitnow } from "../aggregators/arbeitnow.ts";
 import { htmlLinks } from "../aggregators/html-links.ts";
 import { nextData } from "../aggregators/next-data.ts";
+import { localFile } from "../aggregators/local-file.ts";
 
 export type Adapter = (source: Source) => Promise<RawJob[]>;
 
@@ -51,6 +52,7 @@ const AGGREGATORS: Record<string, Adapter> = {
   arbeitnow,
   "html-links": htmlLinks,
   "next-data": nextData,
+  "local-file": localFile,
 };
 
 export function adapterFor(source: Source): Adapter | null {

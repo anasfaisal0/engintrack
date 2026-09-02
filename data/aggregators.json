@@ -461,7 +461,25 @@
       "params": {
         "mode": "sitemap"
       },
-      "notes": "Reads https://www.gradcracker.com/sitemap.xml, which robots.txt advertises and which is served to any client, including the datacentre IPs that the search pages refuse. 825 job URLs on 2026-09-02, 752 of them early-career. Each URL is /hub/{employerId}/{employer-slug}/{type}/{jobId}/{title-slug}, so the employer, the stage and the title all come from the path. It has no deadline and no location — for those, run the per-discipline sources locally."
+      "notes": "OFF: verified 2026-09-02 on a GitHub-hosted runner that gradcracker.com refuses the whole IP range — the search pages AND sitemap.xml both returned a Cloudflare challenge to curl and to Node's fetch within half a second. The same URLs answer 200 from a home connection, so there is no client-side fix. Use gradcracker-local instead.",
+      "enabled": false
+    },
+    {
+      "id": "gradcracker-local",
+      "name": "Gradcracker",
+      "kind": "aggregator",
+      "sector": "student-board",
+      "region": "UK",
+      "ats": "custom",
+      "adapter": "local-file",
+      "chemEngRelevance": "high",
+      "careersUrl": "https://www.gradcracker.com/search/chemical-process/chemical-process-jobs",
+      "verified": "2026-09-02",
+      "params": {
+        "file": "data/local/gradcracker.json",
+        "staleAfterDays": "14"
+      },
+      "notes": "Gradcracker blocks GitHub's IP range outright, so its rows are captured at home with `npm run local` and committed. This is the richest source in the registry: it is organised BY DISCIPLINE, and it publishes the deadline and the location that almost no ATS board does. Refresh it every couple of weeks; after 14 days the source reports itself stale rather than passing old rows off as current. No disciplineTag: this capture spans all nine discipline hubs, so tagging every row chem-eng would inflate the filter. It does not need one — each captured row carries Gradcracker's own discipline line (\"Chemical, Process.\") in its department field, which the classifier reads."
     }
   ]
 }

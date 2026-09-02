@@ -4,14 +4,18 @@
   "private": true,
   "type": "module",
   "description": "Daily watcher of early-career roles (internships, placements, graduate schemes, entry-level jobs) across hundreds of employer ATS boards and student aggregators. UK first, then US/EU, any discipline, chemical/process engineering surfaced first. The repo is the database; index.html is the dashboard (GitHub Pages).",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "watch": "tsx src/run.ts",
     "test": "tsx src/classify.test.ts && tsx src/diff.test.ts",
     "typecheck": "tsc --noEmit",
     "probe": "tsx scripts/probe.ts",
     "digest": "tsx scripts/send-digest.ts",
-    "serve": "node scripts/serve.mjs"
+    "serve": "node scripts/serve.mjs",
+    "local": "tsx scripts/local.ts",
+    "snapshot": "tsx scripts/snapshot.ts"
   },
   "dependencies": {
     "nodemailer": "^7.0.0"
