@@ -29,7 +29,7 @@ A working daily watcher and a dashboard. First full run, 2026-09-02:
 ### Research done before building
 Seven parallel research passes, every endpoint called live rather than recalled:
 
-- **Employer registry, 270 firms** across energy/oil/nuclear/utilities,
+- **Employer registry, 374 firms** across energy/oil/nuclear/utilities,
   chemicals/pharma/FMCG, EPC/defence/industrial, UK top graduate employers and
   engineering consultancies. Each row records the vendor, the endpoint, the HTTP
   status and the job count. Kept in `data/sources/` as the evidence.
@@ -79,11 +79,11 @@ Seven parallel research passes, every endpoint called live rather than recalled:
    public repo on the free plan.
 
 ### Known limits, stated plainly
-- **162 of 270 employers are link-only.** Their boards sit behind bot walls
+- **261 of 374 employers are link-only.** Their boards sit behind bot walls
   (Mott MacDonald, WSP's main site), or use vendors with no adapter yet
   (SuccessFactors, Phenom, Avature, iCIMS, Taleo — about 45 employers between
   them). They are in the dashboard with their careers link, not silently dropped.
-- **US volume dominates the raw count.** 5,606 of 7,986 rows are American,
+- **US volume dominates the raw count.** 5,508 of 9,454 rows are American,
   because Simplify's lists are enormous and tech-heavy. The dashboard defaults to
   the chemical/process filter for exactly this reason.
 - **141 rows are chemical or process.** That is the honest number: it counts rows

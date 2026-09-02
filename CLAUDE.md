@@ -24,7 +24,7 @@ Every change updates **`handoff.md`** (dated round + gotchas) **and this file**
   - `aggregators.json` — hand-written aggregator sources (Gradcracker, Trackr,
     Simplify, RSS, Reed…). This one IS edited by hand.
   - `employers.json` — generated from `data/sources/*.json`.
-  - `sources/*.json` — the **research evidence**: 270 employers, each board
+  - `sources/*.json` — the **research evidence**: 374 employers, each board
     identified and its endpoint actually called, with status and job count. This
     is the expensive artefact; everything else is cheap to rebuild.
   - `listings.json` — every live classified listing (written compact; ~5 MB raw,
@@ -57,7 +57,8 @@ Every change updates **`handoff.md`** (dated round + gotchas) **and this file**
 - `run.ts` — orchestrator and the failure policy.
 - `adapters/` — one per ATS vendor. `aggregators/` — one per board.
 - `scripts/` — `build-registry`, `import-employers`, `probe` (poll one source and
-  print it), `send-digest`, `serve.mjs`.
+  print it), `local` (capture the datacentre-blocked sources at home), `snapshot`
+  (inline the data into one file), `send-digest`, `serve.mjs`.
 
 ## The rules that keep it honest
 

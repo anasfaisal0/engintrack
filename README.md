@@ -21,21 +21,21 @@ public JSON**, so this reads those directly. No API keys, no accounts, no paid
 tier, no scraping of anything that hides behind a login.
 
 The hard part was never the fetching — it is the **firm-to-ATS registry**, and
-that is what `data/sources/` holds: 270 employers, each one's board identified
+that is what `data/sources/` holds: 374 employers, each one's board identified
 and its endpoint actually called, with the HTTP status and job count recorded.
 
 ## What it watches
 
 | Kind | What | Rows |
 |---|---|---|
-| **Employer boards** | 108 employers on Workday, Greenhouse, Oracle HCM, SmartRecruiters, Lever, Ashby, Eightfold, TeamTailor and Pinpoint | varies daily |
+| **Employer boards** | 113 employers on Workday, Greenhouse, Oracle HCM, SmartRecruiters, Lever, Ashby, Eightfold, TeamTailor and Pinpoint | varies daily |
 | **Gradcracker** | all 9 discipline hubs, captured at home (see below) | 825, 533 with deadlines |
 | **Simplify** | the community Summer-2027 and New-Grad lists, bot-updated every 30 min | ~5,700 |
 | **Reed, Totaljobs, Guardian Jobs, Chemistry World** | UK graduate and placement searches | ~300 |
 | **The Muse, Arbeitnow, Getro** | US internships, EU roles, VC-portfolio startups | ~250 |
 | **Trackr** | UK Finance, UK Tech, US Finance — plus **UK Engineering**, armed and waiting | see note |
 
-162 further employers are listed **link-only**: their board is behind a bot wall
+261 further employers are listed **link-only**: their board is behind a bot wall
 or has no readable endpoint, so the dashboard keeps the careers link rather than
 pretending to poll them.
 
