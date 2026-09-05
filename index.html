@@ -174,7 +174,7 @@ a{color:var(--brand-2)}
 
 /* ---------- listing rows ---------- */
 .rows{border-top:1px solid var(--rule)}
-.row{display:grid;grid-template-columns:minmax(0,1fr) 190px 132px 108px;gap:0;
+.row{display:grid;grid-template-columns:minmax(0,1fr) 176px 120px 104px 104px;gap:0;
      border-bottom:1px solid var(--rule);align-items:start}
 .row:hover{background:var(--sheet-2)}
 .row>*{padding:11px 14px}
@@ -186,8 +186,11 @@ a{color:var(--brand-2)}
 .row .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .row .loc{font-size:12.5px;color:var(--ink-2);border-left:1px solid var(--rule)}
 .row .lvl{font-size:12.5px;border-left:1px solid var(--rule)}
-.row .dl{border-left:1px solid var(--rule);text-align:right;font-family:var(--mono);font-size:12.5px;
+.row .dl,.row .op{border-left:1px solid var(--rule);text-align:right;font-family:var(--mono);font-size:12.5px;
          font-variant-numeric:tabular-nums}
+.op .fresh{color:var(--good);font-weight:600}
+.op .guess{color:var(--ink-3)}
+.op .none{color:var(--ink-3)}
 .tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;
      border:1px solid var(--rule-2);color:var(--ink-3);white-space:nowrap;font-stretch:85%}
 .tag.chem{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
@@ -224,10 +227,10 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
 .foot code{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
 
 @media (max-width:900px){
-  .row{grid-template-columns:minmax(0,1fr) 116px}
+  .row{grid-template-columns:minmax(0,1fr) 104px 104px}
   .row .loc{grid-column:1/-1;border-left:0;border-top:1px dotted var(--rule);padding-top:7px}
-  .row .lvl{border-left:1px solid var(--rule)}
-  .row .dl{grid-column:2;border-left:1px solid var(--rule)}
+  .row .lvl{grid-column:1;border-left:0;border-top:1px dotted var(--rule)}
+  .row .op,.row .dl{border-top:1px dotted var(--rule)}
   .block{grid-template-columns:1fr}
   .blab{border-right:0;border-bottom:1px solid var(--rule);padding:14px 20px}
   .titleblock{grid-template-columns:repeat(2,1fr);width:100%;border-left:0;border-top:1px solid var(--rule)}
@@ -254,6 +257,7 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
   <div class="bar">
     <nav class="tabs" id="tabs" aria-label="Sections">
       <button data-p="live" aria-current="true">Live roles <span class="cnt" id="c-live"></span></button>
+      <button data-p="opened">Just opened <span class="cnt" id="c-opened"></span></button>
       <button data-p="new">New <span class="cnt" id="c-new"></span></button>
       <button data-p="closing">Closing soon <span class="cnt" id="c-closing"></span></button>
       <button data-p="employers">Employers <span class="cnt" id="c-emp"></span></button>
@@ -284,6 +288,20 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
     </div>
     <div class="rows" id="rows"></div>
     <div class="more" id="more" hidden><button id="more-btn">Show more</button></div>
+  </section>
+
+  <!-- ================= JUST OPENED ================= -->
+  <section class="panel" id="p-opened" hidden>
+    <div class="block">
+      <div class="blab"><h2>Just opened</h2><p>Roles whose opening or posting date falls in the window below. Only dates an employer or board actually published are counted.</p></div>
+      <div class="bbody flush">
+        <div class="filters">
+          <div class="fgroup" id="f-window" aria-label="Opened within"></div>
+          <div class="fgroup" id="f-owindow-note"><span class="lab">Basis</span><span style="font-size:12.5px;color:var(--ink-3)">A role is only listed here when the source published an opening or posting date. Where neither exists, the board cannot tell when it opened and says so rather than guessing.</span></div>
+        </div>
+        <div class="rows" id="rows-opened"></div>
+      </div>
+    </div>
   </section>
 
   <!-- ================= NEW ================= -->
@@ -339,7 +357,7 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
 
   // ---- state ---------------------------------------------------------------
   const S = { listings: [], events: [], summary: null, removed: [], registry: [],
-              disc: "chem-eng", level: "all", region: "all", q: "", limit: 120 };
+              disc: "chem-eng", level: "all", region: "all", q: "", limit: 120, openWindow: 7 };
 
   const DISC_LABEL = { "chem-eng":"Chem / process", mech:"Mechanical", elec:"Electrical", civil:"Civil",
     materials:"Materials", energy:"Energy", manufacturing:"Manufacturing", software:"Software",
@@ -381,7 +399,7 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
   });
 
   // ---- render --------------------------------------------------------------
-  function renderAll(){ titleBlock(); figures(); filterRail(); live(); newer(); closing(); employers(); sources(); gone(); foot(); }
+  function renderAll(){ titleBlock(); figures(); filterRail(); live(); openedPanel(); newer(); closing(); employers(); sources(); gone(); foot(); }
 
   function titleBlock(){
     const t = S.summary?.totals;
@@ -395,6 +413,7 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
       $("tb-sources").innerHTML = `<span class="dot ${cls}"></span>${ok}/${ok+failed} <i style="font-style:normal;color:var(--ink-3);font-size:12px">${esc(word)}</i>`;
     }
     $("c-live").textContent = S.listings.length ? "(" + S.listings.length + ")" : "";
+    $("c-opened").textContent = "(" + openedWithin(7).length + ")";
     $("c-new").textContent = "(" + S.events.filter((e)=>e.kind==="added").length + ")";
     $("c-closing").textContent = "(" + S.listings.filter((l)=>{const d=daysTo(l.closesAt);return d!==null&&d>=0;}).length + ")";
     $("c-emp").textContent = "(" + S.registry.filter((s)=>s.kind==="ats").length + ")";
@@ -411,6 +430,7 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
       fig("Accepts chem-eng", t.acceptsChemEng.toLocaleString("en-GB"), "including roles open to the discipline") +
       fig("United Kingdom", t.uk.toLocaleString("en-GB"), "of " + t.listings.toLocaleString("en-GB") + " live") +
       fig("United States", t.us.toLocaleString("en-GB"), t.eu.toLocaleString("en-GB") + " in Europe") +
+      fig("Opened", (t.openedLast7 ?? 0).toLocaleString("en-GB"), "in the last 7 days") +
       fig("Closing", soon.toLocaleString("en-GB"), "within a fortnight") +
       fig("Employers", S.registry.filter((s)=>s.kind==="ats").length.toLocaleString("en-GB"), "boards researched");
   }
@@ -472,8 +492,50 @@ td .err{font-size:11.5px;color:var(--risk);font-family:var(--mono);display:block
       </div>
       <div class="loc">${esc(l.location ?? "—")}</div>
       <div class="lvl">${esc(LEVEL_LABEL[l.level] ?? l.level)}</div>
+      <div class="op">${openedCell(l)}</div>
       <div class="dl">${dl}</div>
     </div>`;
+  }
+
+  /**
+   * When a listing opened, and how firmly we know it.
+   *
+   * A `first-seen` date is the day THIS WATCHER noticed the role, not the day it
+   * opened, so it is shown greyed and prefixed "seen" rather than being passed
+   * off as an opening date. That distinction is the difference between a useful
+   * "just opened" list and a list of everything the watcher happened to load on
+   * the day it was first run.
+   */
+  function openedCell(l){
+    if (!l.openedAt) {
+      return l.opensAt ? `<span class="none">opens<br>${esc(fmtDate(l.opensAt) ?? "")}</span>` : `<span class="none">—</span>`;
+    }
+    const d = Math.round((Date.now() - new Date(l.openedAt)) / 86400000);
+    const label = d <= 0 ? "today" : d === 1 ? "1 d" : d + " d";
+    if (l.openBasis === "first-seen") return `<span class="guess">seen ${esc(label)}</span>`;
+    return d <= 14 ? `<span class="fresh">${esc(label)}</span>` : `${esc(fmtDate(l.openedAt) ?? "")}`;
+  }
+
+  /** Listings with a date we can stand behind, opened inside the window. */
+  function openedWithin(days){
+    const cutoff = Date.now() - days * 86400000;
+    return S.listings
+      .filter((l) => l.openedAt && l.openBasis !== "first-seen" && new Date(l.openedAt) >= cutoff)
+      .sort((a,b) => new Date(b.openedAt) - new Date(a.openedAt));
+  }
+
+  function openedPanel(){
+    const windows = [3,7,14,30];
+    document.getElementById("f-window").innerHTML =
+      `<span class="lab">Opened within</span>` +
+      windows.map((d)=>`<button class="chip" data-v="${d}" aria-pressed="${S.openWindow===d}">${d} days <span class="n">${openedWithin(d).length}</span></button>`).join("");
+    document.getElementById("f-window").onclick = (e) => {
+      const b = e.target.closest(".chip"); if (!b) return;
+      S.openWindow = Number(b.dataset.v); openedPanel();
+    };
+    const rows = openedWithin(S.openWindow).slice(0,400);
+    $("rows-opened").innerHTML = rows.length ? rows.map((l)=>rowHtml(l)).join("")
+      : `<div class="empty">Nothing carries a published opening or posting date inside ${S.openWindow} days. Widen the window, or wait for the next daily run.</div>`;
   }
 
   function live(){

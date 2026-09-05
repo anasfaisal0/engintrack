@@ -140,13 +140,31 @@ export type Listing = {
   acceptsChemEng: boolean;
   postedAt: string | null;
   closesAt: string | null;
+  /** An opening date the EMPLOYER stated, which may still be in the future. */
   opensAt: string | null;
+  /**
+   * The best available answer to "when did this open?", so the board can show
+   * what is genuinely new rather than what we happened to notice.
+   *
+   * `openBasis` says where it came from, and that distinction is the whole point:
+   *   "opens"      – the employer published an opening date. Trustworthy.
+   *   "posted"     – the board published a posting date. Trustworthy.
+   *   "first-seen" – NEITHER did, so this is the day WE first saw it. That is a
+   *                  fact about this watcher, not about the employer, and on the
+   *                  first run it is the bootstrap date for everything. The
+   *                  dashboard labels these differently and never counts them as
+   *                  "opened today" on a source's first run.
+   */
+  openedAt: string | null;
+  openBasis: "opens" | "posted" | "first-seen" | null;
   firstSeenAt: string;
   lastSeenAt: string;
 };
 
 export type EventKind =
   | "added" // a new early-career listing appeared
+  | "opened" // a stated opening date has now been reached – applications are live
+  | "opening_scheduled" // an opening date was announced and is still in the future
   | "removed" // it dropped off the board (closed / filled)
   | "closing_soon" // closesAt within CONFIG.closingSoonDays (fires once)
   | "deadline_set" // a closesAt appeared
@@ -169,6 +187,9 @@ export type FeedEvent = {
   chemEng: boolean;
   acceptsChemEng: boolean;
   closesAt: string | null;
+  opensAt: string | null;
+  openedAt: string | null;
+  openBasis: Listing["openBasis"];
   note: string;
   detectedAt: string;
 };
@@ -178,8 +199,12 @@ export type Tracked = {
   title: string;
   url: string;
   closesAt: string | null;
+  opensAt: string | null;
   firstSeenAt: string;
   announcedClosingSoon: boolean;
+  /** Latched so a long-open listing never re-announces itself every day. */
+  announcedOpen: boolean;
+  announcedOpeningScheduled: boolean;
 };
 
 export type SourceState = {
@@ -234,6 +259,9 @@ export type Summary = {
     eu: number;
     addedThisRun: number;
     removedThisRun: number;
+    /** Listings whose opening date (employer-stated or board-posted) is recent. */
+    openedLast7: number;
+    openedLast30: number;
     eventsAllTime: number;
   };
   byLevel: Record<string, number>;

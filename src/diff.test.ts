@@ -23,6 +23,8 @@ const mk = (id: string, over: Partial<Listing> = {}): Listing => ({
   postedAt: null,
   closesAt: null,
   opensAt: null,
+  openedAt: NOW,
+  openBasis: "first-seen",
   firstSeenAt: NOW,
   lastSeenAt: NOW,
   ...over,
@@ -108,6 +110,51 @@ const mk = (id: string, over: Partial<Listing> = {}): Listing => ({
     r.events.map((e) => e.kind),
     ["deadline_set"],
   );
+}
+
+// ---- opening milestones ------------------------------------------------------
+// A future opening date announces itself once, and is NOT reported as open.
+{
+  const seeded = diffSource(undefined, [], NOW, { bootstrap: true }).next;
+  const future = mk("f1", { opensAt: "2026-11-01T00:00:00.000Z" });
+  const r1 = diffSource(seeded, [future], NOW, { bootstrap: false });
+  const kinds = r1.events.map((e) => e.kind);
+  assert.ok(kinds.includes("added"), "a brand-new listing is still 'added'");
+  assert.ok(kinds.includes("opening_scheduled"), "a future opening date is announced");
+  assert.ok(!kinds.includes("opened"), "a future opening date must NOT read as open");
+
+  // It does not re-announce on the next run.
+  const r2 = diffSource(r1.next, [future], LATER, { bootstrap: false });
+  assert.equal(r2.events.filter((e) => e.kind === "opening_scheduled").length, 0, "opening_scheduled is latched");
+
+  // When the date arrives, it fires 'opened' exactly once.
+  const AFTER = "2026-11-02T06:00:00.000Z";
+  const r3 = diffSource(r2.next, [future], AFTER, { bootstrap: false });
+  assert.equal(r3.events.filter((e) => e.kind === "opened").length, 1, "opened fires when the date passes");
+  const r4 = diffSource(r3.next, [future], AFTER, { bootstrap: false });
+  assert.equal(r4.events.filter((e) => e.kind === "opened").length, 0, "opened is latched");
+}
+
+// A listing that was ALREADY OPEN when we first met it never announces itself.
+// This is what makes adding opening-dates to an existing snapshot safe: without
+// it, every previously-known listing with a past opening date would fire at once.
+{
+  const seeded = diffSource(undefined, [], NOW, { bootstrap: true }).next;
+  const alreadyOpen = mk("a1", { opensAt: "2026-01-01T00:00:00.000Z" });
+  const first = diffSource(seeded, [alreadyOpen], NOW, { bootstrap: false });
+  assert.ok(first.events.some((e) => e.kind === "added"), "it is still reported as added");
+  assert.equal(first.events.filter((e) => e.kind === "opened").length, 0, "but never as newly opened");
+  const second = diffSource(first.next, [alreadyOpen], LATER, { bootstrap: false });
+  assert.equal(second.events.filter((e) => e.kind === "opened").length, 0, "and stays quiet after that");
+}
+
+// Bootstrap latches an ALREADY-PASSED opening date, so the next run stays quiet.
+{
+  const past = mk("p1", { opensAt: "2026-08-01T00:00:00.000Z" });
+  const boot = diffSource(undefined, [past], NOW, { bootstrap: true });
+  assert.equal(boot.events.length, 0, "bootstrap emits nothing");
+  const next = diffSource(boot.next, [past], LATER, { bootstrap: false });
+  assert.equal(next.events.filter((e) => e.kind === "opened").length, 0, "a listing open before we arrived never fires 'opened'");
 }
 
 console.log("diff.test: all assertions passed");

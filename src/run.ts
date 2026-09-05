@@ -118,8 +118,9 @@ async function main() {
   listings.sort((a, b) => {
     if (a.chemEng !== b.chemEng) return a.chemEng ? -1 : 1;
     if (a.acceptsChemEng !== b.acceptsChemEng) return a.acceptsChemEng ? -1 : 1;
-    const at = a.postedAt ?? a.firstSeenAt;
-    const bt = b.postedAt ?? b.firstSeenAt;
+    // Then newest-open first, so what just opened sits at the top of its group.
+    const at = a.openedAt ?? a.postedAt ?? a.firstSeenAt;
+    const bt = b.openedAt ?? b.postedAt ?? b.firstSeenAt;
     return bt.localeCompare(at);
   });
 
@@ -182,6 +183,17 @@ async function main() {
   const removedList = [...byId.values()].sort((a, b) => b.removedAt.localeCompare(a.removedAt)).slice(0, CONFIG.removedCap);
 
   // ---- summary ----------------------------------------------------------------
+  /**
+   * How many listings opened in the last N days, counting only dates we can
+   * actually stand behind. A `first-seen` date is when WE noticed a role, which
+   * on a source's first run is every row at once — counting those would report a
+   * flood of "just opened" listings that had been open for months.
+   */
+  const openedWithin = (rows: Listing[], days: number) => {
+    const cutoff = Date.now() - days * 86_400_000;
+    return rows.filter((l) => l.openedAt && l.openBasis !== "first-seen" && Date.parse(l.openedAt) >= cutoff).length;
+  };
+
   const byLevel: Record<string, number> = {};
   const byDiscipline: Record<string, number> = {};
   const byRegion: Record<string, number> = {};
@@ -208,6 +220,8 @@ async function main() {
       eu: listings.filter((l) => l.region === "EU").length,
       addedThisRun: fresh.filter((e) => e.kind === "added").length,
       removedThisRun: fresh.filter((e) => e.kind === "removed").length,
+      openedLast7: openedWithin(listings, 7),
+      openedLast30: openedWithin(listings, 30),
       eventsAllTime: events.length,
     },
     byLevel,
@@ -232,7 +246,8 @@ async function main() {
   const t = summary.totals;
   console.log(
     `EnginTrack done in ${(summary.runMs / 1000).toFixed(1)}s: ${t.listings} live (${t.chemEng} chem-eng, ${t.uk} UK, ${t.us} US), ` +
-      `+${t.addedThisRun} new, -${t.removedThisRun} gone, ${t.sourcesOk}/${t.sourcesOk + t.sourcesFailed} sources OK`,
+      `+${t.addedThisRun} new, -${t.removedThisRun} gone, ${t.openedLast7} opened this week, ` +
+      `${t.sourcesOk}/${t.sourcesOk + t.sourcesFailed} sources OK`,
   );
   if (forceBootstrap) console.log("This was a BOOTSTRAP run — baseline recorded, no events emitted.");
 

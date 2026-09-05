@@ -35,8 +35,11 @@ export function diffSource(
       title: l.title,
       url: l.url,
       closesAt: l.closesAt,
+      opensAt: l.opensAt,
       firstSeenAt: was?.firstSeenAt ?? l.firstSeenAt ?? now,
       announcedClosingSoon: was?.announcedClosingSoon ?? false,
+      announcedOpen: was?.announcedOpen ?? false,
+      announcedOpeningScheduled: was?.announcedOpeningScheduled ?? false,
     };
 
     if (!bootstrap) {
@@ -51,6 +54,31 @@ export function diffSource(
           );
         }
       }
+      // Opening milestones. Only an EMPLOYER-STATED opening date can fire these:
+      // a posting date is not an event (the listing was already open when we
+      // first read it, and "added" already covered that), and first-seen is a
+      // fact about us, not about the role.
+      if (l.opensAt) {
+        const openMs = Date.parse(l.opensAt);
+        if (!Number.isNaN(openMs)) {
+          if (openMs <= nowMs && !tracked.announcedOpen) {
+            // ⚠️ Announce an opening ONLY when we actually watched it happen —
+            // that is, we previously recorded this listing as scheduled to open.
+            // Anything else is a listing that was already open the first time we
+            // saw it, and saying "now open" about those would fire a burst of
+            // false alerts for roles that opened months ago. It is also what
+            // makes adding this field to an existing snapshot safe: every
+            // already-known listing latches quietly instead of announcing.
+            tracked.announcedOpen = true;
+            if (was?.announcedOpeningScheduled) {
+              events.push(ev("opened", "high", l, now, `Applications now open`, `${l.id}|opened`));
+            }
+          } else if (openMs > nowMs && !tracked.announcedOpeningScheduled) {
+            tracked.announcedOpeningScheduled = true;
+            events.push(ev("opening_scheduled", "low", l, now, `Opens ${fmt(l.opensAt)}`, `${l.id}|opening_scheduled|${l.opensAt}`));
+          }
+        }
+      }
       if (l.closesAt && !tracked.announcedClosingSoon) {
         const closeMs = Date.parse(l.closesAt);
         if (!Number.isNaN(closeMs) && closeMs - nowMs <= soonMs && closeMs >= nowMs - 86_400_000) {
@@ -58,11 +86,20 @@ export function diffSource(
           events.push(ev("closing_soon", "high", l, now, `Closes ${fmt(l.closesAt)}`, `${l.id}|closing_soon`));
         }
       }
-    } else if (l.closesAt) {
-      // On bootstrap, latch anything already inside the window so the next run
-      // doesn't fire "closing soon" for listings that were closing all along.
-      const closeMs = Date.parse(l.closesAt);
-      if (!Number.isNaN(closeMs) && closeMs - nowMs <= soonMs) tracked.announcedClosingSoon = true;
+    } else {
+      // On bootstrap, latch every milestone that has ALREADY happened, so the
+      // next run does not announce things that were true all along.
+      if (l.closesAt) {
+        const closeMs = Date.parse(l.closesAt);
+        if (!Number.isNaN(closeMs) && closeMs - nowMs <= soonMs) tracked.announcedClosingSoon = true;
+      }
+      if (l.opensAt) {
+        const openMs = Date.parse(l.opensAt);
+        if (!Number.isNaN(openMs)) {
+          if (openMs <= nowMs) tracked.announcedOpen = true;
+          else tracked.announcedOpeningScheduled = true;
+        }
+      }
     }
     nextListings[l.id] = tracked;
   }
@@ -106,6 +143,9 @@ function ev(kind: FeedEvent["kind"], importance: FeedEvent["importance"], l: Lis
     chemEng: l.chemEng,
     acceptsChemEng: l.acceptsChemEng,
     closesAt: l.closesAt,
+    opensAt: l.opensAt,
+    openedAt: l.openedAt,
+    openBasis: l.openBasis,
     note,
     detectedAt: now,
   };
@@ -132,7 +172,9 @@ function ghostListing(id: string, was: Tracked, sibling: Listing | undefined): L
     acceptsChemEng: false,
     postedAt: null,
     closesAt: was.closesAt,
-    opensAt: null,
+    opensAt: was.opensAt ?? null,
+    openedAt: null,
+    openBasis: null,
     firstSeenAt: was.firstSeenAt,
     lastSeenAt: was.firstSeenAt,
   };

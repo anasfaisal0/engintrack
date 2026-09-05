@@ -61,11 +61,40 @@ export function normalise(source: Source, rows: RawJob[], now: string, firstSeen
       postedAt: iso(r.postedAt),
       closesAt: iso(r.closesAt ?? null),
       opensAt: iso(r.opensAt ?? null),
+      ...openedFrom(iso(r.opensAt ?? null), iso(r.postedAt), firstSeen.get(id) ?? now, now),
       firstSeenAt: firstSeen.get(id) ?? now,
       lastSeenAt: now,
     });
   }
   return out;
+}
+
+/**
+ * Work out when a listing opened, and be explicit about how well we know it.
+ *
+ * Preference order is strongest evidence first: an opening date the employer
+ * stated, then a posting date the board published, then the day we first saw it.
+ * That last one is a fact about this watcher rather than about the employer, so
+ * it is labelled `first-seen` and the dashboard treats it as weaker — otherwise
+ * every listing would appear to have "opened" on the day the watcher was built.
+ *
+ * A FUTURE opening date is not an opening: it stays in `opensAt` and leaves
+ * `openedAt` null, so a programme that opens in November is never listed among
+ * the roles you can apply to today.
+ */
+function openedFrom(
+  opensAt: string | null,
+  postedAt: string | null,
+  firstSeenAt: string,
+  now: string,
+): { openedAt: string | null; openBasis: Listing["openBasis"] } {
+  if (opensAt) {
+    return Date.parse(opensAt) <= Date.parse(now)
+      ? { openedAt: opensAt, openBasis: "opens" }
+      : { openedAt: null, openBasis: "opens" };
+  }
+  if (postedAt) return { openedAt: postedAt, openBasis: "posted" };
+  return { openedAt: firstSeenAt, openBasis: "first-seen" };
 }
 
 function iso(v: string | null | undefined): string | null {
