@@ -4,6 +4,69 @@ Newest round first. Read `CLAUDE.md` for the durable facts.
 
 ---
 
+## Round 2026-09-05 — live on Pages, and opening dates
+
+### What was asked
+"make it live - and make it show the ones that have recently opened - track
+opening dates".
+
+### Done
+- **Live at https://anasfaisal0.github.io/engintrack/.** Pages 422s on a private
+  repo on this plan, so the repo was made **public** — which also makes Actions
+  minutes unlimited, so the whole thing now costs nothing. Scanned for secrets
+  and personal contact details before flipping it; both clean. Verified live: the
+  page and all five data files serve 200, and `listings.json` comes back gzipped
+  at 791 KB rather than 7 MB.
+- **Opening dates tracked**, with a "Just opened" board (3/7/14/30-day windows),
+  an opened column on every row, and an "Opened in the last 7 days" figure.
+  **2,362 roles opened in the last seven days.**
+
+### The distinction the whole feature rests on
+`openBasis` records where each date came from: `opens` (the employer published
+one, 542 rows), `posted` (the board did, 7,331) or `first-seen` (neither did, so
+it is the day WE saw it, 3,341). Only the first two count as opened or render as
+fresh; first-seen rows show greyed and prefixed "seen". Without that split, the
+first run of any source would report every row as having just opened.
+
+Two new events, `opening_scheduled` and `opened`. **`opened` fires only when we
+previously recorded the listing as scheduled** — an opening we actually watched
+happen. Without that guard, adding this field to the existing snapshot would have
+fired every already-open listing at once. Both cases are now unit-tested.
+
+### Unprompted, and the best news of the round
+**Trackr's UK Engineering board has filled up.** It was verifiably empty on
+2026-09-02 and was wired in regardless; it now carries **1,082 listings, 86 of
+them chemical or process**, and is the single biggest reason the chem-eng count
+went from 141 to 246 and UK rows from 2,977 to 4,045.
+
+### Current state
+| | |
+|---|---|
+| Live listings | 11,213 |
+| Opened in 7 / 30 days | 2,362 / 4,757 |
+| Chemical or process | 246 |
+| UK / US | 4,045 / 5,354 |
+| Sources answering | 122 of 127 |
+
+### Still failing, and why
+- **Unilever** — its Workday tenant returns a permissions error. Upstream.
+- **Worley** — its Eightfold rejects its own domain parameter. Upstream.
+- **Trackr UK Tech / US Finance** — throttled on this run; they recover on their
+  own and the guard means their listings are carried forward, not wiped.
+- **Totaljobs** — one request timed out. Transient.
+
+### Owner actions still open
+1. **Run `npm run local` every couple of weeks** and commit `data/local/`.
+   Gradcracker refuses GitHub's IP range, so this is the one thing the automation
+   cannot do for itself. It reports itself stale after 14 days.
+2. *(Optional)* Add `GMAIL_USER` + `GMAIL_APP_PASSWORD` secrets for the daily
+   email digest.
+3. **The repo is now public.** Nothing sensitive is in it, but it is your job
+   search in the open — say the word and it goes private again (Pages would then
+   stop, and the dashboard would be local-only).
+
+---
+
 ## Round 2026-09-02 — built from scratch and verified live
 
 ### What was asked

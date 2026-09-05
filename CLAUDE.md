@@ -35,8 +35,11 @@ Every change updates **`handoff.md`** (dated round + gotchas) **and this file**
     keeping the application link because a role often stays reachable after it
     stops being listed.
   - `snapshot.json` — the watcher's memory between runs.
-- **`index.html`** is a zero-build dashboard reading those files. Enable GitHub
-  Pages (source: root) to get it live; that needs a public repo on the free plan.
+- **`index.html`** is a zero-build dashboard reading those files. **LIVE at
+  https://anasfaisal0.github.io/engintrack/** (Pages, branch `main`, path `/`).
+  The repo is **public**, which is what makes Pages and unlimited Actions minutes
+  free on this plan — Pages 422s on a private repo here. It holds no secrets and
+  no personal contact details; both were scanned for before flipping it.
 - Pure TypeScript run by `tsx`. One runtime dependency (`nodemailer`) and only
   for the optional digest.
 
@@ -51,7 +54,7 @@ Every change updates **`handoff.md`** (dated round + gotchas) **and this file**
 - `region.ts` — **PURE + tested.** Location → region, ordered so US state codes
   and city names beat UK city names.
 - `normalise.ts` — RawJob → Listing, applies the gate, applies a source's own
-  discipline tag.
+  discipline tag, and computes `openedAt` + `openBasis` (see below).
 - `diff.ts` — **PURE + tested.** Per-source diff, silent bootstrap, latched
   milestones.
 - `run.ts` — orchestrator and the failure policy.
@@ -73,6 +76,17 @@ Every change updates **`handoff.md`** (dated round + gotchas) **and this file**
 5. **An unbuildable registry row is disabled with the reason printed**, never
    silently kept. A no-op that looks like success is this workspace's most
    repeated failure mode.
+6. **Never present a date we inferred as a date the employer published.**
+   `openBasis` is `opens` (employer said so), `posted` (the board said so) or
+   `first-seen` (neither did — this is when WE saw it). Only the first two count
+   as "opened" or render as fresh. On a source's first run every row is
+   first-seen, so counting those would report thousands of roles as just-opened
+   when they had been open for months.
+7. **`opened` fires only for a transition we WITNESSED** — i.e. we had already
+   recorded the listing as scheduled to open. Without that guard, adding opening
+   dates to an existing snapshot fires every already-open listing at once, which
+   is the same false-alert burst the silent bootstrap exists to prevent. Both
+   cases are unit-tested in `diff.test.ts`.
 
 ## Hard-won gotchas
 
@@ -97,10 +111,10 @@ Every change updates **`handoff.md`** (dated round + gotchas) **and this file**
   contract is `{programmes, groups}`. The adapter **throws** on a bare array —
   accepting it as zero programmes is exactly how a throttle becomes a feed wipe.
   Trackr sources also share one queue for the same reason.
-- **Trackr's UK Engineering board is real and currently empty.** Its tabs are
-  graduate-programmes / industrial-placements / summer-internships /
-  apprenticeships and its categories include Chemicals & Oil. Verified empty as a
-  genuine empty envelope, not a throttle. Armed so it lights up on its own.
+- **Trackr's UK Engineering board WENT LIVE on its own.** It returned a genuine
+  empty envelope on 2026-09-02 and was wired up anyway; by 2026-09-05 it carried
+  **1,082 listings, 86 chemical or process**, and is now the largest single
+  contributor of chem-eng rows. Arming a verified-but-empty board is worth doing.
 - **A 1 MB page will not tolerate `<a …>([\s\S]*?)</a>` globally.** That regex
   backtracked so badly on Gradcracker's markup that a 3-minute test never
   finished. Match the job-URL pattern first, then read a bounded window; the same

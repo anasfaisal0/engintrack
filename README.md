@@ -5,11 +5,14 @@ placements, graduate schemes, spring weeks, apprenticeships and entry-level jobs
 — pulled straight from **employers' own applicant-tracking boards** and the
 student job boards, with **chemical and process engineering ranked first**.
 
+**Live board: https://anasfaisal0.github.io/engintrack/**
+
 It runs **once a day** in a GitHub Action, diffs against yesterday, and commits
 what changed. The repo is the database; `index.html` is the dashboard.
 
-**10,201 live listings from 121 working sources**: 2,968 in the UK, 5,509 in the
-US, and 141 that name chemical or process work.
+**11,213 live listings from 122 working sources**: 4,045 in the UK, 5,354 in the
+US, 246 that name chemical or process work, and **2,362 that opened in the last
+seven days**.
 
 ---
 
@@ -33,7 +36,7 @@ and its endpoint actually called, with the HTTP status and job count recorded.
 | **Simplify** | the community Summer-2027 and New-Grad lists, bot-updated every 30 min | ~5,700 |
 | **Reed, Totaljobs, Guardian Jobs, Chemistry World** | UK graduate and placement searches | ~300 |
 | **The Muse, Arbeitnow, Getro** | US internships, EU roles, VC-portfolio startups | ~250 |
-| **Trackr** | UK Finance, UK Tech, US Finance — plus **UK Engineering**, armed and waiting | see note |
+| **Trackr** | UK Finance, UK Tech, US Finance and **UK Engineering** | 2,655 |
 
 261 further employers are listed **link-only**: their board is behind a bot wall
 or has no readable endpoint, so the dashboard keeps the careers link rather than
@@ -50,6 +53,28 @@ pretending to poll them.
 3. `region.ts` reads the location, in an order that stops "Birmingham, AL" and
    "Bristol, TN" being read as the UK.
 4. `diff.ts` compares against yesterday and emits events.
+
+## Knowing when something opened
+
+The board's most useful view is **Just opened**, and it only works because the
+data is honest about how well it knows each date. `openBasis` records the source:
+
+| Basis | Meaning | Rows |
+|---|---|---|
+| `opens` | the employer published an opening date | 542 |
+| `posted` | the board published a posting date | 7,331 |
+| `first-seen` | neither did — this is the day **we** first saw it | 3,341 |
+
+Only the first two count as "opened". A first-seen date is a fact about this
+watcher, not about the employer, and on a source's first run it is every row at
+once; counting those would report thousands of roles as just-opened when they had
+been open for months. They render greyed and prefixed "seen" instead.
+
+A **future** opening date is not an opening: it leaves `openedAt` null, so a
+programme opening in November never appears among the roles you can apply to
+today. When that date arrives, an `opened` event fires — but only if we had
+previously recorded it as scheduled, so a listing that was already open the first
+time we met it never announces itself.
 
 ## Running it
 
@@ -80,10 +105,10 @@ first run, so it never floods the feed.
 
 ## Cost
 
-A full run takes about 2.5 minutes. GitHub bills each job rounded up to a whole
-minute, so daily costs roughly **90 minutes a month** against the 2,000 free
-private-repo minutes. A **public** repo would make Actions unlimited and
-GitHub Pages free; this watcher reads only public listings and holds no secrets.
+The repo is **public**, so Actions minutes are unlimited and GitHub Pages is
+free — the whole thing costs nothing. It reads only public listings and holds no
+secrets. A run takes about five minutes; on a private repo that would have been
+roughly 180 of the 2,000 free monthly minutes.
 
 ## Optional email digest
 
@@ -94,11 +119,10 @@ to ignore the one that matters.
 
 ## Notes worth keeping
 
-- **Trackr's UK Engineering board exists and is empty.** The tracker is live in
-  Trackr's app (its categories are Chemicals & Oil, Energy & Utilities, Oil & Gas,
-  and it is the only board with a per-listing discipline taxonomy naming Chemical
-  Engineering) but every tab returned zero on 2026-09-02. It is configured here so
-  it starts producing the day Trackr fills it.
+- **Trackr's UK Engineering board went from empty to full.** Every tab returned
+  zero on 2026-09-02; it was wired up anyway, and it now carries **1,082 listings,
+  86 of them chemical or process** — the single biggest reason the chem-eng count
+  went from 141 to 246. Arming an empty board paid off within days.
 - **A bare `[]` from Trackr means throttled, not empty.** Reproduced deliberately;
   recovery took over two hours. The adapter throws on a bare array rather than
   reporting every listing closed.
